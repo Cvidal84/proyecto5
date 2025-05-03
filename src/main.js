@@ -1,15 +1,17 @@
 import './style.css'
-//seleccionamos el elemento body del documento donde queremos poner los elementos
+
+// Seleccionamos el elemento body
 const body = document.body;
 
-// Crear botón "Nueva Lista" + ponerle texto + añadirlo al body
+// Crear botón "Nueva Lista" correctamente
 const botonNuevaLista = document.createElement('button');
 botonNuevaLista.textContent = '+ Nueva Lista';
+botonNuevaLista.classList.add('btn-anadir'); // (opcional: para estilos)
 body.appendChild(botonNuevaLista);
 
-// Crear contenedor para las listas + poner clase + agregarlo al body
+// Crear contenedor para las listas
 const contenedorListas = document.createElement('div');
-contenedorListas.classList.add('contenedorListas')
+contenedorListas.classList.add('contenedorListas');
 body.appendChild(contenedorListas);
 
 // Acción al pulsar el botón
@@ -20,22 +22,23 @@ botonNuevaLista.addEventListener('click', () => {
   }
 });
 
-//Función para guardar listas en localStorage
+// Guardar listas en localStorage
 const guardarListas = () => {
   const datos = [];
 
-  document.querySelectorAll('.lista').forEach(lista =>{
+  document.querySelectorAll('.lista').forEach(lista => {
     const titulo = lista.querySelector('h2').textContent;
     const tareas = [];
     lista.querySelectorAll('li').forEach(li => tareas.push(li.textContent));
-    datos.push({titulo, tareas});
-  })
+    datos.push({ titulo, tareas });
+  });
 
   localStorage.setItem('listas', JSON.stringify(datos));
 }
-//funcion para reconstruir lista desde localStorage
-const crearListaDesdeDatos = ({titulo, tareas}) => {
-  crearLista(titulo); //crea la estructura básica
+
+// Cargar lista desde datos
+const crearListaDesdeDatos = ({ titulo, tareas }) => {
+  crearLista(titulo);
 
   const lista = [...document.querySelectorAll('.lista')].pop(); // última lista añadida
   const ul = lista.querySelector('.tareas');
@@ -56,35 +59,37 @@ const crearListaDesdeDatos = ({titulo, tareas}) => {
   guardarListas();
 }
 
-//Función para cargar listas
+// Cargar listas al iniciar
 const cargarListas = () => {
   const datosGuardados = localStorage.getItem('listas');
   if (!datosGuardados) return;
 
   const datos = JSON.parse(datosGuardados);
   datos.forEach(lista => crearListaDesdeDatos(lista));
-};
+}
 
-
-// Función para crear una nueva lista
+// Crear nueva lista
 const crearLista = (nombre) => {
   const lista = document.createElement('div');
   lista.classList.add('lista');
   lista.innerHTML = `
-    <h2>${nombre}</h2>
-    <input type="text" placeholder="Nueva tarea..." />
-    <button>Añadir</button>
+    <div class="cabecera-lista">
+      <h2>${nombre}</h2>
+      <button class="eliminar-lista">🗑️</button>
+    </div>
+    <div class="nueva-tarea">
+      <input type="text" placeholder="Nueva tarea..." />
+      <button class="btn-anadir">+</button>
+    </div>
     <ul class="tareas"></ul>
   `;
-  //añade la lista completa al contenedor principal
   contenedorListas.appendChild(lista);
 
-  const input = lista.querySelector('input');      // Campo para nueva tarea
-  const btn = lista.querySelector('button');       // Botón para añadir tarea
-  const tareas = lista.querySelector('.tareas');   // Lista <ul> donde se añadirán tareas
-  
-  //da funcion al boton de añadir tareas.
-  btn.addEventListener('click', () => {
+  const input = lista.querySelector('input');
+  const btn = lista.querySelector('.btn-anadir');
+  const tareas = lista.querySelector('.tareas');
+
+  const agregarTarea = () => {
     const tareaTexto = input.value.trim();
     if (!tareaTexto) return;
 
@@ -98,15 +103,32 @@ const crearLista = (nombre) => {
       }
     });
 
-
-
     tareas.appendChild(li);
     input.value = '';
+    guardarListas();
+  };
 
-    guardarListas(); // Guardar cambios tras añadir tarea
+  // Botón añadir
+  btn.addEventListener('click', agregarTarea);
+
+  // Pulsar Enter también añade tarea
+  input.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      agregarTarea();
+    }
   });
 
-  guardarListas(); // Guardar lista nueva justo después de crearla
-}
-cargarListas(); // Carga las listas al cargar la página
+  // Botón eliminar lista
+  const btnEliminar = lista.querySelector('.eliminar-lista');
+  btnEliminar.addEventListener('click', () => {
+    if (confirm(`¿Eliminar la lista "${nombre}"?`)) {
+      lista.remove();
+      guardarListas();
+    }
+  });
 
+  guardarListas();
+}
+
+// Ejecutar carga inicial
+cargarListas();
