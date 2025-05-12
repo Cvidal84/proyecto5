@@ -1,18 +1,25 @@
-import './style.css'
+import './style.css';
+import { Navbar, changeTheme } from './components/Navbar/Navbar.js';
 
-// Seleccionamos el elemento body
-const body = document.body;
+// Insertar Navbar
+document.body.insertAdjacentHTML('afterbegin', Navbar());
+changeTheme();
 
-// Crear botón "Nueva Lista" correctamente
+// Crear contenedor principal del contenido (al lado del Navbar)
+const mainContent = document.createElement('div');
+mainContent.classList.add('main-content');
+document.body.appendChild(mainContent);
+
+// Crear botón "Nueva Lista"
 const botonNuevaLista = document.createElement('button');
 botonNuevaLista.textContent = '+ Nueva Lista';
-botonNuevaLista.classList.add('btn-anadir'); // (opcional: para estilos)
-body.appendChild(botonNuevaLista);
+botonNuevaLista.classList.add('btn-anadir');
+mainContent.appendChild(botonNuevaLista);
 
 // Crear contenedor para las listas
 const contenedorListas = document.createElement('div');
 contenedorListas.classList.add('contenedorListas');
-body.appendChild(contenedorListas);
+mainContent.appendChild(contenedorListas);
 
 // Acción al pulsar el botón
 botonNuevaLista.addEventListener('click', () => {
@@ -34,13 +41,12 @@ const guardarListas = () => {
   });
 
   localStorage.setItem('listas', JSON.stringify(datos));
-}
+};
 
 // Cargar lista desde datos
 const crearListaDesdeDatos = ({ titulo, tareas }) => {
   crearLista(titulo);
-
-  const lista = [...document.querySelectorAll('.lista')].pop(); // última lista añadida
+  const lista = [...document.querySelectorAll('.lista')].pop(); // última lista
   const ul = lista.querySelector('.tareas');
 
   tareas.forEach(tarea => {
@@ -56,8 +62,9 @@ const crearListaDesdeDatos = ({ titulo, tareas }) => {
 
     ul.appendChild(li);
   });
+
   guardarListas();
-}
+};
 
 // Cargar listas al iniciar
 const cargarListas = () => {
@@ -66,7 +73,7 @@ const cargarListas = () => {
 
   const datos = JSON.parse(datosGuardados);
   datos.forEach(lista => crearListaDesdeDatos(lista));
-}
+};
 
 // Crear nueva lista
 const crearLista = (nombre) => {
@@ -108,17 +115,11 @@ const crearLista = (nombre) => {
     guardarListas();
   };
 
-  // Botón añadir
   btn.addEventListener('click', agregarTarea);
-
-  // Pulsar Enter también añade tarea
   input.addEventListener('keypress', (e) => {
-    if (e.key === 'Enter') {
-      agregarTarea();
-    }
+    if (e.key === 'Enter') agregarTarea();
   });
 
-  // Botón eliminar lista
   const btnEliminar = lista.querySelector('.eliminar-lista');
   btnEliminar.addEventListener('click', () => {
     if (confirm(`¿Eliminar la lista "${nombre}"?`)) {
@@ -128,7 +129,7 @@ const crearLista = (nombre) => {
   });
 
   guardarListas();
-}
+};
 
 // Ejecutar carga inicial
 cargarListas();

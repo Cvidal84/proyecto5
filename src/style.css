@@ -41,6 +41,8 @@
   background-color: rgb(19, 18, 18);
   margin: 20px;
   box-shadow: 4px 4px 8px rgba(111, 111, 122, 0.3);
+  width: 350px;
+  word-wrap: break-word;
 }
 
 .tareas{
