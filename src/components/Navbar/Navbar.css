@@ -16,6 +16,7 @@ nav {
 nav > ul {
   display: flex;
   gap: 3rem;
+  list-style: none;
 }
 
 nav button {
@@ -27,6 +28,7 @@ nav button {
 
 nav a {
   transition: all 0.3s ease-in-out;
+  text-decoration: none;
 }
 
 nav a:hover {

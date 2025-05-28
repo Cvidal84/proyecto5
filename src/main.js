@@ -21,12 +21,48 @@ const contenedorListas = document.createElement('div');
 contenedorListas.classList.add('contenedorListas');
 mainContent.appendChild(contenedorListas);
 
-// Acción al pulsar el botón
+// Crear modal para nueva lista
+const modal = document.createElement('div');
+modal.classList.add('modal');
+modal.innerHTML = `
+  <div class="modal-content">
+    <h3>Nueva Lista</h3>
+    <input type="text" id="nombreLista" placeholder="Nombre de la lista" />
+    <label>Color de fondo:
+      <input type="color" id="colorLista" value="#ffffff" />
+    </label>
+    <div class="modal-buttons">
+      <button id="crearListaBtn">Crear</button>
+      <button id="cancelarBtn">Cancelar</button>
+    </div>
+  </div>
+`;
+document.body.appendChild(modal);
+modal.style.display = 'none';
+
+// Mostrar modal
 botonNuevaLista.addEventListener('click', () => {
-  const nombre = prompt('Nombre de la nueva lista:');
+  document.getElementById('nombreLista').value = '';
+  document.getElementById('colorLista').value = '#ffffff';
+  modal.style.display = 'flex';
+});
+
+// Crear lista desde modal
+document.getElementById('crearListaBtn').addEventListener('click', () => {
+  const nombre = document.getElementById('nombreLista').value.trim();
+  const color = document.getElementById('colorLista').value;
+
   if (nombre) {
-    crearLista(nombre);
+    crearLista(nombre, color);
+    modal.style.display = 'none';
+  } else {
+    alert('Por favor, introduce un nombre para la lista.');
   }
+});
+
+// Cancelar modal
+document.getElementById('cancelarBtn').addEventListener('click', () => {
+  modal.style.display = 'none';
 });
 
 // Guardar listas en localStorage
@@ -37,15 +73,16 @@ const guardarListas = () => {
     const titulo = lista.querySelector('h2').textContent;
     const tareas = [];
     lista.querySelectorAll('li').forEach(li => tareas.push(li.textContent));
-    datos.push({ titulo, tareas });
+    const color = lista.style.backgroundColor;
+    datos.push({ titulo, tareas, color });
   });
 
   localStorage.setItem('listas', JSON.stringify(datos));
 };
 
 // Cargar lista desde datos
-const crearListaDesdeDatos = ({ titulo, tareas }) => {
-  crearLista(titulo);
+const crearListaDesdeDatos = ({ titulo, tareas, color }) => {
+  crearLista(titulo, color);
   const lista = [...document.querySelectorAll('.lista')].pop(); // última lista
   const ul = lista.querySelector('.tareas');
 
@@ -76,9 +113,10 @@ const cargarListas = () => {
 };
 
 // Crear nueva lista
-const crearLista = (nombre) => {
+const crearLista = (nombre, color = '#ffffff') => {
   const lista = document.createElement('div');
   lista.classList.add('lista');
+  lista.style.backgroundColor = color;
   lista.innerHTML = `
     <div class="cabecera-lista">
       <h2>${nombre}</h2>
