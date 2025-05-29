@@ -5,6 +5,7 @@ nav {
   align-items: center;
   padding: 0 8rem;
   flex-wrap: wrap;
+  
 }
 
 @media (max-width: 770px) {
@@ -29,8 +30,12 @@ nav button {
 nav a {
   transition: all 0.3s ease-in-out;
   text-decoration: none;
+  color: var(--text);
 }
 
 nav a:hover {
   color: var(--highlight);
+}
+nav ul li {
+  color: var(--text);
 }
