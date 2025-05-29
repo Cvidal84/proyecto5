@@ -120,7 +120,9 @@ const crearLista = (nombre, color = '#ffffff') => {
   lista.innerHTML = `
     <div class="cabecera-lista">
       <h2>${nombre}</h2>
-      <button class="eliminar-lista">🗑️</button>
+      <button class="eliminar-lista">
+        <img src="/icons/basura.jpg" alt="">
+      </button>
     </div>
     <div class="nueva-tarea">
       <input type="text" placeholder="Nueva tarea..." />
