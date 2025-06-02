@@ -1,16 +1,17 @@
 import './style.css';
 import { Navbar, changeTheme } from './components/Navbar/Navbar.js';
+import { Footer} from './components/Footer/Footer.js';
 
-// Insertar Navbar
+// Insertar Navbar al principio del body y aplicamos el cambio de tema
 document.body.insertAdjacentHTML('afterbegin', Navbar());
 changeTheme();
 
-// Crear contenedor principal del contenido (al lado del Navbar)
+// Crear contenedor principal del contenido 
 const mainContent = document.createElement('div');
 mainContent.classList.add('main-content');
 document.body.appendChild(mainContent);
 
-// Crear botón "Nueva Lista"
+// Crear botón añadir "Nueva Lista"
 const botonNuevaLista = document.createElement('button');
 botonNuevaLista.textContent = '+ Nueva Lista';
 botonNuevaLista.classList.add('btn-anadir');
@@ -21,7 +22,7 @@ const contenedorListas = document.createElement('div');
 contenedorListas.classList.add('contenedorListas');
 mainContent.appendChild(contenedorListas);
 
-// Crear modal para nueva lista
+// Crear modal (es el menú para crear una nueva lista, con la selección de nombre, color, crear, cancelar)
 const modal = document.createElement('div');
 modal.classList.add('modal');
 modal.innerHTML = `
@@ -38,9 +39,9 @@ modal.innerHTML = `
   </div>
 `;
 document.body.appendChild(modal);
-modal.style.display = 'none';
+modal.style.display = 'none'; //lo ocultamos por defecto
 
-// Mostrar modal
+// Mostrar modal al hacer click en botonNuevaLista
 botonNuevaLista.addEventListener('click', () => {
   document.getElementById('nombreLista').value = '';
   document.getElementById('colorLista').value = '#ffffff';
@@ -80,7 +81,7 @@ const guardarListas = () => {
   localStorage.setItem('listas', JSON.stringify(datos));
 };
 
-// Cargar lista desde datos
+// Función que crea una lista desde datos guardados, se usa al iniciar
 const crearListaDesdeDatos = ({ titulo, tareas, color }) => {
   crearLista(titulo, color);
   const lista = [...document.querySelectorAll('.lista')].pop(); // última lista
@@ -90,6 +91,7 @@ const crearListaDesdeDatos = ({ titulo, tareas, color }) => {
     const li = document.createElement('li');
     li.textContent = tarea;
 
+    //permite eliminar una tarea haciendo clic sobre ella
     li.addEventListener('click', () => {
       if (confirm('¿Eliminar esta tarea?')) {
         li.remove();
@@ -100,10 +102,10 @@ const crearListaDesdeDatos = ({ titulo, tareas, color }) => {
     ul.appendChild(li);
   });
 
-  guardarListas();
+  guardarListas(); //se guarda despues de reconstruir
 };
 
-// Cargar listas al iniciar
+// Cargar listas desde localStorage al iniciar
 const cargarListas = () => {
   const datosGuardados = localStorage.getItem('listas');
   if (!datosGuardados) return;
@@ -143,6 +145,7 @@ const crearLista = (nombre, color = '#ffffff') => {
     const li = document.createElement('li');
     li.textContent = tareaTexto;
 
+    //Eliminar tarea al hacer click sobre ella
     li.addEventListener('click', () => {
       if (confirm('¿Eliminar esta tarea?')) {
         li.remove();
@@ -155,11 +158,13 @@ const crearLista = (nombre, color = '#ffffff') => {
     guardarListas();
   };
 
-  btn.addEventListener('click', agregarTarea);
+  btn.addEventListener('click', agregarTarea); //agrega tarea con el boton +
+  //agrega tarea con el boton enter
   input.addEventListener('keypress', (e) => {
     if (e.key === 'Enter') agregarTarea();
   });
 
+  //elimina toda la lista
   const btnEliminar = lista.querySelector('.eliminar-lista');
   btnEliminar.addEventListener('click', () => {
     if (confirm(`¿Eliminar la lista "${nombre}"?`)) {
@@ -170,6 +175,10 @@ const crearLista = (nombre, color = '#ffffff') => {
 
   guardarListas();
 };
+
+// Insertar Footer al final del body
+document.body.insertAdjacentHTML('beforeend', Footer());
+
 
 // Ejecutar carga inicial
 cargarListas();

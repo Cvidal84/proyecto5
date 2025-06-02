@@ -2,11 +2,11 @@
 :root {
   --background: #242424;
   --text: rgba(255, 255, 255, 0.87);
-  --card-bg: rgb(19, 18, 18);
-  --task-bg: gray;
+  --card-bg: black;
+  --task-bg: black;
   --border-color: black;
   --button-border: white;
-  --modal-bg: rgb(65, 64, 64);
+  --modal-bg: black;
 
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
   line-height: 1.5;
@@ -84,6 +84,11 @@ body {
   padding: 0;
   margin: 0;
 }
+.nueva-tarea > input {
+  border: solid 2px black;
+  border-radius: 10px;
+  
+}
 
 .tareas > li {
   margin: 10px;
@@ -105,15 +110,9 @@ body {
 
 /* Modal */
 .modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: none;
   justify-content: center;
   align-items: center;
-  background: rgba(0, 0, 0, 0.5);
   z-index: 1000;
 }
 
@@ -127,6 +126,7 @@ body {
 }
 
 .modal-content input[type="text"] {
+  border-radius: 10px;
   width: 90%;
   padding: 8px;
   margin: 10px 0;
