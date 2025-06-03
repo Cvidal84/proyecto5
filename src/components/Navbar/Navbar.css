@@ -16,6 +16,9 @@ nav > #logoContainer > img{
   height: 100%;
   width: auto;
 }
+#menu {
+  padding: 10px;
+}
 
 
 nav > ul {
@@ -28,11 +31,10 @@ nav a {
   color: var(--text);
   font-size: 1.3rem;
   font-weight: 500;
-  transition: all 0.3s ease-in-out;
-}
+  transition: all 0.3s ease-in-out;}
 
 nav a:hover {
-  font-weight: 600;
+  text-decoration: underline;
 }
 
 @media (max-width: 770px) {
