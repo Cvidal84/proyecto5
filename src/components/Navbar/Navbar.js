@@ -1,35 +1,29 @@
 import "./Navbar.css";
-
-export const changeTheme = () => {
-  const themeBtn = document.querySelector("#themeBtn");
-  themeBtn.addEventListener("click", () => {
-    document.body.classList.toggle("light");
-    changeText();
-  });
-};
-
-export const changeText = () => {
-  const themeBtn = document.querySelector("#themeBtn");
-  if (themeBtn.innerText === "☀") {
-    themeBtn.innerText = "☾";
-  } else {
-    themeBtn.innerText = "☀";
-  }
-};
+import { ThemeBtn } from "../ThemeBtn/ThemeBtn";
 
 export const Navbar = () => `
-<nav>
-<h2>ToDo List</h2>
-<ul>
-    <li>
-        <a href="#" id="lists">Todo List</a>
-    </li>
-    <li>
-        <a href="#" id="shopping">Shopping List</a>
-    </li>
-    <li>
-        <button id="themeBtn">☀</button>
-    </li>
-</ul>
-</nav>
+  <nav>
+    <div id="logoContainer">
+      <img src="/logos/logo-dark.png" alt="Dootzy logo" />
+    </div>
+    <ul id="menu">
+        <li>
+          <a href="#" id="board">Board</a>
+        </li>
+        <li>
+          <a href="#" id="cart">Cart</a>
+        </li>
+        <li>
+          ${ThemeBtn()}
+        </li>
+    </ul>
+  </nav>
 `;
+
+export const toggleLogo = () => {
+  const logo = document.querySelector("#logoContainer > img");
+  if (!logo) return;
+  logo.src = document.body.classList.contains("light") 
+    ? "/logos/logo-light.png"
+    : "/logos/logo-dark.png";
+};

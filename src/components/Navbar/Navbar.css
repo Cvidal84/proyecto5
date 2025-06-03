@@ -3,9 +3,36 @@ nav {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  padding: 0 8rem;
-  flex-wrap: wrap;
-  
+}
+
+nav > #logoContainer{
+  display: flex;
+  align-items: center;
+  height: 100%;
+
+}
+
+nav > #logoContainer > img{
+  height: 100%;
+  width: auto;
+}
+
+
+nav > ul {
+  display: flex;
+  align-items: center;
+  gap: 5rem;
+}
+
+nav a {
+  color: var(--text);
+  font-size: 1.3rem;
+  font-weight: 500;
+  transition: all 0.3s ease-in-out;
+}
+
+nav a:hover {
+  font-weight: 600;
 }
 
 @media (max-width: 770px) {
@@ -14,28 +41,3 @@ nav {
   }
 }
 
-nav > ul {
-  display: flex;
-  gap: 3rem;
-  list-style: none;
-}
-
-nav button {
-  background: none;
-  border: none;
-  color: inherit;
-  transform: scale(1.5);
-}
-
-nav a {
-  transition: all 0.3s ease-in-out;
-  text-decoration: none;
-  color: var(--text);
-}
-
-nav a:hover {
-  color: var(--highlight);
-}
-nav ul li {
-  color: var(--text);
-}
