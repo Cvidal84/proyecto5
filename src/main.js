@@ -6,7 +6,7 @@ import { Footer } from "./components/Footer/Footer.js";
 
 const init = () => {
   document.body.innerHTML += Header();
-  /* Main("home"); */
+  Main("home");
   /* document.body.innerHTML += Footer(); */
 };
 

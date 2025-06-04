@@ -1,41 +1,26 @@
 import "./Home.css";
+import { DailyPanel } from "../../components/DailyPanel/DailyPanel";
+import { TaskBoard } from "../../components/TaskBoard/TaskBoard";
 
 export const Home = () => {
     const home = document.createElement("section");
     home.id = "home";
-}
+    home.appendChild(DailyPanel());
+    home.appendChild(TaskBoard("board"));
+
+    return home;
+};
 
 /* seguir aquí */
 /* 
-// Crear botón añadir "Nueva Lista"
-  const botonNuevaLista = document.createElement('button');
-  botonNuevaLista.textContent = '+ Nueva Lista';
-  botonNuevaLista.classList.add('btn-anadir');
-  mainContent.appendChild(botonNuevaLista);
+
 
   // Crear contenedor para las listas
   const contenedorListas = document.createElement('div');
   contenedorListas.classList.add('contenedorListas');
   mainContent.appendChild(contenedorListas);
 
-  // Crear modal (es el menú para crear una nueva lista, con la selección de nombre, color, crear, cancelar)
-  const modal = document.createElement('div');
-  modal.classList.add('modal');
-  modal.innerHTML = `
-    <div class="modal-content">
-      <h3>Nueva Lista</h3>
-      <input type="text" id="nombreLista" placeholder="Nombre de la lista" />
-      <label>Color de fondo:
-        <input type="color" id="colorLista" value="#ffffff" />
-      </label>
-      <div class="modal-buttons">
-        <button id="crearListaBtn">Crear</button>
-        <button id="cancelarBtn">Cancelar</button>
-      </div>
-    </div>
-  `;
-  document.body.appendChild(modal);
-  modal.style.display = 'none'; //lo ocultamos por defecto
+  
 
   // Mostrar modal al hacer click en botonNuevaLista
   botonNuevaLista.addEventListener('click', () => {
