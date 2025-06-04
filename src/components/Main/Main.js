@@ -1,0 +1,19 @@
+import "./Main.css";
+import { cleanPage } from "../../utils/cleanPage.js";
+
+export const Main = (page) => {
+    let main = document.querySelector("main");
+
+    if(!main){
+        main = document.createElement("main");
+        document.body.appendChild(main);
+    }
+
+    cleanPage(main);
+
+    if (page === "home") {
+        main.innerHTML = Home();
+    } else if (page === "cart") {
+        main.innerHTML = Cart();
+    }
+}
