@@ -1,5 +1,6 @@
 .task-list{
     display: flex;
+    font-size: 1.5em;
     flex-direction: column;
     text-align: center;
     align-items: center;
@@ -17,10 +18,15 @@
   align-items: center;
 }
 
+.task-list input{
+  border: none;
+  height: 20px;
+  text-align: center;
+}
+
 .task-list > .list-header > .delete-list-btn{
   margin: 10px;
-  background-color: white;
-  border: solid 2px var(--button-border);
+  background-color: transparent;
   border-radius: 10px;
   font-size: 0.8rem;
   padding: 4px 8px;
@@ -29,6 +35,6 @@
   color: var(--text);
 }
 .task-list > .list-header > .delete-list-btn img{
-  width: 20px;
-  height: 20px;
+  width: 25px;
+  height: 25px;
 }

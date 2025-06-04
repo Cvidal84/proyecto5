@@ -15,7 +15,7 @@ export const TaskList = ({id, name, color}) => {
         <div class="list-header">
             <h3>${name}</h3>
             <button class="delete-list-btn">
-                <img src="/icons/trash.jpg" alt="trash icon">
+                <img src="/icons/trash.png" alt="trash icon">
             </button>
         </div>
         <div class="nueva-tarea">
