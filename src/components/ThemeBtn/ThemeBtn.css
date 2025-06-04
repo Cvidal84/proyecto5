@@ -1,4 +1,9 @@
 #themeBtn > img{
     height: 30px;
     width: auto;
+    transition: filter 0.3s ease;
+}
+
+#themeBtn > img:hover{
+    filter: drop-shadow(0 0 15px white) brightness(1.2);
 }
