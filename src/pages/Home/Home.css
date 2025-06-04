@@ -1,0 +1,15 @@
+#home{
+    display: flex;
+    width: 100%;
+    border: 2px solid red;
+}
+
+#home > #daily-panel{
+    width: 20%;
+    border: 2px solid red;
+}
+
+#home > #board-section{
+    width: 80%;
+    padding: 2rem;
+}

@@ -1,6 +1,6 @@
 import "./Home.css";
 import { DailyPanel } from "../../components/DailyPanel/DailyPanel";
-import { TaskBoard } from "../../components/TaskBoard/TaskBoard";
+import { TaskBoard } from "../../components/task/TaskBoard/TaskBoard";
 
 export const Home = () => {
     const home = document.createElement("section");
@@ -15,20 +15,6 @@ export const Home = () => {
 /* 
 
 
-  // Crear contenedor para las listas
-  const contenedorListas = document.createElement('div');
-  contenedorListas.classList.add('contenedorListas');
-  mainContent.appendChild(contenedorListas);
-
-  
-
-  // Mostrar modal al hacer click en botonNuevaLista
-  botonNuevaLista.addEventListener('click', () => {
-    document.getElementById('nombreLista').value = '';
-    document.getElementById('colorLista').value = '#ffffff';
-    modal.style.display = 'flex';
-  });
-
   // Crear lista desde modal
   document.getElementById('crearListaBtn').addEventListener('click', () => {
     const nombre = document.getElementById('nombreLista').value.trim();
@@ -40,11 +26,6 @@ export const Home = () => {
     } else {
       alert('Por favor, introduce un nombre para la lista.');
     }
-  });
-
-  // Cancelar modal
-  document.getElementById('cancelarBtn').addEventListener('click', () => {
-    modal.style.display = 'none';
   });
 
   // Guardar listas en localStorage
