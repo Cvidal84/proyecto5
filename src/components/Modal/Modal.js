@@ -1,4 +1,5 @@
 import "./Modal.css";
+import { TaskList } from "../task/TaskList/TaskList";
 
 export const Modal = () => {
     const modal = document.createElement("div");
@@ -8,7 +9,7 @@ export const Modal = () => {
             <h3>Nueva Lista</h3>
             <input type="text" id="list-name" placeholder="Nombre de la lista" />
             <label for="list-color">Color de fondo:</label>
-            <input type="color" name="list-color" id="listColor" value="#ffffff" />
+            <input type="color" name="list-color" id="list-color" value="#ffffff" />
             <div class="modal-btns">
                 <button id="add-list-btn">Crear</button>
                 <button id="cancel-btn">Cancelar</button>
@@ -18,30 +19,29 @@ export const Modal = () => {
 
     modal.querySelector("#cancel-btn").addEventListener("click", () => modal.remove());
 
-    //crear nueva lista desde el modal (ultimo cambio carlos)
     modal.querySelector("#add-list-btn").addEventListener("click", () => {
         const listName = modal.querySelector("#list-name").value.trim();
-        const listColor = modal.querySelector("#listColor").value;
+        const listColor = modal.querySelector("#list-color").value;
 
         if (!listName) {
             alert("Por favor introduce un nombre para la lista.");
             return;
         }
 
-        // Crear la lista
-        const list = document.createElement("div");
-        list.classList.add("lista");
-        list.textContent = listName;
-        list.style.backgroundColor = listColor;
+        const newList = {
+        id: crypto.randomUUID(),
+        name: listName,
+        color: listColor,
+        tasks: [],
+        };
 
-        // Añadir la lista al taskBoard
-        const taskBoard = document.querySelector("section"); // Puedes ser más específico si hay varios
-        taskBoard.appendChild(list);
+        const storedLists = JSON.parse(localStorage.getItem("taskLists")) || [];
+        storedLists.push(newList);
+        localStorage.setItem("taskLists", JSON.stringify(storedLists));
 
-        // Cerrar modal
+        TaskList(newList);
         modal.remove();
     });
-    //hasta aqui
 
     return modal;
-}
+};

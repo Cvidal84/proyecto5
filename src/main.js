@@ -1,8 +1,8 @@
 import "./style.css";
-import { Header } from "./components/Header/Header.js";
-import { toggleTheme } from "./components/ThemeBtn/ThemeBtn.js";
-import { Main } from "./components/Main/Main.js";
-import { Footer } from "./components/Footer/Footer.js";
+import { Header } from "./components/layout/Header/Header.js";
+import { toggleTheme } from "./components/layout/ThemeBtn/ThemeBtn.js";
+import { Main } from "./components/layout/Main/Main.js";
+import { Footer } from "./components/layout/Footer/Footer.js";
 
 const init = () => {
   document.body.innerHTML += Header();

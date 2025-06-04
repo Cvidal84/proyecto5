@@ -1,0 +1,41 @@
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+  background: var(--modal-bg);
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+  color: var(--text);
+}
+
+.modal-content > #list-name {
+  border-radius: 10px;
+  width: 90%;
+  padding: 8px;
+  margin: 10px 0;
+}
+
+.modal-btns {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.modal-btns button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}

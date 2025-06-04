@@ -4,6 +4,7 @@
 :root{
   --background: #242424;
   --text: rgba(255, 255, 255, 0.87);
+  --highlight: #67c6bb;
   --card-bg: black;
   --task-bg: black;
   --border-color: black;
@@ -52,6 +53,7 @@ ul{
 
 /* Estilos globales */
 body {
+  padding: 1rem 3rem;
   background-color: var(--background);
   color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
@@ -67,50 +69,8 @@ h1, h2, h3, h4{
 /* ------- */
 
 
-.contenedorListas {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-}
 
-.cabecera-lista {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
 
-.eliminar-lista {
-  margin: 10px;
-  background-color: white;
-  border: solid 2px var(--button-border);
-  border-radius: 10px;
-  font-size: 0.8rem;
-  padding: 4px 8px;
-  cursor: pointer;
-  line-height: 1;
-  color: var(--text);
-}
-.eliminar-lista img {
-  width: 20px;
-  height: 20px;
-}
-
-.lista {
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  box-sizing: border-box;
-  padding: 30px;
-  border: solid 1px var(--border-color);
-  border-radius: 10px;
-  background-color: var(--card-bg);
-  margin: 20px;
-  box-shadow: 4px 4px 8px rgba(111, 111, 122, 0.3);
-  width: 350px;
-  word-wrap: break-word;
-  color: var(--text);
-}
 
 .tareas {
   padding: 0;
@@ -119,7 +79,6 @@ h1, h2, h3, h4{
 .nueva-tarea > input {
   border: solid 2px black;
   border-radius: 10px;
-  
 }
 
 .tareas > li {
@@ -138,41 +97,4 @@ h1, h2, h3, h4{
   border: solid 1px var(--button-border);
   border-radius: 5px;
   color: var(--text);
-}
-
-/* Modal */
-.modal {
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-.modal-content {
-  background: var(--modal-bg);
-  padding: 20px;
-  border-radius: 10px;
-  width: 300px;
-  text-align: center;
-  color: var(--text);
-}
-
-.modal-content input[type="text"] {
-  border-radius: 10px;
-  width: 90%;
-  padding: 8px;
-  margin: 10px 0;
-}
-
-.modal-buttons {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-around;
-}
-
-.modal-buttons button {
-  padding: 6px 12px;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
 }
