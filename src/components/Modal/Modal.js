@@ -18,5 +18,30 @@ export const Modal = () => {
 
     modal.querySelector("#cancel-btn").addEventListener("click", () => modal.remove());
 
+    //crear nueva lista desde el modal (ultimo cambio carlos)
+    modal.querySelector("#add-list-btn").addEventListener("click", () => {
+        const listName = modal.querySelector("#list-name").value.trim();
+        const listColor = modal.querySelector("#listColor").value;
+
+        if (!listName) {
+            alert("Por favor introduce un nombre para la lista.");
+            return;
+        }
+
+        // Crear la lista
+        const list = document.createElement("div");
+        list.classList.add("lista");
+        list.textContent = listName;
+        list.style.backgroundColor = listColor;
+
+        // Añadir la lista al taskBoard
+        const taskBoard = document.querySelector("section"); // Puedes ser más específico si hay varios
+        taskBoard.appendChild(list);
+
+        // Cerrar modal
+        modal.remove();
+    });
+    //hasta aqui
+
     return modal;
 }
