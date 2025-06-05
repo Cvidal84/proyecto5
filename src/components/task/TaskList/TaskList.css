@@ -1,10 +1,10 @@
 .task-list{
     display: flex;
-    font-size: 1.5em;
     flex-direction: column;
     text-align: center;
     align-items: center;
-    padding: 30px;
+    padding: 1.5rem;
+    gap: 1rem;
     border-radius: 10px;
     background-color: var(--card-bg);
     box-shadow: 4px 4px 8px rgba(111, 111, 122, 0.3);
@@ -14,31 +14,53 @@
 
 .task-list > .list-header{
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.task-list > .list-header > h3{
+  font-size: 1.5rem;
+}
+
+.task-list > .list-header > .delete-list-btn{
+  height: 25px;
+  width: auto;
+  cursor: pointer;
+}
+
+.task-list > .list-header > .delete-list-btn img{
+  height: 100%;
+  filter: invert();
+}
+
+body.light .task-list > .list-header > .delete-list-btn img {
+  filter: none;
+}
+
+.task-list > .list-controls{
+  width: 100%;
 }
 
 .task-list input{
   border: none;
-  height: 20px;
-  text-align: center;
+  border-radius: 5px;
+  height: 30px;
+  width: 80%;
+  padding: 0.5rem;
 }
 
-.task-list > .list-header > .delete-list-btn{
-  margin: 10px;
-  background-color: transparent;
-  border-radius: 10px;
-  font-size: 0.8rem;
-  padding: 4px 8px;
-  cursor: pointer;
-  line-height: 1;
+.task-list > .list-items{
+  width: 100%;
+}
+
+.task-list .list-items > li{
+  width: 100%;
   color: var(--text);
-}
-.task-list > .list-header > .delete-list-btn img{
-  width: 25px;
-  height: 25px;
-  filter: invert();
-}
-body.light .task-list > .list-header > .delete-list-btn img {
-  filter: none; /* para que se vea en negro sobre fondo blanco*/
+  text-align: left;
+  list-style: none;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: var(--task-bg);
 }
