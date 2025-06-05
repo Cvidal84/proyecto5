@@ -81,6 +81,12 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
         addTask(input, taskContainer, id, saveLists);
     });
 
+    input.addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            addTask(input, taskContainer, id, saveLists);
+        }
+    });
+
     list.querySelector(".delete-list-btn").addEventListener("click", () => {
         list.remove();
         saveLists();

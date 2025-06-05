@@ -53,6 +53,10 @@ body.light .task-list > .list-header > .delete-list-btn img {
 
 .task-list > .list-items{
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .task-list .list-items > li{
