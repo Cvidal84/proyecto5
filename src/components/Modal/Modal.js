@@ -43,5 +43,11 @@ export const Modal = () => {
         modal.remove();
     });
 
+    modal.querySelector("#list-name").addEventListener("keydown", (e) => {
+        if (e.key === "Enter") {
+            modal.querySelector("#add-list-btn").click();
+        }
+    });
+
     return modal;
 };
