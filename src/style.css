@@ -47,6 +47,10 @@ button {
   cursor: pointer;
 }
 
+input{
+  border: none;
+}
+
 ul{
   list-style: none;
 }
@@ -62,39 +66,4 @@ body {
 
 h1, h2, h3, h4{
   font-family: "Roboto", sans-serif;
-}
-
-
-
-/* ------- */
-
-
-
-
-
-.tareas {
-  padding: 0;
-  margin: 0;
-}
-.nueva-tarea > input {
-  border: solid 2px black;
-  border-radius: 10px;
-}
-
-.tareas > li {
-  margin: 10px;
-  color: var(--text);
-  text-align: left;
-  list-style: none;
-  padding: 10px;
-  border: solid 1px var(--border-color);
-  border-radius: 10px;
-  background-color: var(--task-bg);
-}
-
-.btn-anadir {
-  background-color: transparent;
-  border: solid 1px var(--button-border);
-  border-radius: 5px;
-  color: var(--text);
 }
