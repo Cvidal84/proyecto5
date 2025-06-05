@@ -1,0 +1,11 @@
+.footer-div{/* en construccion */
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: white;
+    color: red;
+}
+.footer-logo{
+    width: 50px;
+
+}
