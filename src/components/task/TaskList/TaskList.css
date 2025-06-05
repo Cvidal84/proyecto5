@@ -37,4 +37,8 @@
 .task-list > .list-header > .delete-list-btn img{
   width: 25px;
   height: 25px;
+  filter: invert();
+}
+body.light .task-list > .list-header > .delete-list-btn img {
+  filter: none; /* para que se vea en negro sobre fondo blanco*/
 }
