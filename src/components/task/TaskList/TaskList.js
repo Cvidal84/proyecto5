@@ -19,18 +19,20 @@ const addTask = (input, container, id, onSave) => {
     onSave();
 }
 
-export const TaskList = ({ id, name, color, tasks = [] }) => {
-    
-    const taskLists = document.querySelector(".task-lists");
+export const TaskList = (listData, container) => {
+    const { id, name, color, tasks = [], isShoppingList = false } = listData;
 
-    if (!taskLists) {
-        console.error("❌ Container .task-lists not found");
+    if (!container) {
+        console.error("No se ha pasado el contenedor para la lista");
         return;
     }
 
     const list = document.createElement("li");
     list.classList.add("task-list");
     list.dataset.id = id;
+    if (isShoppingList) {
+        list.classList.add("shopping-list");
+    }
     list.innerHTML = `
         <div class="list-header">
             <h3>${name}</h3>
@@ -46,7 +48,7 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
     `;
     list.style.backgroundColor = color;
 
-    taskLists.appendChild(list);
+    container.appendChild(list);
 
     const input = list.querySelector(".add-task-input");
     const addBtn = list.querySelector(".add-task-btn");
@@ -65,13 +67,15 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
         taskContainer.appendChild(li);
     });
 
+    // Guardar listas
     const saveLists = () => {
         const allLists = Array.from(document.querySelectorAll(".task-list")).map(el => {
             const id = el.dataset.id;
             const name = el.querySelector("h3").textContent;
             const color = el.style.backgroundColor;
             const tasks = Array.from(el.querySelectorAll(".list-items li")).map(li => li.textContent);
-            return { id, name, color, tasks };
+            const isShoppingList = el.classList.contains("shopping-list");
+            return { id, name, color, tasks, isShoppingList };
         });
 
         localStorage.setItem("taskLists", JSON.stringify(allLists));

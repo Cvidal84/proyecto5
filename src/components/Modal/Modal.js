@@ -38,6 +38,7 @@ export const Modal = () => {
             name: listName,
             color: listColor,
             tasks: [],
+            isShoppingList: false
         };
 
         const storedLists = JSON.parse(localStorage.getItem("taskLists")) || [];

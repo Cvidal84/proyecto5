@@ -1,6 +1,7 @@
 import "./Main.css";
 import { cleanPage } from "../../../utils/cleanPage.js";
 import { Home } from "../../../pages/Home/Home.js";
+import { Cart } from "../../../pages/Cart/Cart.js";
 
 export const Main = (page) => {
     let main = document.querySelector("main");
@@ -14,7 +15,7 @@ export const Main = (page) => {
 
     if (page === "home") {
         main.appendChild(Home());
-    }/* else if (page === "cart") {
+    }else if (page === "cart") {
         main.appendChild(Cart());
-    } */
+    }
 }
