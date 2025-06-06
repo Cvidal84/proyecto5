@@ -49,9 +49,9 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
 
 
 
-    const input = document.querySelector(".add-task-input");
-    const addBtn = document.querySelector(".add-task-btn");
-    const taskContainer = document.querySelector(".list-items");
+    const input = list.querySelector(".add-task-input");
+    const addBtn = list.querySelector(".add-task-btn");
+    const taskContainer = list.querySelector(".list-items");
 
     tasks.forEach(task => {
         const li = document.createElement("li");
