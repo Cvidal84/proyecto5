@@ -1,19 +1,22 @@
 import "./DailyPanel.css";
+import esLocale from "@fullcalendar/core/locales/es";
 
 export const DailyPanel = () => {
   const aside = document.createElement("aside");
   aside.id = "daily-panel";
   aside.innerHTML = `
-    <p>Día, hora, clima...</p>
-    <div id='calendar'></div>
+    <div id="calendar-section">
+      <div id="calendar"></div>
+    </div>
   `;
 
   // Inicializa el calendario cuando el aside ya está listo
   setTimeout(() => {
-    const calendarEl = aside.querySelector('#calendar');
+    const calendarEl = aside.querySelector("#calendar");
     if (calendarEl) {
       const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: 'dayGridMonth'
+        initialView: "dayGridMonth",
+        locale: esLocale
       });
       calendar.render();
     }

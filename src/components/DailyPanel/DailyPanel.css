@@ -1,0 +1,108 @@
+#daily-panel > #calendar-section{
+    padding: 2rem 1rem;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+#calendar{
+    width: 320px;
+    font-size: 0.8rem;
+}
+
+.fc-button {
+  background-color: #3a716a !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  border: none !important;
+  transition: background-color 0.3s ease !important;
+  font-weight: bold !important;
+}
+
+/* Hover y focus */
+.fc-button:hover,
+.fc-button:focus {
+  background-color: #2e5751 !important; /* tono más oscuro */
+  outline: none !important;
+}
+
+/* Botón activo (por ejemplo, el botón seleccionado) */
+.fc-button.fc-button-active {
+  background-color: #266052 !important;
+  box-shadow: 0 0 5px rgba(38, 96, 82, 0.7) !important;
+}
+
+/* Botones de meses */
+.fc-button {
+  background-color: #3a716a !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  transition: background-color 0.3s ease;
+  border: 1px solid #2e5751 !important;
+}
+
+.fc-button:hover, .fc-button:focus {
+  background-color: #2e5751 !important;
+}
+
+/* Botón activo */
+.fc-button.fc-button-active {
+  background-color: #266052 !important;
+}
+
+.fc-today-button {
+  background-color: #3a716a !important;
+  color: rgba(255, 255, 255, 0.87) !important;
+  font-weight: bold !important;
+}
+
+.fc-today-button:hover,
+.fc-today-button:focus {
+  background-color: #2e5751 !important;
+}
+
+/* Grid */
+.fc-daygrid {
+  border-radius: 12px;
+  overflow: hidden; /* para que no se salga nada */
+  background-color: var(--text);
+  color: var(--background);
+}
+
+/* Fila días de la semana */
+#calendar .fc-col-header-cell-cushion {
+  text-align: center;
+}
+
+/* Casilla de un día */
+.fc-daygrid-day-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+}
+
+/* Número del día */
+.fc-daygrid-day-number {
+  font-weight: bold;
+}
+
+/* Día de hoy */
+.fc-day-today {
+  background-color: rgba(103, 198, 187, 0.5) !important;;
+}
+
+
+
+
+.fc-scroller::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.fc-scroller::-webkit-scrollbar-track {
+  background: none;
+  border-radius: 10px;
+}
+
+.fc-scroller::-webkit-scrollbar-thumb {
+  background: #3a716a;
+  border-radius: 10px;
+}

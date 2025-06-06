@@ -18,4 +18,4 @@ export const Main = (page) => {
     }else if (page === "cart") {
         main.appendChild(Cart());
     }
-}
+};

@@ -35,6 +35,7 @@ export const TaskBoard = (page) => {
                 
         });
     }else if (page === "cart"){
+        taskLists.classList.add("shopping-list-container");
         // Comprobar si ya hay listas de la compra guardadas
     if (shoppingLists.length === 0) {
         // No hay listas de la compra, crear una por defecto

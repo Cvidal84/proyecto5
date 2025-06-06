@@ -1,0 +1,16 @@
+section#home, section#cart{
+    display: flex;
+    width: 100%;
+}
+
+#daily-panel{
+    min-width: 350px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#board-section, #cart-section{
+    width: 100%;
+    padding: 2rem;
+}
