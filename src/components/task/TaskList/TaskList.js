@@ -9,7 +9,7 @@ const makeTaskDraggable = (li) => {
     });
 
     li.addEventListener("dragend", () => {
-        ul.classList.remove("dragging");
+        li.classList.remove("dragging");
     });
 };
 
