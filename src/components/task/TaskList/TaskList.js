@@ -48,7 +48,6 @@ const addTask = (input, container, id, onSave) => {
 };
 
 export const TaskList = (listData, container) => {
-
     const { id, name, color, tasks = [], isShoppingList = false } = listData;
 
     if (!container) {
@@ -83,7 +82,14 @@ export const TaskList = (listData, container) => {
     const addBtn = list.querySelector(".add-task-btn");
     const taskContainer = list.querySelector(".list-items");
 
-    // Guardar listas
+    // Asegurar altura visible para detectar drop incluso en vacío
+    taskContainer.style.minHeight = "40px";
+    taskContainer.style.padding = "4px";
+
+    // Indicador visual de drop
+    const dropIndicator = document.createElement("div");
+    dropIndicator.classList.add("drop-indicator");
+
     const saveLists = () => {
         const allLists = Array.from(document.querySelectorAll(".task-list")).map(el => {
             const id = el.dataset.id;
@@ -110,23 +116,58 @@ export const TaskList = (listData, container) => {
         taskContainer.appendChild(li);
     });
 
-    // Event listeners
+    // DRAG & DROP FLUIDO
+    taskContainer.addEventListener("dragenter", (e) => {
+        e.preventDefault();
+
+        // Si la lista está vacía, mostrar el dropIndicator
+        if (!taskContainer.querySelector("li") && !taskContainer.querySelector(".drop-indicator")) {
+            taskContainer.appendChild(dropIndicator);
+        }
+    });
+
     taskContainer.addEventListener("dragover", (e) => {
+        e.preventDefault();
+
+        const afterElement = getDragAfterElement(taskContainer, e.clientY);
+
+        if (dropIndicator.parentElement) {
+            dropIndicator.remove();
+        }
+
+        if (!afterElement) {
+            taskContainer.appendChild(dropIndicator);
+        } else {
+            taskContainer.insertBefore(dropIndicator, afterElement);
+        }
+    });
+
+    taskContainer.addEventListener("drop", (e) => {
         e.preventDefault();
         const dragging = document.querySelector(".dragging");
         const afterElement = getDragAfterElement(taskContainer, e.clientY);
 
-        if (dragging && dragging !== afterElement) {
-            if (afterElement == null) {
-                taskContainer.appendChild(dragging);
-            } else {
-                taskContainer.insertBefore(dragging, afterElement);
-            }
+        if (dropIndicator.parentElement) {
+            dropIndicator.remove();
         }
+
+        if (!dragging) return;
+
+        if (!afterElement) {
+            taskContainer.appendChild(dragging);
+        } else {
+            taskContainer.insertBefore(dragging, afterElement);
+        }
+
+        saveLists();
     });
 
-    taskContainer.addEventListener("drop", () => {
-        saveLists();
+    taskContainer.addEventListener("dragleave", (e) => {
+        if (!taskContainer.contains(e.relatedTarget)) {
+            if (dropIndicator.parentElement) {
+                dropIndicator.remove();
+            }
+        }
     });
 
     addBtn.addEventListener("click", () => {
