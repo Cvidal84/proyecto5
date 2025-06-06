@@ -15,6 +15,7 @@ export const TaskBoard = (board) => {
     taskLists.classList.add("task-lists");
     taskBoard.appendChild(taskLists);
 
+    // Cargar las listas guardadas en local
     const storedLists = JSON.parse(localStorage.getItem("taskLists")) || [];
     storedLists.forEach(list => {
         setTimeout(() => {
@@ -22,11 +23,16 @@ export const TaskBoard = (board) => {
         }, 0);
     });
 
-    newListBtn.addEventListener("click", () => {
+    // Event listener para el botón
+    newListBtn.addEventListener("click", (ev) => {
+        ev.preventDefault();
+        ev.stopPropagation();
+        
         const modal = Modal();
+    
         document.body.appendChild(modal);
+            
     });
 
     return taskBoard;
 }
-
