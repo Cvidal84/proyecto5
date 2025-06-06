@@ -8,10 +8,10 @@ export const Navbar = () => `
     </div>
     <ul id="menu">
         <li>
-          <a href="#" id="board">Board</a>
+          <a href="#" id="boardLink">Tablero</a>
         </li>
         <li>
-          <a href="#" id="cart">Cart</a>
+          <a href="#" id="cartLink">Compra</a>
         </li>
         <li>
           ${ThemeBtn()}

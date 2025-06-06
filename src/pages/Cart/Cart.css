@@ -1,0 +1,15 @@
+#cart{
+    display: flex;
+    width: 100%;
+    border: 2px solid red;
+}
+
+#cart > #daily-panel{
+    width: 20%;
+    border: 2px solid red;
+}
+
+#cart > #cart-section{
+    width: 80%;
+    padding: 2rem;
+}
