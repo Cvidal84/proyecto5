@@ -29,10 +29,10 @@ export const Modal = () => {
         }
 
         const newList = {
-        id: crypto.randomUUID(),
-        name: listName,
-        color: listColor,
-        tasks: [],
+            id: crypto.randomUUID(),
+            name: listName,
+            color: listColor,
+            tasks: [],
         };
 
         const storedLists = JSON.parse(localStorage.getItem("taskLists")) || [];
