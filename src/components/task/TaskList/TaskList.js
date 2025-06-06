@@ -9,8 +9,8 @@ const addTask = (input, container, id, onSave) => {
 
     li.addEventListener("click", () => {
         if (confirm("¿Eliminar esta tarea?")) {
-        li.remove();
-        onSave();
+            li.remove();
+            onSave();
         }
     });
 
@@ -20,10 +20,11 @@ const addTask = (input, container, id, onSave) => {
 }
 
 export const TaskList = ({ id, name, color, tasks = [] }) => {
+    
     const taskLists = document.querySelector(".task-lists");
 
     if (!taskLists) {
-        console.error("Container .task-lists not found");
+        console.error("❌ Container .task-lists not found");
         return;
     }
 
@@ -47,20 +48,19 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
 
     taskLists.appendChild(list);
 
-
-
     const input = list.querySelector(".add-task-input");
     const addBtn = list.querySelector(".add-task-btn");
     const taskContainer = list.querySelector(".list-items");
 
+    // Cargar tareas
     tasks.forEach(task => {
         const li = document.createElement("li");
         li.textContent = task;
         li.addEventListener("click", () => {
-        if (confirm("¿Eliminar esta tarea?")) {
-            li.remove();
-            saveLists();
-        }
+            if (confirm("¿Eliminar esta tarea?")) {
+                li.remove();
+                saveLists();
+            }
         });
         taskContainer.appendChild(li);
     });
@@ -72,11 +72,12 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
             const color = el.style.backgroundColor;
             const tasks = Array.from(el.querySelectorAll(".list-items li")).map(li => li.textContent);
             return { id, name, color, tasks };
-            });
+        });
 
-            localStorage.setItem("taskLists", JSON.stringify(allLists));
+        localStorage.setItem("taskLists", JSON.stringify(allLists));
     };
 
+    // Event listeners
     addBtn.addEventListener("click", () => {
         addTask(input, taskContainer, id, saveLists);
     });
@@ -88,8 +89,10 @@ export const TaskList = ({ id, name, color, tasks = [] }) => {
     });
 
     list.querySelector(".delete-list-btn").addEventListener("click", () => {
-        list.remove();
-        saveLists();
+        if (confirm("¿Eliminar esta lista?")) {
+            list.remove();
+            saveLists();
+        }
     });
 
     return list;

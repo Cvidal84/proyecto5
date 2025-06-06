@@ -14,7 +14,7 @@ export const Main = (page) => {
 
     if (page === "home") {
         main.appendChild(Home());
-    } /* else if (page === "cart") {
+    }/* else if (page === "cart") {
         main.appendChild(Cart());
     } */
 }
