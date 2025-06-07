@@ -1,11 +1,11 @@
-#daily-panel > #calendar-section{
+#daily-panel > #mini-calendar-section{
     padding: 2rem 1rem;
     width: 100%;
     display: flex;
     justify-content: center;
 }
 
-#calendar{
+#mini-calendar{
     width: 320px;
     height: 407px;
     font-size: 0.8rem;
@@ -67,7 +67,7 @@
 }
 
 /* Fila días de la semana */
-#calendar .fc-col-header-cell-cushion {
+#mini-calendar .fc-col-header-cell-cushion {
     text-align: center;
 }
 
