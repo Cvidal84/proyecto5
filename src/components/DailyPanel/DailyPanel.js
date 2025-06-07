@@ -1,4 +1,5 @@
 import "./DailyPanel.css";
+import { Weather } from "../Weather/Weather.js"; 
 import esLocale from "@fullcalendar/core/locales/es";
 
 export const DailyPanel = () => {
@@ -7,6 +8,7 @@ export const DailyPanel = () => {
   aside.innerHTML = `
     <div id="mini-calendar-section">
       <div id="mini-calendar"></div>
+      <div class="container-weather"></div>
     </div>
   `;
 

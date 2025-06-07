@@ -3,12 +3,26 @@
     width: 100%;
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 
 #mini-calendar{
     width: 320px;
     height: 407px;
     font-size: 0.8rem;
+    margin-bottom: 20px;
+}
+.container-weather{
+    background-color:#3a716a;
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    border-radius: 10px;
+    padding: 10px;
+    width: 320px;
+    height: 200px;
+    font-size: 1rem;
+    text-align: center;
 }
 
 .fc-button {
