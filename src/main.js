@@ -17,6 +17,7 @@ const init = () => {
   /* Añado la funcionalidad de navegación entre páginas al navbar */
   linkPage("boardLink", () => Main("home"));
   linkPage("cartLink", () => Main("cart"));
+  linkPage("calendarLink", () => Main("my-calendar"));
 
 };
 
