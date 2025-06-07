@@ -1,6 +1,7 @@
 section#home, section#cart{
     display: flex;
     width: 100%;
+    min-height: 90vh;
 }
 
 #daily-panel{
