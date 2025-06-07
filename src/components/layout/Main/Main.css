@@ -1,10 +1,16 @@
-section#home, section#cart{
-    display: flex;
-    width: 100%;
+main{
     min-height: 90vh;
 }
 
+section#home, section#cart{
+    display: flex;
+    width: 100%;
+    z-index: 1;
+}
+
 #daily-panel{
+    position: fixed;
+    top: 10vh;
     min-width: 350px;
     display: flex;
     flex-direction: column;
@@ -12,6 +18,7 @@ section#home, section#cart{
 }
 
 #board-section, #cart-section{
+    margin-left: 350px;
     width: 100%;
     padding: 2rem;
 }

@@ -57,7 +57,7 @@ ul{
 
 /* Estilos globales */
 body {
-  padding: 1rem 3rem;
+  padding: 0 3rem;
   background-color: var(--background);
   color: var(--text);
   transition: background-color 0.3s ease, color 0.3s ease;
