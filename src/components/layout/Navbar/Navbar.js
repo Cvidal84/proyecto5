@@ -14,6 +14,9 @@ export const Navbar = () => `
           <a href="#" id="cartLink">Compra</a>
         </li>
         <li>
+          <a href="#" id="calendarLink">Calendario</a>
+        </li>
+        <li>
           ${ThemeBtn()}
         </li>
     </ul>

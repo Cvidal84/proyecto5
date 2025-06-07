@@ -9,6 +9,10 @@ section#home, section#cart{
     z-index: 1;
 }
 
+section#my-calendar{
+    align-self: center;
+}
+
 #daily-panel{
     position: fixed;
     top: 10vh;
