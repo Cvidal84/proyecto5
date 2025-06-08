@@ -30,7 +30,7 @@ const printData = (data) => {
 
   container.innerHTML = `
     <h2>${data.city}</h2>
-    <p class="temp">${data.temp} - ${data.text}</p> 
+    <p class="temp">Temp: ${data.temp}</p> 
     <img src="${data.image}" alt="${data.text}"/>
     <p>Humedad: ${data.hum}</p>
     <p>Viento: ${data.wind}</p>
