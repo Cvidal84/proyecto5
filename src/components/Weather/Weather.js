@@ -16,7 +16,7 @@ const showWeather = (data) => {
         text: data.current.condition.text,
         image: data.current.condition.icon,
         hum: data.current.humidity +" %",
-        wind: data.current.wind_kph + " kph"
+        wind: data.current.wind_kph + " k/h"
     }
     printData(weather)
 }
