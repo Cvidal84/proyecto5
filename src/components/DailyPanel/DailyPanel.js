@@ -8,9 +8,10 @@ export const DailyPanel = () => {
   aside.innerHTML = `
     <div id="mini-calendar-section">
       <div id="mini-calendar"></div>
-      <div class="container-weather"></div>
     </div>
+    <div class="container-weather"></div>
   `;
+ Weather();
 
   // Inicializa el calendario cuando el aside ya está listo
   setTimeout(() => {

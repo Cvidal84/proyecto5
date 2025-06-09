@@ -48,5 +48,13 @@ if("geolocation" in navigator) {
 
 // 👇 Exportar correctamente la función que inicializa todo
 export const Weather = () => {
-  getWeather();
+  if("geolocation" in navigator) {
+  //Se solicita la ubicacion
+  navigator.geolocation.getCurrentPosition((position) => {
+    const location = position.coords.latitude +","+ position.coords.longitude;
+    getWeather(location);
+  })
+} else {
+  getWeather("Madrid")
+}
 };

@@ -13,7 +13,7 @@
     margin-bottom: 20px;
 }
 .container-weather{
-    background-image: linear-gradient(rgba(31, 63, 58, 0.7), rgba(31, 63, 58, 0.5)), url("/images/clouds.jpeg");
+    background-image: linear-gradient(rgba(31, 63, 58, 0.7), rgba(31, 63, 58, 0.6)), url("/images/clouds.jpeg");
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
     border-radius: 10px;
     padding: 10px;
