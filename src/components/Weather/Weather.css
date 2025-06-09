@@ -1,0 +1,15 @@
+.container-weather{
+    background-image: linear-gradient(rgba(31, 63, 58, 0.7), rgba(31, 63, 58, 0.6)), url("/images/clouds.jpeg");
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    border-radius: 10px;
+    padding: 10px;
+    width: 320px;
+    height: 200px;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.light .container-weather{
+    background-image: linear-gradient(rgba(125, 159, 155, 0.6), rgba(125, 159, 155, 0.6)),
+      url("/images/clouds.jpeg");
+}
