@@ -6,7 +6,7 @@
   --text: rgba(255, 255, 255, 0.87);
   --highlight: #67c6bb;
   --card-bg: black;
-  --task-bg: black;
+  --task-bg: rgba(0, 0, 0, 0.30);
   --border-color: black;
   --button-border: white;
   --modal-bg: black;
@@ -24,7 +24,7 @@ body.light{
   --background: #f5f5f5;
   --text: #121212;
   --card-bg: #ffffff;
-  --task-bg: #e0e0e0;
+  --task-bg: rgba(255, 255, 255, 0.30);
   --border-color: #ccc;
   --button-border: #121212;
   --modal-bg: #dddddd;
