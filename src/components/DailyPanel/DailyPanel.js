@@ -1,6 +1,6 @@
 import "./DailyPanel.css";
-import { Weather } from "../Weather/Weather.js"; 
-import esLocale from "@fullcalendar/core/locales/es";
+import { Weather } from "../Weather/Weather.js";
+import { initMiniCalendar } from "../FullCalendar/FullCalendar.js";
 
 export const DailyPanel = () => {
   const aside = document.createElement("aside");
@@ -11,19 +11,12 @@ export const DailyPanel = () => {
     </div>
     <div class="container-weather"></div>
   `;
- Weather();
+  Weather();
 
-  // Inicializa el calendario cuando el aside ya está listo
   setTimeout(() => {
-    const calendarEl = aside.querySelector("#mini-calendar");
-    if (calendarEl) {
-      const calendar = new FullCalendar.Calendar(calendarEl, {
-        initialView: "dayGridMonth",
-        locale: esLocale
-      });
-      calendar.render();
-    }
+    initMiniCalendar("#mini-calendar");
   }, 0);
+  
 
   return aside;
 };

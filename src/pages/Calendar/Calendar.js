@@ -11,15 +11,9 @@ export const MyCalendar = () => {
 
     myCalendar.appendChild(calendar);
 
-
-    
-
     setTimeout(() => {
         initCalendar("#calendar");
     }, 0);
     
-    
-    
-
     return myCalendar;
 };
