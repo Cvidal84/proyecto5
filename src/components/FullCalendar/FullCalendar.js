@@ -2,6 +2,7 @@ import { Calendar } from "@fullcalendar/core";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
+import esLocale from "@fullcalendar/core/locales/es";
 
 export const initCalendar = (selector) => {
     const calendarEl = document.querySelector(selector);
@@ -42,3 +43,15 @@ export const initCalendar = (selector) => {
 
     calendar.render();
 };
+
+export const initMiniCalendar = (selector) => {
+    const calendarEl = document.querySelector(selector);
+
+    const calendar = new Calendar(calendarEl, {
+        plugins: [dayGridPlugin],
+        initialView: "dayGridMonth",
+        locale: esLocale
+    });
+
+    calendar.render();
+}

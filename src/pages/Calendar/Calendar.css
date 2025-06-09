@@ -1,8 +1,23 @@
 #my-calendar{
     height: fit-content;
-
 }
 
-/* #calendar.fc{
-    height: 100%;
-} */
+#my-calendar .fc .fc-toolbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 1.8rem;
+}
+
+#my-calendar .fc-button {
+  background-color: #6f42c1;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  padding: 6px 12px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+#my-calendar .fc-button:hover {
+  background-color: #563d7c;
+}
