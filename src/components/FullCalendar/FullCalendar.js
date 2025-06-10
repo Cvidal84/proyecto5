@@ -10,26 +10,29 @@ export const initCalendar = (selector) => {
     const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         initialView: "timeGridWeek",
+        locale: esLocale,
+        allDaySlot: false,
         headerToolbar: {
             left: "prev,next today",
             center: "title",
             right: "dayGridMonth,timeGridWeek,timeGridDay"
         },
         selectable: true,
+        selectMirror: true,
         editable: true,
-        height: 800,
+        height: 750,
         events: [
             { title: "Cita con cliente", start: "2025-06-10T10:00:00", end: "2025-06-10T11:00:00" },
             { title: "Reunión equipo", start: "2025-06-11T14:00:00", end: "2025-06-11T15:30:00" }
         ],
         select(info) {
-            const title = prompt("Introduce el título de la cita:");
+            const title = prompt("Introduce el título del evento:");
             if (title) {
                 calendar.addEvent({
                     title,
                     start: info.start,
                     end: info.end,
-                    allDay: info.allDay
+                    allDay: false
                 });
             }
             calendar.unselect();
