@@ -93,11 +93,9 @@ export const TaskList = (listData, container) => {
     const addBtn = list.querySelector(".add-task-btn");
     const taskContainer = list.querySelector(".list-items");
 
-    // Asegurar altura visible para detectar drop incluso en vacío
     taskContainer.style.minHeight = "40px";
     taskContainer.style.padding = "4px";
 
-    // Indicador visual de drop
     const dropIndicator = document.createElement("div");
     dropIndicator.classList.add("drop-indicator");
 
@@ -131,7 +129,6 @@ export const TaskList = (listData, container) => {
     taskContainer.addEventListener("dragenter", (e) => {
         e.preventDefault();
 
-        // Si la lista está vacía, mostrar el dropIndicator
         if (!taskContainer.querySelector("li") && !taskContainer.querySelector(".drop-indicator")) {
             taskContainer.appendChild(dropIndicator);
         }

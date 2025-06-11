@@ -1,15 +1,15 @@
 .task-list{
-    display: flex;
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-    padding: 1.5rem;
-    gap: 1rem;
-    border-radius: 10px;
-    background-color: var(--card-bg);
-    box-shadow: 4px 4px 8px rgba(111, 111, 122, 0.3);
-    word-wrap: break-word;
-    height: fit-content;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  padding: 1.5rem;
+  gap: 1rem;
+  border-radius: 10px;
+  background-color: var(--card-bg);
+  box-shadow: 4px 4px 8px rgba(111, 111, 122, 0.3);
+  word-wrap: break-word;
+  height: fit-content;
 }
 
 .shopping-list{
@@ -80,7 +80,8 @@ body.light .task-list > .list-header > .delete-list-btn img {
 .task-list .list-items > li::first-letter{
   text-transform: uppercase;
 }
+
 .list-items {
-  min-height: 60px; /* asegúrate de que la lista tenga área para recibir drop */
+  min-height: 60px;
   padding: 4px;
 }
