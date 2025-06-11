@@ -92,3 +92,11 @@
     background-color: rgba(103, 198, 187, 0.2)
 }
 
+#mini-calendar .event-dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #ff8a65;
+    border-radius: 50%;
+    margin-left: 4px; /* Ajustar el margen para que no desplace el número */
+}

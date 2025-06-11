@@ -26,6 +26,7 @@ export const initCalendar = (selector) => {
         plugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
         initialView: "timeGridWeek",
         locale: esLocale,
+        firstDay: 1,
         allDaySlot: false,
         headerToolbar: {
             left: "prev,next today",
@@ -68,7 +69,27 @@ export const initMiniCalendar = (selector) => {
     const calendar = new Calendar(calendarEl, {
         plugins: [dayGridPlugin],
         initialView: "dayGridMonth",
-        locale: esLocale
+        locale: esLocale,
+        firstDay: 1,
+        events: [],
+        dayCellDidMount: (info) => {
+            const dayStr = info.date.toLocaleDateString("es-ES", { timeZone: "Europe/Madrid" });
+            const events = loadEventsFromLocalStorage();
+            
+            const hasEvent = events.some(event => {
+                const eventDate = new Date(event.start).toLocaleDateString("es-ES", { timeZone: "Europe/Madrid" });
+                return eventDate === dayStr;
+            });
+
+            if (hasEvent) {
+                const dayNumber = info.el.querySelector(".fc-daygrid-day-number");
+                if (dayNumber) {
+                    const dot = document.createElement("span");
+                    dot.classList.add("event-dot");
+                    dayNumber.appendChild(dot);
+                }
+            }
+        }
     });
 
     calendar.render();
