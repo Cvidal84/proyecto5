@@ -32,11 +32,11 @@ export const Modal = () => {
             alert("Por favor introduce un nombre para la lista.");
             return;
         }
-        //validación para evitar el color blanco
+    /*     //validación para evitar el color blanco
     if (listColor.toLowerCase() === "#ffffff") {
         alert("El color blanco no está permitido. Por favor elige otro color.");
         return;
-    }
+    } */
 
         const newList = {
             id: crypto.randomUUID(),

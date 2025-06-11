@@ -11,7 +11,11 @@
     word-wrap: break-word;
     color: var(--text);
     height: fit-content;
-    
+}
+
+.shopping-list{
+  width: 500px;
+  margin-top: 2.5rem;
 }
 
 .task-list > .list-header{

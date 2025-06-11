@@ -37,36 +37,28 @@ export const TaskBoard = (page) => {
     }else if (page === "cart"){
         taskLists.classList.add("shopping-list-container");
         // Comprobar si ya hay listas de la compra guardadas
-    if (shoppingLists.length === 0) {
-        // No hay listas de la compra, crear una por defecto
-        const defaultCart = {
-            id: crypto.randomUUID(),
-            name: "Lista de la compra",
-            color: "#e0ffe0",
-            tasks: [],
-            isShoppingList: true
-        };
+        if (shoppingLists.length === 0) {
+            // No hay listas de la compra, crear una por defecto
+            const defaultCart = {
+                id: crypto.randomUUID(),
+                name: "Lista de la compra",
+                color: "#67c6bb",
+                tasks: [],
+                isShoppingList: true
+            };
 
-        // Guardar la lista de la compra por defecto junto con las listas normales
-        const allListsUpdated = [...normalLists, defaultCart];
-        localStorage.setItem("taskLists", JSON.stringify(allListsUpdated));
+            // Guardar la lista de la compra por defecto junto con las listas normales
+            const allListsUpdated = [...normalLists, defaultCart];
+            localStorage.setItem("taskLists", JSON.stringify(allListsUpdated));
 
-        // Mostrar la lista por defecto
-        TaskList(defaultCart, taskLists);
-    } else {
-        // Ya hay listas de la compra, cargarlas todas
-        shoppingLists.forEach(listData => {
-            TaskList(listData, taskLists);
-        });
+            // Mostrar la lista por defecto
+            TaskList(defaultCart, taskLists);
+        } else {
+            // Ya hay listas de la compra, cargarlas todas
+            shoppingLists.forEach(listData => {
+                TaskList(listData, taskLists);
+            });
+        }
     }
-
-
-
-    }
-
-    
-
-    
-
     return taskBoard;
-}
+};

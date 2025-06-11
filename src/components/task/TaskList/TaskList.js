@@ -1,4 +1,5 @@
 import "./TaskList.css";
+import { getTextColor } from "../../../utils/getTextColor";
 
 const makeTaskDraggable = (li) => {
     li.draggable = true;
@@ -75,6 +76,14 @@ export const TaskList = (listData, container) => {
         <ul class="list-items"></ul>
     `;
     list.style.backgroundColor = color;
+    // Para ajustar el color del texto según el fondo sea claro u oscuro:
+    const textColor = getTextColor(color);
+    list.querySelector("h3").style.color = textColor;
+    list.querySelector(".add-task-btn").style.color = textColor;
+    const trashIcon = list.querySelector(".delete-list-btn img");
+    if (trashIcon) {
+        trashIcon.style.filter = textColor === "white" ? "invert(1)" : "invert(0)";
+    }
 
     container.appendChild(list);
 
@@ -180,12 +189,17 @@ export const TaskList = (listData, container) => {
         }
     });
 
-    list.querySelector(".delete-list-btn").addEventListener("click", () => {
-        if (confirm("¿Eliminar esta lista?")) {
-            list.remove();
-            saveLists();
-        }
-    });
+    const deleteBtn = list.querySelector(".delete-list-btn");
+    if (!isShoppingList) {
+        deleteBtn.addEventListener("click", () => {
+            if (confirm("¿Eliminar esta lista?")) {
+                list.remove();
+                saveLists();
+            }
+        });
+    } else {
+        deleteBtn.style.display = "none";
+    }
 
     return list;
 };

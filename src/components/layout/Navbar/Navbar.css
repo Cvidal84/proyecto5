@@ -1,6 +1,6 @@
 nav {
   height: 10vh;
-  padding: 0 4rem;
+  padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -14,7 +14,7 @@ nav > #logoContainer{
 }
 
 nav > #logoContainer > img{
-  height: 80%;
+  height: 60%;
   width: auto;
 }
 

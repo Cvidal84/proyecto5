@@ -1,5 +1,4 @@
 import "./Calendar.css";
-
 import { initCalendar } from "../../components/FullCalendar/FullCalendar";
 
 export const MyCalendar = () => {
