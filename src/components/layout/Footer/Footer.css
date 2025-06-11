@@ -3,8 +3,8 @@
     align-items: center;
     justify-content: space-evenly;
     background-color: white;
-    color: red;
+    color: black;
 }
 .footer-logo{
-    width: 50px;
+    height: 100px;
 }

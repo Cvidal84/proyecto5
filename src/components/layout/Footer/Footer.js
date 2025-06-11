@@ -12,7 +12,7 @@ export const Footer = () => {
     footerDiv.classList.add("footer-div");
     
     const logo = document.createElement("img");
-    logo.src = "/icons/full-dootzy.png";
+    logo.src = "/icons/full-dootzy-blue.png";
     logo.alt = "Logo";
     logo.classList.add("footer-logo");
     
