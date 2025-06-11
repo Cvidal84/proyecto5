@@ -4,6 +4,21 @@ import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import esLocale from "@fullcalendar/core/locales/es";
 
+const saveEventsToLocalStorage = (events) => {
+    const rawEvents = events.map(event => ({
+        title: event.title,
+        start: event.start.toISOString(),
+        end: event.end ? event.end.toISOString() : null,
+        allDay: event.allDay
+    }));
+    localStorage.setItem("calendarEvents", JSON.stringify(rawEvents));
+};
+
+const loadEventsFromLocalStorage = () => {
+    const stored = localStorage.getItem("calendarEvents");
+    return stored ? JSON.parse(stored) : [];
+};
+
 export const initCalendar = (selector) => {
     const calendarEl = document.querySelector(selector);
 
@@ -21,29 +36,29 @@ export const initCalendar = (selector) => {
         selectMirror: true,
         editable: true,
         height: 750,
-        events: [
-            { title: "Cita con cliente", start: "2025-06-10T10:00:00", end: "2025-06-10T11:00:00" },
-            { title: "Reunión equipo", start: "2025-06-11T14:00:00", end: "2025-06-11T15:30:00" }
-        ],
+        events: loadEventsFromLocalStorage(),
         select(info) {
             const title = prompt("Introduce el título del evento:");
             if (title) {
-                calendar.addEvent({
+                const newEvent = calendar.addEvent({
                     title,
                     start: info.start,
                     end: info.end,
                     allDay: false
                 });
+                // Guardar en localStorage
+                saveEventsToLocalStorage(calendar.getEvents());
             }
             calendar.unselect();
         },
         eventClick(info) {
             if (confirm(`¿Quieres eliminar el evento "${info.event.title}"?`)) {
                 info.event.remove();
+                // Guardar cambios
+                saveEventsToLocalStorage(calendar.getEvents());
             }
         }
     });
-
     calendar.render();
 };
 
@@ -57,4 +72,4 @@ export const initMiniCalendar = (selector) => {
     });
 
     calendar.render();
-}
+};
