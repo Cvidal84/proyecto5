@@ -11,15 +11,10 @@ export const Footer = () => {
     const footerDiv = document.createElement("div");
     footerDiv.classList.add("footer-div");
     
-    const logo = document.createElement("img");
-    logo.src = "/icons/full-dootzy-blue.png";
-    logo.alt = "Logo";
-    logo.classList.add("footer-logo");
     
     const paragraph = document.createElement("p");
-    paragraph.innerHTML = "&copy; 2025 To-Do List created by Yria Forjan and Carlos Vidal. All rights reserved.";
-    
-    footerDiv.appendChild(logo);
+    paragraph.innerHTML = "&copy; 2025 To-Do List created by <strong>Yria Forjan</strong> and <strong>Carlos Vidal</strong>. All rights reserved.";
+
     footerDiv.appendChild(paragraph);
     
     return footerDiv;
