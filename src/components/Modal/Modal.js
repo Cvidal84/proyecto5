@@ -9,7 +9,7 @@ export const Modal = () => {
             <h3>Nueva Lista</h3>
             <input type="text" id="list-name" placeholder="Nombre de la lista" />
             <label for="list-color">Color de fondo:</label>
-            <input type="color" name="list-color" id="list-color" value="#ffffff" />
+            <input type="color" name="list-color" id="list-color" value="#67c6bb" />
             <div class="modal-btns">
                 <button id="add-list-btn">Crear</button>
                 <button id="cancel-btn">Cancelar</button>
@@ -32,6 +32,11 @@ export const Modal = () => {
             alert("Por favor introduce un nombre para la lista.");
             return;
         }
+        //validación para evitar el color blanco
+    if (listColor.toLowerCase() === "#ffffff") {
+        alert("El color blanco no está permitido. Por favor elige otro color.");
+        return;
+    }
 
         const newList = {
             id: crypto.randomUUID(),

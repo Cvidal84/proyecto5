@@ -11,6 +11,7 @@
     word-wrap: break-word;
     color: var(--text);
     height: fit-content;
+    
 }
 
 .task-list > .list-header{
@@ -23,6 +24,9 @@
 
 .task-list > .list-header > h3{
   font-size: 1.5rem;
+}
+.task-list > .list-header > h3::first-letter{
+  text-transform: uppercase;
 }
 
 .task-list > .list-header > .delete-list-btn{
@@ -68,6 +72,9 @@ body.light .task-list > .list-header > .delete-list-btn img {
   padding: 1rem;
   border-radius: 10px;
   background-color: var(--task-bg);
+}
+.task-list .list-items > li::first-letter{
+  text-transform: uppercase;
 }
 .list-items {
   min-height: 60px; /* asegúrate de que la lista tenga área para recibir drop */
