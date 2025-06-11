@@ -9,7 +9,6 @@
     background-color: var(--card-bg);
     box-shadow: 4px 4px 8px rgba(111, 111, 122, 0.3);
     word-wrap: break-word;
-    color: var(--text);
     height: fit-content;
 }
 
@@ -76,6 +75,7 @@ body.light .task-list > .list-header > .delete-list-btn img {
   padding: 1rem;
   border-radius: 10px;
   background-color: var(--task-bg);
+  color: var(--text);
 }
 .task-list .list-items > li::first-letter{
   text-transform: uppercase;
