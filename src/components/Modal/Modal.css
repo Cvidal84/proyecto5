@@ -31,7 +31,7 @@
   margin: 10px 0;
 }
 
-.modal-content .fc-event-title::first-letter {
+.fc-event-title::first-letter {
     text-transform: uppercase;
 }
 

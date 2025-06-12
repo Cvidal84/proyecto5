@@ -179,6 +179,7 @@ export const Modal = (page, info, calendar) => {
                 document.dispatchEvent(new CustomEvent("eventAdded", {
                     detail: { calendar }
                 }));
+                
             }
             modal.remove();
         });
