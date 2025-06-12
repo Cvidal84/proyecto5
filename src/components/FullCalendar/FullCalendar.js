@@ -72,11 +72,9 @@ export const initCalendar = (selector) => {
         eventDidMount(info) {
             // FALTA MODIFICAR ESTA PARTE PARA HACERLO CON EL MODAL
             info.el.addEventListener("dblclick", () => {
-                const newTitle = prompt("Editar título del evento:", info.event.title);
-                if (newTitle) {
-                    info.event.setProp("title", newTitle);
-                    saveEventsToLocalStorage(info.event.calendar.getEvents());
-                }
+                console.log(info);
+                const modal = Modal("calendar", info, calendar);
+                document.body.appendChild(modal);
             });
 
             // Alerta personalizada
