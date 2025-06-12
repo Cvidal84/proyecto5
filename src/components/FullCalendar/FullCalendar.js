@@ -3,8 +3,8 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import timeGridPlugin from "@fullcalendar/timegrid";
 import interactionPlugin from "@fullcalendar/interaction";
 import esLocale from "@fullcalendar/core/locales/es";
+import { Modal } from "../Modal/Modal";
 
-// Guardar también el aviso en minutos
 const saveEventsToLocalStorage = (events) => {
     const rawEvents = events.map(event => ({
         title: event.title,
@@ -47,49 +47,11 @@ export const initCalendar = (selector) => {
         })),
 
         select(info) {
-            const title = prompt("Introduce el título del evento:");
-            if (!title) {
-                calendar.unselect();
-                return;
-            }
+            const modal = Modal("calendar", info, calendar);
+            document.body.appendChild(modal);
 
-            const startHour = prompt("Introduce la hora de inicio (formato HH:MM):", "09:00");
-            const endHour = prompt("Introduce la hora de fin (formato HH:MM):", "10:00");
-            const alertMinutes = parseInt(prompt("¿Cuántos minutos antes quieres que te avise?", "5"), 10);
-
-            if (!startHour || !endHour || isNaN(alertMinutes)) {
-                alert("Evento cancelado por datos inválidos.");
-                calendar.unselect();
-                return;
-            }
-
-            const [startH, startM] = startHour.split(":").map(Number);
-            const [endH, endM] = endHour.split(":").map(Number);
-
-            const startDate = new Date(info.start);
-            startDate.setHours(startH, startM, 0, 0);
-
-            const endDate = new Date(info.start);
-            endDate.setHours(endH, endM, 0, 0);
-
-            if (endDate <= startDate) {
-                alert("La hora de fin debe ser posterior a la de inicio.");
-                calendar.unselect();
-                return;
-            }
-
-            const newEvent = calendar.addEvent({
-                title,
-                start: startDate,
-                end: endDate,
-                allDay: false,
-                extendedProps: {
-                    alertMinutes
-                }
-            });
-
-            saveEventsToLocalStorage(calendar.getEvents());
-            calendar.unselect();
+            modal.querySelector("#start-hour").value = new Date(info.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+            modal.querySelector("#end-hour").value = new Date(info.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         },
 
         eventClick(info) {
@@ -108,7 +70,7 @@ export const initCalendar = (selector) => {
         },
 
         eventDidMount(info) {
-            // Editar con doble clic
+            // FALTA MODIFICAR ESTA PARTE PARA HACERLO CON EL MODAL
             info.el.addEventListener("dblclick", () => {
                 const newTitle = prompt("Editar título del evento:", info.event.title);
                 if (newTitle) {
@@ -133,6 +95,10 @@ export const initCalendar = (selector) => {
     });
 
     calendar.render();
+
+    document.addEventListener("eventAdded", () => {
+        saveEventsToLocalStorage(calendar.getEvents());
+    });
 };
 
 export const initMiniCalendar = (selector) => {
