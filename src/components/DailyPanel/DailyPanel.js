@@ -16,7 +16,6 @@ export const DailyPanel = () => {
   setTimeout(() => {
     initMiniCalendar("#mini-calendar");
   }, 0);
-  
 
   return aside;
 };
