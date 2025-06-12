@@ -180,8 +180,6 @@ export const Modal = (page, info, calendar) => {
                     extendedProps: { alertMinutes }
                 });
 
-    calendar.refetchEvents(); //
-
                 document.dispatchEvent(new CustomEvent("eventAdded", {
                     detail: { calendar }
                 }));
