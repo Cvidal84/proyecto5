@@ -79,8 +79,8 @@ export const TaskList = (listData, container) => {
     `;
     list.style.backgroundColor = color;
     // Para ajustar el color del texto según el fondo sea claro u oscuro:
-    const hexColor = rgbToHex(color); // pasamos rgb a hex
-    const textColor = hexColor ? getTextColor(hexColor) : "black"; // obtenemos el color del texto en función del fondo
+    const hexColor = color.startsWith("#") ? color : rgbToHex(color);
+    const textColor = getTextColor(hexColor);
     list.querySelector("h3").style.color = textColor;
     list.querySelector(".add-task-btn").style.color = textColor;
     const trashIcon = list.querySelector(".delete-list-btn img");
