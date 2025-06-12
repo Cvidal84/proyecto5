@@ -96,7 +96,6 @@ export const Modal = (page, info, calendar) => {
         const alertInput = modal.querySelector("#alert-minutes");
 
         if (isEdit) {
-            const event = info.event;
             const startDate = new Date(info.event.start);
             const endDate = new Date(info.event.end);
 
@@ -184,10 +183,6 @@ export const Modal = (page, info, calendar) => {
             modal.remove();
         });
 
-        setTimeout(() => {
-            titleInput.focus();
-        }, 100);
-
         modal.querySelectorAll("input").forEach(input => {
             input.addEventListener("keydown", (e) => {
                 if (e.key === "Enter") {
@@ -195,6 +190,10 @@ export const Modal = (page, info, calendar) => {
                 }
             });
         });
+
+        setTimeout(() => {
+            titleInput.focus();
+        }, 100);
     }
 
     return modal;
