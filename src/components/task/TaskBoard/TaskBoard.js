@@ -30,7 +30,7 @@ export const TaskBoard = (page) => {
             ev.preventDefault();
             ev.stopPropagation();
             
-            const modal = Modal();
+            const modal = Modal("board");
             document.body.appendChild(modal);
                 
         });
