@@ -6,7 +6,6 @@ export const Modal = (page, info, calendar) => {
     modal.classList.add("modal-overlay");
 
     if (page === "board") {
-        // No se modifica tu parte del board, queda igual
         modal.innerHTML = `
             <div class="modal-content">
                 <h3>Nueva Lista</h3>
@@ -66,8 +65,7 @@ export const Modal = (page, info, calendar) => {
         }, 100);
 
     } else if (page === "calendar") {
-        console.log("Evento en Modal:", info.event);
-        const isEdit = !!info.event;
+        const isEdit = !!info.event; // convertimos el valor en un booleano
 
         modal.innerHTML = `
             <div class="modal-content">
@@ -101,12 +99,13 @@ export const Modal = (page, info, calendar) => {
             const event = info.event;
             const startDate = new Date(info.event.start);
             const endDate = new Date(info.event.end);
-            // Ajusta la zona horaria sumando el offset local:
+
+            // Ajustamos la zona horaria sumando el offset local:
             const offset = startDate.getTimezoneOffset() / -60;
 
             titleInput.value = info.event.title;
-            startInput.value = new Date(startDate.setHours(startDate.getHours() + offset)).toISOString().slice(11, 16);
-            endInput.value = new Date(endDate.setHours(endDate.getHours() + offset)).toISOString().slice(11, 16);
+            startInput.value = new Date(startDate.setHours(startDate.getHours() + offset)).toISOString().slice(11, 16); //aquí se ajusta
+            endInput.value = new Date(endDate.setHours(endDate.getHours() + offset)).toISOString().slice(11, 16); // =
             alertInput.value = info.event.extendedProps?.alertMinutes ?? 5;
 
             console.log("Datos en el modal:", {
@@ -168,9 +167,6 @@ export const Modal = (page, info, calendar) => {
                     alertMinutes: e.extendedProps?.alertMinutes ?? 5
                 }));
                 localStorage.setItem("calendarEvents", JSON.stringify(updated));
-
-                // 🔍 Verificamos que los eventos se han actualizado correctamente en localStorage
-    console.log("Eventos actualizados en localStorage:", JSON.parse(localStorage.getItem("calendarEvents")));
             } else {
                 calendar.addEvent({
                     title,
@@ -184,21 +180,20 @@ export const Modal = (page, info, calendar) => {
                     detail: { calendar }
                 }));
             }
-
             modal.remove();
         });
 
         setTimeout(() => {
             titleInput.focus();
         }, 100);
-        // Permitir crear o editar evento con la tecla Enter desde cualquier campo
+
         modal.querySelectorAll("input").forEach(input => {
             input.addEventListener("keydown", (e) => {
                 if (e.key === "Enter") {
                     modal.querySelector("#add-event-btn").click();
-        }
-    });
-});
+                }
+            });
+        });
     }
 
     return modal;

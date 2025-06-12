@@ -43,9 +43,10 @@ nav a:hover {
   font-weight: 600;
 }
 
+/* FALTA TODO EL RESPONSIVE */
+
 @media (max-width: 770px) {
   nav {
     padding: 0 2rem;
   }
 }
-

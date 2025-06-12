@@ -1,6 +1,7 @@
 import "./TaskList.css";
 import { rgbToHex, getTextColor } from "../../../utils/colorUtils";
 
+// Drag and drop
 const makeTaskDraggable = (li) => {
     li.draggable = true;
 
@@ -28,7 +29,8 @@ const getDragAfterElement = (container, y) => {
     }, { offset: Number.NEGATIVE_INFINITY }).element;
 };
 
-const addTask = (input, container, id, onSave) => {
+//Añadir tarea
+const addTask = (input, container, onSave) => {
     const text = input.value.trim();
     if (!text) return;
 
@@ -48,8 +50,9 @@ const addTask = (input, container, id, onSave) => {
     onSave();
 };
 
+// Crear lista
 export const TaskList = (listData, container) => {
-    const { id, name, color, tasks = [], isShoppingList = false } = listData;
+    const { name, color, tasks = [], isShoppingList = false } = listData;
 
     if (!container) {
         console.error("Container not found");
@@ -58,7 +61,6 @@ export const TaskList = (listData, container) => {
 
     const list = document.createElement("li");
     list.classList.add("task-list");
-    list.dataset.id = id;
     if (isShoppingList) {
         list.classList.add("shopping-list");
     }
@@ -77,8 +79,7 @@ export const TaskList = (listData, container) => {
     `;
     list.style.backgroundColor = color;
     // Para ajustar el color del texto según el fondo sea claro u oscuro:
-    const rawColor = list.style.backgroundColor; // esto es un color rgb
-    const hexColor = rgbToHex(rawColor); // pasamos rgb a hex
+    const hexColor = rgbToHex(color); // pasamos rgb a hex
     const textColor = hexColor ? getTextColor(hexColor) : "black"; // obtenemos el color del texto en función del fondo
     list.querySelector("h3").style.color = textColor;
     list.querySelector(".add-task-btn").style.color = textColor;
@@ -93,20 +94,17 @@ export const TaskList = (listData, container) => {
     const addBtn = list.querySelector(".add-task-btn");
     const taskContainer = list.querySelector(".list-items");
 
-    taskContainer.style.minHeight = "40px";
-    taskContainer.style.padding = "4px";
-
     const dropIndicator = document.createElement("div");
     dropIndicator.classList.add("drop-indicator");
 
+    // Se guardan las listas creadas
     const saveLists = () => {
         const allLists = Array.from(document.querySelectorAll(".task-list")).map(el => {
-            const id = el.dataset.id;
             const name = el.querySelector("h3").textContent;
             const color = el.style.backgroundColor;
             const tasks = Array.from(el.querySelectorAll(".list-items li")).map(li => li.textContent);
             const isShoppingList = el.classList.contains("shopping-list");
-            return { id, name, color, tasks, isShoppingList };
+            return { name, color, tasks, isShoppingList };
         });
 
         localStorage.setItem("taskLists", JSON.stringify(allLists));
@@ -125,7 +123,7 @@ export const TaskList = (listData, container) => {
         taskContainer.appendChild(li);
     });
 
-    // DRAG & DROP FLUIDO
+    // Para hacer el drag and drop fluido
     taskContainer.addEventListener("dragenter", (e) => {
         e.preventDefault();
 
@@ -179,12 +177,12 @@ export const TaskList = (listData, container) => {
     });
 
     addBtn.addEventListener("click", () => {
-        addTask(input, taskContainer, id, saveLists);
+        addTask(input, taskContainer, saveLists);
     });
 
     input.addEventListener("keydown", (e) => {
         if (e.key === "Enter") {
-            addTask(input, taskContainer, id, saveLists);
+            addTask(input, taskContainer, saveLists);
         }
     });
 

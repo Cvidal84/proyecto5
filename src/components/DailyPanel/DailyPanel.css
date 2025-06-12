@@ -21,13 +21,11 @@
     font-weight: 600;
 }
 
-/* Hover y focus */
 #mini-calendar .fc-button:hover, #mini-calendar .fc-button:focus {
     background-color: #2e5751;
     outline: none;
 }
 
-/* Botón activo (por ejemplo, el botón seleccionado) */
 #mini-calendar .fc-button.fc-button-active {
     background-color: #266052;
     box-shadow: 0 0 5px rgba(38, 96, 82, 0.7);
@@ -45,7 +43,6 @@
     background-color: #2e5751;
 }
 
-/* Botón activo */
 #mini-calendar .fc-button.fc-button-active {
     background-color: #266052;
 }
@@ -91,6 +88,7 @@
     background-color: rgba(103, 198, 187, 0.2)
 }
 
+/* Punto indicativo de que hay eventos ese día */
 #mini-calendar .event-dot {
     display: inline-block;
     width: 6px;
