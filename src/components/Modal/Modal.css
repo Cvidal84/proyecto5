@@ -30,6 +30,9 @@
   padding: 8px;
   margin: 10px 0;
 }
+.fc-event-title::first-letter {/* hace la primera letra del evento mayúscula */
+    text-transform: uppercase;
+}
 
 .modal-content > div{
   display: flex;
