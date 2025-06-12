@@ -22,9 +22,9 @@ const showWeather = (data) => {
 };
 
 const printData = (data) => {
-  const container = document.querySelector(".container-weather");
+  const container = document.querySelector("#container-weather");
   if (!container) {
-    console.warn("No se encontró el contenedor .container-weather");
+    console.warn("No se encontró el contenedor #container-weather");
     return;
   }
 

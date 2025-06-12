@@ -45,7 +45,6 @@ export const initCalendar = (selector) => {
             ...ev,
             extendedProps: { alertMinutes: ev.alertMinutes ?? 5 }
         })),
-
         select(info) {
             const modal = Modal("calendar", info, calendar);
             document.body.appendChild(modal);
@@ -53,7 +52,6 @@ export const initCalendar = (selector) => {
             modal.querySelector("#start-hour").value = new Date(info.start).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
             modal.querySelector("#end-hour").value = new Date(info.end).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
         },
-
         eventClick(info) {
             if (clickTimeout) {
                 clearTimeout(clickTimeout);
@@ -68,9 +66,7 @@ export const initCalendar = (selector) => {
                 }, 250);
             }
         },
-
         eventDidMount(info) {
-            // FALTA MODIFICAR ESTA PARTE PARA HACERLO CON EL MODAL
             info.el.addEventListener("dblclick", () => {
                 console.log(info);
                 const modal = Modal("calendar", info, calendar);

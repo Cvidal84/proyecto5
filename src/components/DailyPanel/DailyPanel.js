@@ -9,7 +9,7 @@ export const DailyPanel = () => {
     <div id="mini-calendar-section">
       <div id="mini-calendar"></div>
     </div>
-    <div class="container-weather"></div>
+    <div id="container-weather"></div>
   `;
   Weather();
 

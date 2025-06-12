@@ -20,7 +20,7 @@ export const TaskBoard = (page) => {
         newListBtn.classList.add("new-list-btn");
         taskBoard.insertBefore(newListBtn, taskLists);
 
-        /* Cargas las listas */
+        /* Se cargan las listas */
         normalLists.forEach(list => {
             setTimeout(() => TaskList(list, taskLists), 0);
         });
@@ -34,11 +34,19 @@ export const TaskBoard = (page) => {
             document.body.appendChild(modal);
                 
         });
-    }else if (page === "cart"){
+
+    } else if (page === "cart") {
         taskLists.classList.add("shopping-list-container");
-        // Comprobar si ya hay listas de la compra guardadas
-        if (shoppingLists.length === 0) {
-            // No hay listas de la compra, crear una por defecto
+
+        // Obtener todas las listas
+        const savedLists = JSON.parse(localStorage.getItem("taskLists")) || [];
+        const shoppingList = savedLists.find(list => list.isShoppingList);
+
+        if (shoppingList) {
+            // Mostrar la lista existente
+            TaskList(shoppingList, taskLists);
+        } else {
+            // Crear una lista por defecto (esto lo hacemos solo la primera vez...)
             const defaultCart = {
                 id: crypto.randomUUID(),
                 name: "Lista de la compra",
@@ -47,18 +55,12 @@ export const TaskBoard = (page) => {
                 isShoppingList: true
             };
 
-            // Guardar la lista de la compra por defecto junto con las listas normales
-            const allListsUpdated = [...normalLists, defaultCart];
+            const allListsUpdated = [...savedLists, defaultCart];
             localStorage.setItem("taskLists", JSON.stringify(allListsUpdated));
 
-            // Mostrar la lista por defecto
             TaskList(defaultCart, taskLists);
-        } else {
-            // Ya hay listas de la compra, cargarlas todas
-            shoppingLists.forEach(listData => {
-                TaskList(listData, taskLists);
-            });
         }
     }
+
     return taskBoard;
 };

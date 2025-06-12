@@ -1,4 +1,3 @@
-import "./Home.css";
 import { DailyPanel } from "../../components/DailyPanel/DailyPanel";
 import { TaskBoard } from "../../components/task/TaskBoard/TaskBoard";
 

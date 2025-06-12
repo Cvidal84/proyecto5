@@ -30,7 +30,8 @@
   padding: 8px;
   margin: 10px 0;
 }
-.fc-event-title::first-letter {/* hace la primera letra del evento mayúscula */
+
+.modal-content .fc-event-title::first-letter {
     text-transform: uppercase;
 }
 
