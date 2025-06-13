@@ -1,24 +1,30 @@
 import "./TaskBoard.css";
 import { Modal } from "../../Modal/Modal";
 import { TaskList } from "../TaskList/TaskList";
+import { Welcome } from "../../Welcome/Welcome";
 
 export const TaskBoard = (page) => {
     const taskBoard = document.createElement("section");
     taskBoard.id = `${page}-section`;
 
+    const allLists = JSON.parse(localStorage.getItem("taskLists")) || [];
+    const normalLists = allLists.filter(list => !list.isShoppingList);
+    const shoppingList = allLists.filter(list => list.isShoppingList);
+
     const taskLists = document.createElement("ul");
     taskLists.classList.add("task-lists");
     taskBoard.appendChild(taskLists);
-
-    const allLists = JSON.parse(localStorage.getItem("taskLists")) || [];
-    const normalLists = allLists.filter(list => !list.isShoppingList);
-    const shoppingLists = allLists.filter(list => list.isShoppingList);
 
     if(page === "board"){
         const newListBtn = document.createElement("button");
         newListBtn.textContent = "+ Nueva Lista";
         newListBtn.classList.add("new-list-btn");
         taskBoard.insertBefore(newListBtn, taskLists);
+
+        if (normalLists.length === 0) {
+            const welcome = Welcome();
+            taskBoard.insertBefore(welcome, taskLists);
+        }
 
         /* Se cargan las listas */
         normalLists.forEach(list => {

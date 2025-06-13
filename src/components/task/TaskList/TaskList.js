@@ -1,5 +1,6 @@
 import "./TaskList.css";
 import { rgbToHex, getTextColor } from "../../../utils/colorUtils";
+import { Welcome } from "../../Welcome/Welcome";
 
 // Drag and drop
 const makeTaskDraggable = (li) => {
@@ -192,6 +193,13 @@ export const TaskList = (listData, container) => {
             if (confirm("¿Eliminar esta lista?")) {
                 list.remove();
                 saveLists();
+
+                const taskBoard = document.querySelector("#board-section");
+                if (container.querySelectorAll(".task-list:not(.shopping-list)").length === 0) {
+                    if (!taskBoard.querySelector("#welcome-message")) {
+                        taskBoard.insertBefore(Welcome(), container);
+                    }
+                }
             }
         });
     } else {
