@@ -1,0 +1,14 @@
+#welcome-message{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: end;
+    gap: 1rem;
+    font-size: 1.3rem;
+}
+
+#welcome-message > img{
+    height: 300px;
+}

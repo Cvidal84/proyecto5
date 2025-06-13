@@ -51,6 +51,9 @@ export const Modal = (page, info, calendar) => {
                 console.error("No se encontró el contenedor .task-lists");
             }
 
+            const welcome = document.querySelector("#welcome-message");
+            if (welcome) welcome.remove();
+
             modal.remove();
         });
 

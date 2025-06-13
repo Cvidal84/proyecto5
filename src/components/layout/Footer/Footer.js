@@ -4,7 +4,7 @@ export const Footer = () => {
     const footer = document.createElement("footer");
     
     const p = document.createElement("p");
-    p.innerHTML = "&copy; 2025 Dootzy - Created by <strong>Yria Forjan</strong> and <strong>Carlos Vidal</strong>. All rights reserved.";
+    p.innerHTML = "&copy; 2025 Dootzy – Desarrollado por Yria Forján y Carlos Vidal. Todos los derechos reservados.";
 
     footer.appendChild(p);
     
