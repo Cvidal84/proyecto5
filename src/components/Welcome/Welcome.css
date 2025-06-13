@@ -7,8 +7,21 @@
     justify-content: end;
     gap: 1rem;
     font-size: 1.3rem;
+    padding-top: 2rem;
 }
 
 #welcome-message > img{
     height: 300px;
+}
+
+#welcome-message > p{
+    text-align: center;
+}
+
+/* Respondive */
+@media (max-width: 480px){
+    #welcome-message{
+        padding-top: 0;
+        gap: 0.5rem;
+    }
 }
