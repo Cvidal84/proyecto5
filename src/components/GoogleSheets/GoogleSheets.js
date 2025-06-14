@@ -21,3 +21,4 @@ export const getShoppingList = async () => {
     return []; // En error devolver array vacío
   }
 };
+
