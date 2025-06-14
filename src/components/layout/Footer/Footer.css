@@ -1,4 +1,4 @@
-footer{/* en construccion */
+footer{
     width: 100vw;
     position: relative;
     left: 50%;
@@ -9,18 +9,8 @@ footer{/* en construccion */
     align-items: end;
     justify-content: center;
     flex-wrap: wrap;
-    background: linear-gradient(to bottom, var(--background), transparent),
-              url('/images/footer-bg-dark.png');
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
     color: var(--text);
     text-align: center;
     padding: 0 1rem 1rem 1rem;
-    transition: background-color 1s ease, color 1s ease;
-}
-
-.light footer{
-    background: linear-gradient(to bottom, var(--background), transparent),
-              url('/images/footer-bg-light.png');
+    /* transition: background-color 1s ease, color 1s ease; */
 }
