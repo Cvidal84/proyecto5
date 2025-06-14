@@ -2,6 +2,7 @@ import "./TaskBoard.css";
 import { Modal } from "../../Modal/Modal";
 import { TaskList } from "../TaskList/TaskList";
 import { Welcome } from "../../Welcome/Welcome";
+import { getShoppingList } from "../../GoogleSheets/GoogleSheets";
 
 export const TaskBoard = (page) => {
     const taskBoard = document.createElement("section");
@@ -66,7 +67,37 @@ export const TaskBoard = (page) => {
 
             TaskList(defaultCart, taskLists);
         }
+
+        // Ahora cargamos tareas desde Google Sheets
+        loadGoogleTasks(taskLists);
     }
 
     return taskBoard;
 };
+
+const loadGoogleTasks = async (taskLists) => {
+    try {
+        const googleTasks = await getShoppingList();
+
+        // Actualizar localStorage con las tareas de Google Sheets (evitando duplicados)
+        const updatedLists = JSON.parse(localStorage.getItem("taskLists")) || [];
+        const shoppingListIndex = updatedLists.findIndex(l => l.isShoppingList);
+
+        if (shoppingListIndex !== -1) {
+            const currentTasks = updatedLists[shoppingListIndex].tasks || [];
+            googleTasks.forEach(task => {
+            if (!currentTasks.includes(task)) {
+                currentTasks.push(task);
+            }
+            });
+            updatedLists[shoppingListIndex].tasks = currentTasks;
+            localStorage.setItem("taskLists", JSON.stringify(updatedLists));
+
+            // Limpiar UI y renderizar de nuevo con la lista actualizada
+            taskLists.innerHTML = "";
+            TaskList(updatedLists[shoppingListIndex], taskLists);
+        }
+    } catch (error) {
+        console.error("Error al cargar la lista externa:", error);
+    }
+}
