@@ -91,7 +91,7 @@ const loadGoogleTasks = async (taskLists) => {
             }
             });
             updatedLists[shoppingListIndex].tasks = currentTasks;
-            localStorage.setItem("taskLists", JSON.stringify(updatedLists));
+            /* localStorage.setItem("taskLists", JSON.stringify(updatedLists)); */
 
             // Limpiar UI y renderizar de nuevo con la lista actualizada
             taskLists.innerHTML = "";
