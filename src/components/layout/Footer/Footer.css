@@ -4,7 +4,7 @@ footer{/* en construccion */
     left: 50%;
     transform: translateX(-50%);
     height: 10vh;
-    font-size: 0.9rem;
+    font-size: 1rem;
     display: flex;
     align-items: end;
     justify-content: center;
@@ -17,6 +17,7 @@ footer{/* en construccion */
     color: var(--text);
     text-align: center;
     padding: 0 1rem 1rem 1rem;
+    transition: background-color 1s ease, color 1s ease;
 }
 
 .light footer{
