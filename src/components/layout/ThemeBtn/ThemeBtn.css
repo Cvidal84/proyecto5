@@ -7,6 +7,3 @@
 #themeBtn > img:hover{
     filter: drop-shadow(0 0 15px white) brightness(1.2);
 }
-body {
-  transition: background-color 1s ease, color 1s ease;
-}

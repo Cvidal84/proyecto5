@@ -18,4 +18,7 @@ const init = () => {
 document.addEventListener("DOMContentLoaded", () => {
     init();
     toggleTheme();
+    requestAnimationFrame(() => {
+      document.body.classList.add("loaded");
+    });
 });
