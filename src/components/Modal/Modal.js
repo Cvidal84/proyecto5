@@ -193,10 +193,6 @@ export const Modal = (page, info, calendar) => {
                 }
             });
         });
-
-        setTimeout(() => {
-            titleInput.focus();
-        }, 100);
     }
 
     return modal;
