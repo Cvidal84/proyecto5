@@ -1,16 +1,15 @@
 import "./TaskList.css";
 import { rgbToHex, getTextColor } from "../../../utils/colorUtils";
 import { Welcome } from "../../Welcome/Welcome";
+import { Modal } from "../../Modal/Modal";
 
 // Drag and drop
 const makeTaskDraggable = (li) => {
     li.draggable = true;
-
     li.addEventListener("dragstart", (e) => {
         e.dataTransfer.setData("text/plain", li.textContent);
         li.classList.add("dragging");
     });
-
     li.addEventListener("dragend", () => {
         li.classList.remove("dragging");
     });
@@ -18,7 +17,6 @@ const makeTaskDraggable = (li) => {
 
 const getDragAfterElement = (container, y) => {
     const draggableElements = [...container.querySelectorAll("li:not(.dragging)")];
-
     return draggableElements.reduce((closest, child) => {
         const box = child.getBoundingClientRect();
         const offset = y - box.top - box.height / 2;
@@ -34,18 +32,15 @@ const getDragAfterElement = (container, y) => {
 const addTask = (input, container, onSave) => {
     const text = input.value.trim();
     if (!text) return;
-
     const li = document.createElement("li");
     li.textContent = text;
     makeTaskDraggable(li);
-
     li.addEventListener("click", () => {
         if (confirm("¿Eliminar esta tarea?")) {
             li.remove();
             onSave();
         }
     });
-
     container.appendChild(li);
     input.value = "";
     onSave();
@@ -65,7 +60,7 @@ export const TaskList = (listData, container) => {
     if (isShoppingList) {
         list.classList.add("shopping-list");
     }
-    list.dataset.id = id; 
+    list.dataset.id = id;
     list.innerHTML = `
         <div class="list-header">
             <h3>${name}</h3>
@@ -83,7 +78,6 @@ export const TaskList = (listData, container) => {
         <ul class="list-items"></ul>
     `;
     list.style.backgroundColor = color;
-    // Para ajustar el color del texto según el fondo sea claro u oscuro:
     const hexColor = color.startsWith("#") ? color : rgbToHex(color);
     const textColor = getTextColor(hexColor);
     list.querySelector("h3").style.color = textColor;
@@ -131,6 +125,7 @@ export const TaskList = (listData, container) => {
         localStorage.setItem("taskLists", JSON.stringify(updated));
     };
 
+    // Añadir tareas ya guardadas
     tasks.forEach(task => {
         const li = document.createElement("li");
         li.textContent = task;
@@ -147,7 +142,6 @@ export const TaskList = (listData, container) => {
     // Para hacer el drag and drop fluido
     taskContainer.addEventListener("dragenter", (e) => {
         e.preventDefault();
-
         if (!taskContainer.querySelector("li") && !taskContainer.querySelector(".drop-indicator")) {
             taskContainer.appendChild(dropIndicator);
         }
@@ -155,13 +149,10 @@ export const TaskList = (listData, container) => {
 
     taskContainer.addEventListener("dragover", (e) => {
         e.preventDefault();
-
         const afterElement = getDragAfterElement(taskContainer, e.clientY);
-
         if (dropIndicator.parentElement) {
             dropIndicator.remove();
         }
-
         if (!afterElement) {
             taskContainer.appendChild(dropIndicator);
         } else {
@@ -173,19 +164,15 @@ export const TaskList = (listData, container) => {
         e.preventDefault();
         const dragging = document.querySelector(".dragging");
         const afterElement = getDragAfterElement(taskContainer, e.clientY);
-
         if (dropIndicator.parentElement) {
             dropIndicator.remove();
         }
-
         if (!dragging) return;
-
         if (!afterElement) {
             taskContainer.appendChild(dragging);
         } else {
             taskContainer.insertBefore(dragging, afterElement);
         }
-
         saveLists();
     });
 
@@ -209,8 +196,21 @@ export const TaskList = (listData, container) => {
 
     const deleteBtn = list.querySelector(".delete-list-btn");
     const sendBtn = list.querySelector(".send-list-btn");
+
+    // Mostrar botón de enviar en todas las listas
+    sendBtn.style.display = "inline-block";
+    sendBtn.addEventListener("click", () => {
+        const tasks = Array.from(taskContainer.querySelectorAll("li")).map(li => li.textContent);
+        const modal = Modal("sendList", {
+            list: {
+                name,
+                tasks
+            }
+        });
+        document.body.appendChild(modal);
+    });
+
     if (!isShoppingList) {
-        sendBtn.style.display = "none";
         deleteBtn.addEventListener("click", () => {
             if (confirm("¿Eliminar esta lista?")) {
                 list.remove();
