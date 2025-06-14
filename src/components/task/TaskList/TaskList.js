@@ -53,7 +53,7 @@ const addTask = (input, container, onSave) => {
 
 // Crear lista
 export const TaskList = (listData, container) => {
-    const { name, color, tasks = [], isShoppingList = false } = listData;
+    const { id, name, color, tasks = [], isShoppingList = false } = listData;
 
     if (!container) {
         console.error("Container not found");
@@ -65,11 +65,15 @@ export const TaskList = (listData, container) => {
     if (isShoppingList) {
         list.classList.add("shopping-list");
     }
+    list.dataset.id = id; 
     list.innerHTML = `
         <div class="list-header">
             <h3>${name}</h3>
             <button class="delete-list-btn">
                 <img src="/icons/trash.png" alt="trash icon">
+            </button>
+            <button class="send-list-btn">
+                <img src="/icons/email.png" alt="email icon">
             </button>
         </div>
         <div class="list-controls">
@@ -100,15 +104,31 @@ export const TaskList = (listData, container) => {
 
     // Se guardan las listas creadas
     const saveLists = () => {
-        const allLists = Array.from(document.querySelectorAll(".task-list")).map(el => {
+        const currentLists = Array.from(document.querySelectorAll(".task-list")).map(el => {
+            const id = el.dataset.id;
             const name = el.querySelector("h3").textContent;
             const color = el.style.backgroundColor;
             const tasks = Array.from(el.querySelectorAll(".list-items li")).map(li => li.textContent);
             const isShoppingList = el.classList.contains("shopping-list");
-            return { name, color, tasks, isShoppingList };
+            return { id, name, color, tasks, isShoppingList };
         });
 
-        localStorage.setItem("taskLists", JSON.stringify(allLists));
+        // Leemos las listas que existen en el localStorage
+        const existing = JSON.parse(localStorage.getItem("taskLists")) || [];
+
+        // Fusionamos:
+        const updated = [...existing];
+
+        currentLists.forEach(newList => {
+            const index = updated.findIndex(l => l.id === newList.id);
+            if (index !== -1) {
+                updated[index] = newList; // actualizamos
+            } else {
+                updated.push(newList); // añadimos nueva
+            }
+        });
+
+        localStorage.setItem("taskLists", JSON.stringify(updated));
     };
 
     tasks.forEach(task => {
@@ -188,7 +208,9 @@ export const TaskList = (listData, container) => {
     });
 
     const deleteBtn = list.querySelector(".delete-list-btn");
+    const sendBtn = list.querySelector(".send-list-btn");
     if (!isShoppingList) {
+        sendBtn.style.display = "none";
         deleteBtn.addEventListener("click", () => {
             if (confirm("¿Eliminar esta lista?")) {
                 list.remove();
