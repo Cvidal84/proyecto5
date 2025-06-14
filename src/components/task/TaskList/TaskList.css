@@ -32,18 +32,18 @@
   text-transform: uppercase;
 }
 
-.task-list > .list-header > .delete-list-btn{
+.task-list > .list-header > button{
   height: 25px;
   width: auto;
   cursor: pointer;
 }
 
-.task-list > .list-header > .delete-list-btn img{
+.task-list > .list-header > button img{
   height: 100%;
   filter: invert();
 }
 
-body.light .task-list > .list-header > .delete-list-btn img {
+body.light .task-list > .list-header > button img {
   filter: none;
 }
 
