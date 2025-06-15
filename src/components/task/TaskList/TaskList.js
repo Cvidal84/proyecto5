@@ -64,12 +64,14 @@ export const TaskList = (listData, container) => {
     list.innerHTML = `
         <div class="list-header">
             <h3>${name}</h3>
-            <button class="delete-list-btn">
-                <img src="/icons/trash.png" alt="trash icon">
-            </button>
-            <button class="send-list-btn">
-                <img src="/icons/email.png" alt="email icon">
-            </button>
+            <div class="list-buttons">
+                <button class="delete-list-btn">
+                    <img src="/icons/trash.png" alt="trash icon">
+                </button>
+                <button class="send-list-btn">
+                    <img src="/icons/email.png" alt="email icon">
+                </button>
+            </div>
         </div>
         <div class="list-controls">
             <input type="text" name="add-task-input" class="add-task-input" placeholder="Nueva tarea..." />
@@ -85,6 +87,10 @@ export const TaskList = (listData, container) => {
     const trashIcon = list.querySelector(".delete-list-btn img");
     if (trashIcon) {
         trashIcon.style.filter = textColor === "white" ? "invert(1)" : "invert(0)";
+    }
+    const sendIcon = list.querySelector(".send-list-btn img");
+    if (sendIcon) {
+        sendIcon.style.filter = textColor === "white" ? "invert(1)" : "invert(0)";
     }
 
     container.appendChild(list);
