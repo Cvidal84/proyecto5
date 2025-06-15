@@ -34,9 +34,8 @@
 }
 .task-list > .list-header > .list-buttons {
   display:flex;
-  width: 50%;
-  justify-content: center;
-  justify-content: space-around;
+  width: 100%;
+  justify-content: flex-end;
 }
 
 .task-list > .list-header > .list-buttons > button{

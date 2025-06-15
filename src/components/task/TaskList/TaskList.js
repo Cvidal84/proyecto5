@@ -63,7 +63,6 @@ export const TaskList = (listData, container) => {
     list.dataset.id = id;
     list.innerHTML = `
         <div class="list-header">
-            <h3>${name}</h3>
             <div class="list-buttons">
                 <button class="delete-list-btn">
                     <img src="/icons/trash.png" alt="trash icon">
@@ -72,6 +71,7 @@ export const TaskList = (listData, container) => {
                     <img src="/icons/email.png" alt="email icon">
                 </button>
             </div>
+            <h3>${name}</h3>
         </div>
         <div class="list-controls">
             <input type="text" name="add-task-input" class="add-task-input" placeholder="Nueva tarea..." />
