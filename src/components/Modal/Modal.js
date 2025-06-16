@@ -199,15 +199,11 @@ export const Modal = (page, info, calendar) => {
 
         modal.innerHTML = `
             <div class="modal-content">
-                <h3>Enviar lista por correo</h3>
-                <p><strong>Lista:</strong> ${list.name}</p>
-                <ul class="preview-tasks">
-                    ${list.tasks.map(task => `<li>${task}</li>`).join("")}
-                </ul>
-                <label for="email-to">Correo destino:</label>
-                <input type="email" id="email-to" placeholder="ejemplo@correo.com" />
+                <h3>Enviar lista "${list.name}"</h3>
+                <label for="mail-to">Correo destino:</label>
+                <input type="email" id="mail-to" placeholder="ejemplo@correo.com" required/>
                 <div class="modal-btns">
-                    <button id="send-email-btn">Enviar</button>
+                    <button id="send-mail-btn">Enviar</button>
                     <button id="cancel-send-btn">Cancelar</button>
                 </div>
             </div>
@@ -219,17 +215,17 @@ export const Modal = (page, info, calendar) => {
         });
 
         // Enviar usando mailto
-        modal.querySelector("#send-email-btn").addEventListener("click", () => {
-            const emailTo = modal.querySelector("#email-to").value.trim();
-            if (!emailTo || !emailTo.includes("@")) {
+        modal.querySelector("#send-mail-btn").addEventListener("click", () => {
+            const mailTo = modal.querySelector("#mail-to").value.trim();
+            if (!mailTo || !mailTo.includes("@")) {
                 alert("Introduce un correo válido.");
                 return;
             }
 
             const subject = encodeURIComponent(`Lista: ${list.name}`);
-            const bodyText = list.tasks.join('\r\n');
+            const bodyText = `Lista: ${list.name}\n\n` + list.tasks.map(task => `- ${task}`).join('\n');
             const body = encodeURIComponent(bodyText);
-            const mailtoLink = `mailto:${emailTo}?subject=${subject}&body=${body}`;
+            const mailtoLink = `mailto:${mailTo}?subject=${subject}&body=${body}`;
             window.location.href = mailtoLink;
 
             modal.remove();
