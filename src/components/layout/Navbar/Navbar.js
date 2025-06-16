@@ -4,7 +4,7 @@ import { ThemeBtn } from "../ThemeBtn/ThemeBtn";
 export const Navbar = () => `
   <nav>
     <div id="logoContainer">
-      <img src="/logos/logo-dark.png" alt="Dootzy logo" />
+        <img src="/logos/logo-dark.png" alt="Dootzy logo" />
     </div>
     <ul id="menu">
         <li>
@@ -16,10 +16,13 @@ export const Navbar = () => `
         <li>
           <a href="#" id="calendarLink">Calendario</a>
         </li>
-        <li>
-          ${ThemeBtn()}
-        </li>
     </ul>
+    <div id="burger-menu">
+        <button id="burger-menu-btn">
+          <img src="/icons/menu.png" alt="menu icon" />
+        </button>
+    </div>
+    ${ThemeBtn()}
   </nav>
 `;
 
