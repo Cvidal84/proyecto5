@@ -219,9 +219,17 @@ export const TaskList = (listData, container) => {
     if (!isShoppingList) {
         deleteBtn.addEventListener("click", () => {
             if (confirm("¿Eliminar esta lista?")) {
-                list.remove();
-                saveLists();
+                const idToDelete = list.dataset.id;
 
+                // Eliminamos la lista del DOM
+                list.remove();
+
+                // Eliminamos del localStorage
+                const existing = JSON.parse(localStorage.getItem("taskLists")) || [];
+                const updated = existing.filter(list => list.id !== idToDelete);
+                localStorage.setItem("taskLists", JSON.stringify(updated));
+
+                // Comprobamos si hay listas visibles
                 const taskBoard = document.querySelector("#board-section");
                 if (container.querySelectorAll(".task-list:not(.shopping-list)").length === 0) {
                     if (!taskBoard.querySelector("#welcome-message")) {

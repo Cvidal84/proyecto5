@@ -36,10 +36,11 @@
   display:flex;
   width: 100%;
   justify-content: flex-end;
+  gap: 0.5rem;
 }
 
 .task-list > .list-header > .list-buttons > button{
-  height: 25px;
+  height: 20px;
   width: auto;
   cursor: pointer;
 }
