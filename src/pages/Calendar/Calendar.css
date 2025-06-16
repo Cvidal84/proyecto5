@@ -63,3 +63,20 @@
 #my-calendar .fc-timegrid-col-events {
   display: block;
 }
+
+@media(max-width: 376px){
+  #my-calendar .fc .fc-button {
+    width: 17px;
+    padding: 0;
+    font-size: 0.7rem;
+  }
+  .fc-media-screen{
+    font-size: 0.6em;
+  }
+  
+ 
+
+  
+
+
+}
