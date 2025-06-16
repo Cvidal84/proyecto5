@@ -1,4 +1,4 @@
-nav {
+nav{
   height: 10vh;
   padding: 0 1rem;
   display: flex;
@@ -18,11 +18,11 @@ nav > #logoContainer > img{
   width: auto;
 }
 
-nav > ul {
+nav > ul{
   display: flex;
   align-items: center;
   justify-content: end;
-  gap: 5rem;
+  gap: 2rem;
   width: 60%;
 }
 
@@ -32,21 +32,47 @@ nav li{
   justify-content: end;
 }
 
-nav a {
+nav a{
   color: var(--text);
   font-size: 1rem;
   font-weight: 500;
   transition: all 0.3s ease-in-out;
 }
 
-nav a:hover {
+nav a:hover{
   font-weight: 600;
 }
 
-/* FALTA TODO EL RESPONSIVE */
+nav > #burger-menu{
+  filter: invert();
+  width: 100%;
+  display: none;
+  padding-left: 3rem;
+}
 
-@media (max-width: 770px) {
-  nav {
-    padding: 0 2rem;
+nav #burger-menu-btn{
+  display: flex;
+  align-items: center;
+}
+
+nav #burger-menu-btn > img{
+  height: 30px;
+}
+
+nav > #theme-btn{
+  width: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+}
+
+/* Responsive */
+
+@media (max-width: 480px){
+  nav > ul{
+    display: none;
+  }
+  nav > #burger-menu{
+    display: flex;
   }
 }

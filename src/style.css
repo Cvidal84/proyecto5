@@ -60,6 +60,7 @@ ul{
 /* Estilos globales */
 body {
   padding: 0 3rem;
+  overflow-x: hidden;
   background-color: var(--background);
   color: var(--text);
   font-family: "Poppins", sans-serif;
