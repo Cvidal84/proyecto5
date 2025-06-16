@@ -29,31 +29,16 @@ section#my-calendar{
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-    section#home, section#cart {
-        flex-direction: column;
+@media (max-width: 899px) {
+    #daily-panel{
+        display: none;
     }
-
-    #daily-panel {
-        position: static;
-        width: 100%;
-        min-width: unset;
-        margin-bottom: 1rem;
-        padding: 1rem;
-    }
-
-    #board-section, #cart-section {
+    #board-section, #cart-section{
         margin-left: 0;
-        padding: 1rem;
-        width: 100%;
     }
 }
 
 @media (max-width: 480px) {
-    #daily-panel {
-        display: none;
-    }
-
     #board-section, #cart-section {
         padding: 0.5rem;
     }
