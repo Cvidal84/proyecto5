@@ -128,7 +128,7 @@ export const TaskList = (listData, container) => {
             }
         });
 
-        localStorage.setItem("taskLists", JSON.stringify(currentLists));
+        localStorage.setItem("taskLists", JSON.stringify(updated));
     };
 
     // Añadir tareas ya guardadas
