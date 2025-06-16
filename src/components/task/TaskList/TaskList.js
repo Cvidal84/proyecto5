@@ -233,6 +233,6 @@ export const TaskList = (listData, container) => {
     } else {
         deleteBtn.style.display = "none";
     }
-
+    
     return list;
 };
