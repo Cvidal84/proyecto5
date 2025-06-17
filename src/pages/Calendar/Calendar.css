@@ -66,17 +66,16 @@
 
 @media(max-width: 376px){
   #my-calendar .fc .fc-button {
-    width: 17px;
+    width: 30px;
+    height: 30px;
     padding: 0;
-    font-size: 0.7rem;
+    margin: 0.15rem;
+    font-size: 0.8rem;
+    overflow: hidden;
+    white-space: nowrap;
+    
   }
   .fc-media-screen{
-    font-size: 0.6em;
+    font-size: 0.6rem;
   }
-  
- 
-
-  
-
-
 }
