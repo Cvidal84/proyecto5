@@ -64,10 +64,10 @@
   display: block;
 }
 
-@media(max-width: 376px){
+@media(max-width: 680px){
   #my-calendar .fc .fc-button {
     width: 30px;
-    height: 30px;
+    height: 20px;
     padding: 0;
     margin: 0.15rem;
     font-size: 0.8rem;

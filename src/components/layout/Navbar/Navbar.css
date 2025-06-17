@@ -68,7 +68,7 @@ nav > #theme-btn{
 
 /* Responsive */
 
-@media (max-width: 480px){
+@media (max-width: 580px){
   nav > ul{
     display: none;
   }
