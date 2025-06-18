@@ -19,14 +19,16 @@
     text-align: center;
 }
 
-/* Respondive */
+/* Responsive */
 @media (max-width: 480px){
     #welcome-message{
         padding-top: 0;
         gap: 0.5rem;
+        justify-content: start;
     }
     #welcome-message > img{
         height: 250px;
+
     }
     #welcome-message > p{
         font-size: 1.1rem;

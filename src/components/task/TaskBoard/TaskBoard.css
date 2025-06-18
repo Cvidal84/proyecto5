@@ -17,3 +17,12 @@
   padding-top: 0.2rem;
   max-width: 100%;
 }
+
+@media (max-width: 480px){
+  .task-lists{
+    padding: 0;
+  }
+  .new-list-btn{
+    bottom: 0;
+  }
+}

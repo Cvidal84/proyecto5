@@ -76,3 +76,9 @@ nav > #theme-btn{
     display: flex;
   }
 }
+
+@media (max-width: 480px){
+  nav #burger-menu-btn > img{
+    height: 25px;
+  }
+}
