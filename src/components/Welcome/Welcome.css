@@ -20,7 +20,7 @@
 }
 
 /* Responsive */
-@media (max-width: 480px){
+@media (max-width: 780px){
     #welcome-message{
         padding-top: 0;
         gap: 0.5rem;

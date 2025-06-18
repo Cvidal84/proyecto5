@@ -4,9 +4,10 @@ import { toggleTheme } from "./components/layout/ThemeBtn/ThemeBtn.js";
 import { Main } from "./components/layout/Main/Main.js";
 import { Footer } from "./components/layout/Footer/Footer.js";
 import { linkPage } from "./utils/linkPage.js";
+import { burgerMenu } from "./components/layout/Navbar/Navbar.js";
 
 const init = () => {
-  document.body.innerHTML += Header();
+  document.body.innerHTML = Header();
   Main("home");
   document.body.appendChild(Footer());
 
@@ -18,6 +19,7 @@ const init = () => {
 document.addEventListener("DOMContentLoaded", () => {
     init();
     toggleTheme();
+    burgerMenu();
     requestAnimationFrame(() => {
       document.body.classList.add("loaded");
     });
