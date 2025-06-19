@@ -12,8 +12,8 @@
 }
 
 .shopping-list{
+  margin-top: 2.7rem;
   width: 500px;
-  margin-top: 2.5rem;
 }
 
 .task-list > .list-header{
@@ -90,4 +90,10 @@ body.light .task-list > .list-header > button img {
 
 .task-list .list-items > li::first-letter{
   text-transform: uppercase;
+}
+
+@media (max-width: 380px){
+  .task-list{
+    padding: 1.5rem;
+  }
 }
