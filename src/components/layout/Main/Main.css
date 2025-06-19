@@ -19,7 +19,7 @@ section#my-calendar{
 }
 
 /* Responsive */
-@media (max-width: 899px) {
+@media (max-width: 899px), (max-height: 800px) {
     #board-section, #cart-section{
         margin-left: 0;
     }
