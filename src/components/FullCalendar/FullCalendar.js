@@ -7,6 +7,7 @@ import { Modal } from "../Modal/Modal";
 
 const saveEventsToLocalStorage = (events) => {
     const rawEvents = events.map(event => ({
+        id: event.id,
         title: event.title,
         start: event.start.toISOString(),
         end: event.end ? event.end.toISOString() : null,
@@ -55,26 +56,26 @@ export const initCalendar = (selector) => {
         },
         eventClick(info) {
             if (clickTimeout) {
+                // Doble click detectado: borrar evento
                 clearTimeout(clickTimeout);
                 clickTimeout = null;
+
+                if (confirm(`¿Quieres eliminar el evento "${info.event.title}"?`)) {
+                    info.event.remove();
+                    saveEventsToLocalStorage(calendar.getEvents());
+                }
             } else {
+                // Click simple: espera a ver si hay doble click
                 clickTimeout = setTimeout(() => {
                     clickTimeout = null;
-                    if (confirm(`¿Quieres eliminar el evento "${info.event.title}"?`)) {
-                        info.event.remove();
-                        saveEventsToLocalStorage(calendar.getEvents());
-                    }
-                }, 250);
+                    const modal = Modal("calendar", info, calendar);
+                    document.body.appendChild(modal);
+                }, 300);
             }
         },
         eventDidMount(info) {
-            info.el.addEventListener("dblclick", () => {
-                console.log(info);
-                const modal = Modal("calendar", info, calendar);
-                document.body.appendChild(modal);
-            });
+            info.el.setAttribute("data-event-id", info.event.id);
 
-            // Alerta personalizada
             const alertMinutes = info.event.extendedProps?.alertMinutes ?? 5;
             const now = new Date();
             const start = new Date(info.event.start);
@@ -83,13 +84,48 @@ export const initCalendar = (selector) => {
 
             if (alertTime > 0) {
                 setTimeout(() => {
-                    alert(`🔔 El evento "${info.event.title}" empieza en ${alertMinutes} minuto(s).`);
+                alert(`🔔 El evento "${info.event.title}" empieza en ${alertMinutes} minuto(s).`);
                 }, alertTime);
             }
         }
     });
 
     calendar.render();
+
+    // Pulsación larga para borrar evento en móvil:
+    let pressTimer = null;
+
+    calendarEl.addEventListener("touchstart", (e) => {
+        const targetEventEl = e.target.closest(".fc-event");
+        if (!targetEventEl) return;
+
+        pressTimer = setTimeout(() => {
+            const eventId = targetEventEl.getAttribute("data-event-id");
+            const event = calendar.getEventById(eventId);
+            if (event && confirm(`¿Eliminar evento "${event.title}"?`)) {
+                event.remove();
+                saveEventsToLocalStorage(calendar.getEvents());
+            }
+        }, 700);
+    });
+    calendarEl.addEventListener("touchend", () => {
+        if (pressTimer) {
+            clearTimeout(pressTimer);
+            pressTimer = null;
+        }
+    });
+    calendarEl.addEventListener("touchcancel", () => {
+        if (pressTimer) {
+            clearTimeout(pressTimer);
+            pressTimer = null;
+        }
+    });
+    calendarEl.addEventListener("touchmove", () => {
+        if (pressTimer) {
+            clearTimeout(pressTimer);
+            pressTimer = null;
+        }
+    });
 
     document.addEventListener("eventAdded", () => {
         saveEventsToLocalStorage(calendar.getEvents());

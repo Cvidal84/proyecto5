@@ -79,7 +79,7 @@ export const Modal = (page, info, calendar) => {
 
         modal.innerHTML = `
             <div class="modal-content">
-                <h3>${isEdit ? "Editar evento" : "Nuevo evento"}</h3>
+                <h3>${isEdit ? "Evento" : "Nuevo evento"}</h3>
                 <input type="text" id="event-title" placeholder="Título del evento" />
                 <div>
                     <label for="start-hour">Hora de inicio:</label>
@@ -94,7 +94,7 @@ export const Modal = (page, info, calendar) => {
                     <input type="number" id="alert-minutes" name="alert-minutes" min="1" value="5" />
                 </div>
                 <div class="modal-btns">
-                    <button id="add-event-btn">${isEdit ? "Guardar" : "Crear"}</button>
+                    <button id="add-event-btn">${isEdit ? "Editar" : "Crear"}</button>
                     <button id="cancel-event-btn">Cancelar</button>
                 </div>
             </div>
@@ -160,16 +160,18 @@ export const Modal = (page, info, calendar) => {
                 info.event.setEnd(endDate);
                 info.event.setExtendedProp("alertMinutes", alertMinutes);
 
-                const updated = calendar.getEvents().map(e => ({
-                    title: e.title,
-                    start: e.start.toISOString(),
-                    end: e.end?.toISOString(),
-                    allDay: e.allDay,
-                    alertMinutes: e.extendedProps?.alertMinutes ?? 5
+                const updated = calendar.getEvents().map(ev => ({
+                    id: ev.id,
+                    title: ev.title,
+                    start: ev.start.toISOString(),
+                    end: ev.end?.toISOString(),
+                    allDay: ev.allDay,
+                    alertMinutes: ev.extendedProps?.alertMinutes ?? 5
                 }));
                 localStorage.setItem("calendarEvents", JSON.stringify(updated));
             } else {
                 calendar.addEvent({
+                    id: crypto.randomUUID(),
                     title,
                     start: startDate,
                     end: endDate,
@@ -186,8 +188,8 @@ export const Modal = (page, info, calendar) => {
 
         // Enter para guardar
         modal.querySelectorAll("input").forEach(input => {
-            input.addEventListener("keydown", (e) => {
-                if (e.key === "Enter") {
+            input.addEventListener("keydown", (ev) => {
+                if (ev.key === "Enter") {
                     modal.querySelector("#add-event-btn").click();
                 }
             });

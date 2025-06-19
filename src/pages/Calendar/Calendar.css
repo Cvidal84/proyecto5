@@ -63,6 +63,12 @@
 }
 
 @media(max-width: 680px){
+  #my-calendar .fc-event{
+    min-height: 30px !important;
+    overflow: visible !important;
+    white-space: normal !important;
+  }
+
   #my-calendar .fc .fc-button{
     width: 30px;
     height: 20px;
