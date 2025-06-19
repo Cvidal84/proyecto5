@@ -39,7 +39,7 @@ export const initCalendar = (selector) => {
         },
         selectable: true,
         selectMirror: true,
-        longPressDelay: 0,
+        longPressDelay: 500,
         editable: true,
         height: 720,
         events: loadEventsFromLocalStorage().map(ev => ({
