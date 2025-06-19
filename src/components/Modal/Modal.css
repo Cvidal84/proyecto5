@@ -24,18 +24,12 @@
   color: var(--text);
 }
 
-.modal-content > #list-name, .modal-content > #event-title {
+.modal-content > #list-name, .modal-content > #event-title, .modal-content > #mail-to {
   border-radius: 10px;
   width: 90%;
   padding: 8px;
   margin: 10px 0;
-}
-
-.modal-content #mail-to{
-  border-radius: 10px;
-  width: 90%;
-  padding: 8px;
-  margin: 10px 0;
+  font-size: 1rem;
 }
 
 .fc-event-title::first-letter {

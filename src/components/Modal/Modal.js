@@ -23,6 +23,7 @@ export const Modal = (page, info, calendar) => {
 
         // Cerrar modal
         modal.querySelector("#cancel-btn").addEventListener("click", () => {
+            if (document.activeElement) document.activeElement.blur();
             modal.remove();
         });
 
@@ -58,6 +59,7 @@ export const Modal = (page, info, calendar) => {
             const welcome = document.querySelector("#welcome-message");
             if (welcome) welcome.remove();
 
+            if (document.activeElement) document.activeElement.blur();
             modal.remove();
         });
 
@@ -125,6 +127,7 @@ export const Modal = (page, info, calendar) => {
 
         // Cancelar evento
         modal.querySelector("#cancel-event-btn").addEventListener("click", () => {
+            if (document.activeElement) document.activeElement.blur();
             modal.remove();
         });
 
@@ -181,6 +184,7 @@ export const Modal = (page, info, calendar) => {
                     detail: { calendar }
                 }));
             }
+            if (document.activeElement) document.activeElement.blur();
             modal.remove();
         });
 
@@ -211,6 +215,7 @@ export const Modal = (page, info, calendar) => {
 
         // Cancelar envío
         modal.querySelector("#cancel-send-btn").addEventListener("click", () => {
+            if (document.activeElement) document.activeElement.blur();
             modal.remove();
         });
 
@@ -228,6 +233,7 @@ export const Modal = (page, info, calendar) => {
             const mailtoLink = `mailto:${mailTo}?subject=${subject}&body=${body}`;
             window.location.href = mailtoLink;
 
+            if (document.activeElement) document.activeElement.blur();
             modal.remove();
         });
     }
