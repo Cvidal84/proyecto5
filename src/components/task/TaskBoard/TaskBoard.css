@@ -1,26 +1,29 @@
 .new-list-btn{
   position: relative;
-  bottom: 16px;
+  bottom: 8px;
   padding: 5px;
   border-radius: 5px;
+  font-weight: bold;
+  margin-bottom: 6px;
 }
 
 .new-list-btn:hover{
   background-color: var(--backgroundtr);
 }
 
-.task-lists {
+.task-lists{
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
   justify-content: center; 
   gap: 1rem;
-  padding-top: 0.2rem;
+  padding-top: 0.3rem;
   max-width: 100%;
 }
 
 @media (max-width: 480px){
   .task-lists{
-    padding: 0;
+    padding: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
   .new-list-btn{
     bottom: 0;

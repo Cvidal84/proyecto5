@@ -28,9 +28,11 @@
 .task-list > .list-header > h3{
   font-size: 1.5rem;
 }
+
 .task-list > .list-header > h3::first-letter{
   text-transform: uppercase;
 }
+
 .task-list > .list-header > .list-buttons {
   display:flex;
   width: 100%;

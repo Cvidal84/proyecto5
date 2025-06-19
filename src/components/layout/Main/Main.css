@@ -1,6 +1,5 @@
 main{
     min-height: 80vh;
-    padding: 1rem 0;
 }
 
 section#home, section#cart{
@@ -13,15 +12,6 @@ section#my-calendar{
     align-self: center;
 }
 
-#daily-panel{
-    position: fixed;
-    top: 10vh;
-    min-width: 350px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
 #board-section, #cart-section{
     margin-left: 350px;
     width: 100%;
@@ -30,15 +20,12 @@ section#my-calendar{
 
 /* Responsive */
 @media (max-width: 899px) {
-    #daily-panel{
-        display: none;
-    }
     #board-section, #cart-section{
         margin-left: 0;
     }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 480px){
     #board-section, #cart-section {
         padding: 0.5rem;
     }
