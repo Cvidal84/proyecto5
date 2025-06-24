@@ -9,21 +9,16 @@ header{
     transition: background-color 1s ease, color 1s ease;
 }
 
-#btn-install {
+#btn-install{
     display: none;
     width: 100vw;
-    height: 40px;
-    position: relative;
+    height: 20px;
+    position: fixed;
     left: 50%;
+    font-size: 0.9em;
     transform: translateX(-50%);
     background-color: #ff8a65;
     text-align: center;
     color: white;
     font-weight: 300;
-}
-@media (max-width: 480px){
-    #btn-install{
-        height: 20px;
-        font-size: 0.9em;
-    }
 }
