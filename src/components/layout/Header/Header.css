@@ -8,3 +8,16 @@ header{
     background-color: var(--background);
     transition: background-color 1s ease, color 1s ease;
 }
+
+#btn-install {
+    display: none;
+    width: 100vw;
+    height: 40px;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--highlight);
+    text-align: center;
+    color: black;
+    font-weight: 700;
+}

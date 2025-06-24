@@ -2,6 +2,7 @@ import "./style.css";
 import { Header } from "./components/layout/Header/Header.js";
 import { toggleTheme } from "./components/layout/ThemeBtn/ThemeBtn.js";
 import { burgerMenu } from "./components/layout/Navbar/Navbar.js";
+import { setupInstallPrompt } from "./components/layout/Header/Header.js";
 import { Main } from "./components/layout/Main/Main.js";
 import { Footer } from "./components/layout/Footer/Footer.js";
 import { linkPage } from "./utils/linkPage.js";
@@ -21,6 +22,7 @@ document.addEventListener("DOMContentLoaded", () => {
     init();
     toggleTheme();
     burgerMenu();
+    setupInstallPrompt();
     setupSWUpdateListener();
     requestAnimationFrame(() => {
       document.body.classList.add("loaded");
