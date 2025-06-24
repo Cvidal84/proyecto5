@@ -16,13 +16,14 @@ header{
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    background-color: var(--highlight);
+    background-color: #ff8a65;
     text-align: center;
-    color: black;
-    font-weight: 700;
+    color: white;
+    font-weight: 300;
 }
 @media (max-width: 480px){
     #btn-install{
         height: 20px;
+        font-size: 0.9em;
     }
 }
