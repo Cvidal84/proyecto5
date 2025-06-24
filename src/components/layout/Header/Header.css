@@ -21,3 +21,8 @@ header{
     color: black;
     font-weight: 700;
 }
+@media (max-width: 480px){
+    #btn-install{
+        height: 20px;
+    }
+}
