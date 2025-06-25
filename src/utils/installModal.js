@@ -1,4 +1,4 @@
-import { Modal } from "../components/layout/Modal.js"; // Ajusta la ruta según tu estructura
+import { Modal } from "../components/Modal/Modal";
 
 const isIos = () => {
     const ua = window.navigator.userAgent.toLowerCase();
