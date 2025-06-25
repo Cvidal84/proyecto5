@@ -9,7 +9,7 @@ header{
     transition: background-color 1s ease, color 1s ease;
 }
 
-#btn-install {
+#btn-install{
   display: none;
   width: 100vw;
   height: 20px;
@@ -24,5 +24,4 @@ header{
   border: none;
   cursor: pointer;
   z-index: 1000;
-  
 }
