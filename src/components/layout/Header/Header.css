@@ -16,7 +16,7 @@ header{
   position: fixed;
   left: 50%;
   transform: translateX(-50%);
-  font-size: 1em;
+  font-size: 0.8em;
   background-color: #ff8a65;
   text-align: center;
   color: white;
