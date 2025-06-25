@@ -7,6 +7,7 @@ import { Main } from "./components/layout/Main/Main.js";
 import { Footer } from "./components/layout/Footer/Footer.js";
 import { linkPage } from "./utils/linkPage.js";
 import { setupSWUpdateListener } from "./utils/swUpdateHandler.js";
+import { showIosInstallModal } from "./utils/iosInstallModal.js";
 
 const init = () => {
   document.body.innerHTML = Header();
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
     burgerMenu();
     setupInstallPrompt();
     setupSWUpdateListener();
+    showIosInstallModal();
     requestAnimationFrame(() => {
       document.body.classList.add("loaded");
     });

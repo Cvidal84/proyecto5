@@ -232,6 +232,20 @@ export const Modal = (page, info, calendar) => {
 
             modal.remove();
         });
+    } else if (page === "iosInstall") {
+        modal.innerHTML = `
+        <div class="modal-content">
+            <h3>¿Quieres instalar Dootzy?</h3>
+            <p>Para instalarla en iPhone, pulsa el botón <strong>Compartir</strong> y luego <strong>Añadir a pantalla de inicio</strong>.</p>
+            <div class="modal-btns">
+            <button id="ios-install-close-btn">Cerrar</button>
+            </div>
+        </div>
+        `;
+
+        modal.querySelector("#ios-install-close-btn").addEventListener("click", () => {
+            modal.remove();
+        });
     }
 
     return modal;
