@@ -8,12 +8,26 @@ const isIos = () => {
 export const setupInstallPrompt = () => {
   let deferredPrompt;
 
-  window.addEventListener("beforeinstallprompt", (e) => {
-    e.preventDefault();
-    deferredPrompt = e;
+  const showBanner = () => {
     document.body.classList.add("show-install-banner");
-  });
+    const installButton = document.getElementById("btn-install");
+    if (installButton) {
+      installButton.style.display = "block";
+    }
+  };
 
+  if (isIos()) {
+    // En iOS no hay beforeinstallprompt, mostramos banner directamente
+    showBanner();
+  } else {
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      showBanner();
+    });
+  }
+
+  // Agregar listener al botón, que ya debería estar en el DOM porque setupInstallPrompt se llama tras DOMContentLoaded
   const installButton = document.getElementById("btn-install");
 
   installButton?.addEventListener("click", () => {
@@ -26,7 +40,6 @@ export const setupInstallPrompt = () => {
       modal.querySelector("#ios-install-close-btn").addEventListener("click", () => {
         modal.remove();
       });
-
     } else {
       if (!deferredPrompt) return;
 
@@ -39,11 +52,13 @@ export const setupInstallPrompt = () => {
         }
         deferredPrompt = null;
         document.body.classList.remove("show-install-banner");
+        installButton.style.display = "none";
       });
     }
   });
 
   window.addEventListener("appinstalled", () => {
     document.body.classList.remove("show-install-banner");
+    if (installButton) installButton.style.display = "none";
   });
 };
