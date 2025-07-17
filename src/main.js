@@ -2,13 +2,12 @@ import "./style.css";
 import { Header } from "./components/layout/Header/Header.js";
 import { toggleTheme } from "./components/layout/ThemeBtn/ThemeBtn.js";
 import { burgerMenu } from "./components/layout/Navbar/Navbar.js";
-import { setupInstallPrompt } from "./components/layout/Header/Header.js";
+import { setupInstallPrompt } from "./utils/installPrompt.js";
 import { Main } from "./components/layout/Main/Main.js";
 import { Footer } from "./components/layout/Footer/Footer.js";
 import { linkPage } from "./utils/linkPage.js";
 import { setActiveLink } from "./utils/setActiveLink.js";
 import { setupSWUpdateListener } from "./utils/swUpdateHandler.js";
-import { showIosInstallModal } from "./utils/installModal.js";
 
 const init = () => {
   document.body.innerHTML = Header();
@@ -40,7 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
     burgerMenu();
     setupInstallPrompt();
     setupSWUpdateListener();
-    showIosInstallModal();
     requestAnimationFrame(() => {
       document.body.classList.add("loaded");
     });

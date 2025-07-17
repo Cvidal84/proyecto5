@@ -38,13 +38,27 @@ const printData = (data) => {
 };
 
 export const Weather = () => {
-  if("geolocation" in navigator) {
-    //Se solicita la ubicacion
-    navigator.geolocation.getCurrentPosition((position) => {
-      const location = position.coords.latitude +","+ position.coords.longitude;
-      getWeather(location);
-    });
-  } else {
+   if (!("geolocation" in navigator)) {
     getWeather("Madrid");
+    return;
+  }
+
+  const savedLocation = localStorage.getItem("userLocation");
+
+  if (savedLocation) {
+    getWeather(savedLocation);
+  } else {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const location = position.coords.latitude + "," + position.coords.longitude;
+        localStorage.setItem("userLocation", location); // Guardamos solo si acepta
+        getWeather(location);
+      },
+      (error) => {
+        console.warn("No se pudo obtener ubicación, carga default:", error.message);
+        // No guardamos nada para que vuelva a preguntar la próxima vez
+        getWeather("Madrid");
+      }
+    );
   }
 };
