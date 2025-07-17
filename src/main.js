@@ -29,7 +29,7 @@ const init = () => {
     setActiveLink("cartLink");
   });
   linkPage("calendarLink", () => {
-    Main("calendar");
+    Main("my-calendar");
     setActiveLink("calendarLink");
   });
 };
