@@ -16,18 +16,18 @@ nav > #logoContainer{
 nav > #logoContainer > img{
   height: 60%;
   width: auto;
+  cursor: pointer;
 }
 
 nav > ul{
   display: flex;
   align-items: center;
   justify-content: end;
-  gap: 2rem;
-  width: 60%;
+  gap: 3rem;
+  width: 75%;
 }
 
 nav li{
-  width: 100%;
   display: flex;
   justify-content: end;
 }
@@ -39,8 +39,12 @@ nav a{
   transition: all 0.3s ease-in-out;
 }
 
+nav a.active {
+  font-weight: 700;
+}
+
 nav a:hover{
-  font-weight: 600;
+  color: var(--highlight);
 }
 
 nav > #burger-menu{
@@ -64,7 +68,7 @@ nav #burger-menu-btn > img{
 }
 
 nav > #theme-btn{
-  width: 10%;
+  width: 5%;
   display: flex;
   align-items: center;
   justify-content: end;

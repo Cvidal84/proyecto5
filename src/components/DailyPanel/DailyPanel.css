@@ -2,11 +2,16 @@
     position: fixed;
     top: 10vh;
     min-width: 350px;
-    height: 80vh;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: space-between;
+}
+
+body.show-install-banner #daily-panel{
+    min-height: calc(80vh - 30px);
+    top: calc(10vh + 30px);
 }
 
 #daily-panel > #mini-calendar-section{

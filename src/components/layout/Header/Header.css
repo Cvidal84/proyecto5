@@ -9,7 +9,11 @@ header{
     transition: background-color 1s ease, color 1s ease;
 }
 
-#btn-install{
+body.show-install-banner header {
+  margin-top: 30px; /* O 20px si el botón mide 20 */
+}
+
+/* #btn-install{
   display: none;
   width: 100vw;
   height: 20px;
@@ -24,4 +28,23 @@ header{
   border: none;
   cursor: pointer;
   z-index: 1000;
+} */
+
+#btn-install {
+  display: none;
+  width: 100vw;
+  height: 30px; /* un poco más alto para estilo banner */
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.9em;
+  background-color: #ff8a65;
+  text-align: center;
+  color: white;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  z-index: 10000; /* por encima de todo */
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }

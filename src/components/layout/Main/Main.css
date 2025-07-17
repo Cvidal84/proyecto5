@@ -2,6 +2,10 @@ main{
     min-height: 80vh;
 }
 
+body.show-install-banner main {
+  min-height: calc(80vh - 30px); /* Resta banner */
+}
+
 section#home, section#cart{
     display: flex;
     width: 100%;
@@ -17,6 +21,10 @@ section#my-calendar{
     width: 100%;
     min-height: 80vh;
     padding: 2rem;
+}
+
+body.show-install-banner #board-section, body.show-install-banner #cart-section{
+  min-height: calc(80vh - 30px); /* Resta banner */
 }
 
 /* Responsive */

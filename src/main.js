@@ -6,17 +6,32 @@ import { setupInstallPrompt } from "./components/layout/Header/Header.js";
 import { Main } from "./components/layout/Main/Main.js";
 import { Footer } from "./components/layout/Footer/Footer.js";
 import { linkPage } from "./utils/linkPage.js";
+import { setActiveLink } from "./utils/setActiveLink.js";
 import { setupSWUpdateListener } from "./utils/swUpdateHandler.js";
 import { showIosInstallModal } from "./utils/installModal.js";
 
 const init = () => {
   document.body.innerHTML = Header();
   Main("home");
+  setActiveLink("boardLink");
   document.body.appendChild(Footer());
 
-  linkPage("boardLink", () => Main("home"));
-  linkPage("cartLink", () => Main("cart"));
-  linkPage("calendarLink", () => Main("my-calendar"));
+  linkPage("boardLink", () => {
+    Main("home");
+    setActiveLink("boardLink");
+  });
+  linkPage("logoLink", () => {
+    Main("home");
+    setActiveLink("boardLink");
+  });
+  linkPage("cartLink", () => {
+    Main("cart");
+    setActiveLink("cartLink");
+  });
+  linkPage("calendarLink", () => {
+    Main("calendar");
+    setActiveLink("calendarLink");
+  });
 };
 
 document.addEventListener("DOMContentLoaded", () => {

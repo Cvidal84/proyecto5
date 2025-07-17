@@ -4,7 +4,7 @@ import { ThemeBtn } from "../ThemeBtn/ThemeBtn";
 export const Navbar = () => `
   <nav>
     <div id="logoContainer">
-        <img src="/logos/logo-dark.png" alt="Dootzy logo" />
+        <img src="/logos/logo-dark.png" alt="Dootzy logo" id="logoLink" />
     </div>
     <ul id="menu">
         <li>
@@ -33,21 +33,6 @@ export const toggleLogo = () => {
     ? "/logos/logo-light.png"
     : "/logos/logo-dark.png";
 };
-
-/* export const burgerMenu = () => {
-    const menu = document.querySelector("#menu");
-    const burgerBtn = document.querySelector("#burger-menu-btn");
-
-    burgerBtn.addEventListener("click", (event) => {
-        event.stopPropagation();
-        menu.classList.toggle("active");
-    });
-
-    document.addEventListener("click", () => {
-        menu.classList.remove("active");
-    });
-}; */
-
 
 export const burgerMenu = () => {
   const menu = document.querySelector("#menu");
