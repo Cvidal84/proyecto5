@@ -91,6 +91,17 @@ body.light .task-list > .list-header > button img {
 .task-list .list-items > li::first-letter{
   text-transform: uppercase;
 }
+.task-item {
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
+}
+
+.delete-task-btn > img{
+  filter: invert(100);
+  width: 15px;
+  
+}
 
 @media (max-width: 380px){
   .task-list{
