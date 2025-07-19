@@ -1,121 +1,129 @@
-#daily-panel{
-    position: fixed;
-    top: 10vh;
-    min-width: 350px;
-    min-height: 80vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+#daily-panel {
+  position: fixed;
+  top: 10vh;
+  min-width: 350px;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
-body.show-install-banner #daily-panel{
-    min-height: calc(80vh - 30px);
-    top: calc(10vh + 30px);
+body.show-install-banner #daily-panel {
+  min-height: calc(80vh - 30px);
+  top: calc(10vh + 30px);
 }
 
-#daily-panel > #mini-calendar-section{
-    padding: 1rem;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
+#daily-panel > #mini-calendar-section {
+  padding: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 }
 
-#mini-calendar{
-    width: 320px;
-    height: 407px;
-    font-size: 0.8rem;
-    margin-bottom: 20px;
+#mini-calendar {
+  width: 320px;
+  height: 407px;
+  font-size: 0.8rem;
+  margin-bottom: 20px;
 }
 
-#mini-calendar .fc-button{
-    background-color: #3a716a;
-    color: rgba(255, 255, 255, 0.87);
-    border: none;
-    transition: background-color 0.3s ease;
-    font-weight: 600;
+#mini-calendar .fc-button {
+  background-color: #3a716a;
+  color: rgba(255, 255, 255, 0.87);
+  border: none;
+  transition: background-color 0.3s ease;
+  font-weight: 600;
 }
 
-#mini-calendar .fc-button:hover, #mini-calendar .fc-button:focus{
-    background-color: #2e5751;
-    outline: none;
+#mini-calendar .fc-button:hover,
+#mini-calendar .fc-button:focus {
+  background-color: #2e5751;
+  outline: none;
 }
 
-#mini-calendar .fc-button.fc-button-active{
-    background-color: #266052;
-    box-shadow: 0 0 5px rgba(38, 96, 82, 0.7);
+#mini-calendar .fc-button.fc-button-active {
+  background-color: #266052;
+  box-shadow: 0 0 5px rgba(38, 96, 82, 0.7);
 }
 
 /* Botones de meses */
-#mini-calendar .fc-button{
-    background-color: #3a716a;
-    color: rgba(255, 255, 255, 0.87);
-    transition: background-color 0.3s ease;
-    border: 1px solid #2e5751;
+#mini-calendar .fc-button {
+  background-color: #3a716a;
+  color: rgba(255, 255, 255, 0.87);
+  transition: background-color 0.3s ease;
+  border: 1px solid #2e5751;
 }
 
-#mini-calendar .fc-button:hover, #mini-calendar .fc-button:focus{
-    background-color: #2e5751;
+#mini-calendar .fc-button:hover,
+#mini-calendar .fc-button:focus {
+  background-color: #2e5751;
 }
 
-#mini-calendar .fc-button.fc-button-active{
-    background-color: #266052;
+#mini-calendar .fc-button.fc-button-active {
+  background-color: #266052;
 }
 
-#mini-calendar .fc-today-button{
-    background-color: #3a716a;
-    color: rgba(255, 255, 255, 0.87);
-    font-weight: bold;
+#mini-calendar .fc-today-button {
+  background-color: #3a716a;
+  color: rgba(255, 255, 255, 0.87);
+  font-weight: bold;
 }
 
-#mini-calendar .fc-today-button:hover,#mini-calendar .fc-today-button:focus{
-    background-color: #2e5751;
+#mini-calendar .fc-today-button:hover,
+#mini-calendar .fc-today-button:focus {
+  background-color: #2e5751;
 }
 
 /* Grid */
-#mini-calendar .fc-daygrid{
-    border-radius: 12px;
-    overflow: hidden;
-    background-color: var(--text);
-    color: var(--background);
+#mini-calendar .fc-daygrid {
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: var(--text);
+  color: var(--background);
+  cursor: pointer;
+}
+
+#mini-calendar .fc-daygrid-day:hover {
+  background-color: #66C6BB;
 }
 
 /* Fila días de la semana */
-#mini-calendar .fc-col-header-cell-cushion{
-    text-align: center;
+#mini-calendar .fc-col-header-cell-cushion {
+  text-align: center;
 }
 
 /* Casilla de un día */
-#mini-calendar .fc-daygrid-day-frame{
-    display: flex;
-    flex-direction: column;
-    align-items: start;
-    padding-left: 0.3rem;
+#mini-calendar .fc-daygrid-day-frame {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  padding-left: 0.3rem;
 }
 
 /* Número del día */
-#mini-calendar .fc-daygrid-day-number{
-    font-weight: bold;
+#mini-calendar .fc-daygrid-day-number {
+  font-weight: bold;
 }
 
 /* Día de hoy */
-#mini-calendar .fc-day-today{
-    background-color: rgba(103, 198, 187, 0.2)
+#mini-calendar .fc-day-today {
+  background-color: rgba(103, 198, 187, 0.2);
 }
 
 /* Punto indicativo de que hay eventos ese día */
-#mini-calendar .event-dot{
-    display: inline-block;
-    width: 6px;
-    height: 6px;
-    background-color: #ff8a65;
-    border-radius: 50%;
-    margin-left: 4px;
+#mini-calendar .event-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  background-color: #ff8a65;
+  border-radius: 50%;
+  margin-left: 4px;
 }
 
 @media (max-width: 899px), (max-height: 800px) {
-    #daily-panel{
-        display: none;
-    }
+  #daily-panel {
+    display: none;
+  }
 }

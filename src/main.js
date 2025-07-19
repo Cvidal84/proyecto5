@@ -34,12 +34,12 @@ const init = () => {
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-    init();
-    toggleTheme();
-    burgerMenu();
-    setupInstallPrompt();
-    setupSWUpdateListener();
-    requestAnimationFrame(() => {
-      document.body.classList.add("loaded");
-    });
+  init();
+  toggleTheme();
+  burgerMenu();
+  setupInstallPrompt();
+  setupSWUpdateListener();
+  requestAnimationFrame(() => {
+    document.body.classList.add("loaded");
+  });
 });
