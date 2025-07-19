@@ -28,7 +28,7 @@ body.show-install-banner header {
   font-size: 0.9em;
   background-color: #ff8a65;
   color: white;
-  font-weight: 500;
+  font-weight: 600;
   border: none;
   cursor: pointer;
   box-shadow: 0 2px 6px rgba(0,0,0,0.2);

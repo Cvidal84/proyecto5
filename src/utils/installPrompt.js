@@ -5,6 +5,13 @@ const isIos = () => {
   return /iphone|ipad|ipod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 };
 
+const isInStandaloneMode = () => {
+  return (
+    window.matchMedia("(display-mode: standalone)").matches || // Android/otros
+    window.navigator.standalone === true // iOS
+  );
+};
+
 export const setupInstallPrompt = () => {
   let deferredPrompt;
 
@@ -15,6 +22,9 @@ export const setupInstallPrompt = () => {
       installButton.style.display = "block";
     }
   };
+
+  // Si ya está instalada, no mostramos nada
+  if (isInStandaloneMode()) return;
 
   if (isIos()) {
     // En iOS no hay beforeinstallprompt, mostramos banner directamente
@@ -27,7 +37,6 @@ export const setupInstallPrompt = () => {
     });
   }
 
-  // Agregar listener al botón, que ya debería estar en el DOM porque setupInstallPrompt se llama tras DOMContentLoaded
   const installButton = document.getElementById("btn-install");
 
   installButton?.addEventListener("click", () => {
