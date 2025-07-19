@@ -6,50 +6,41 @@ const isIos = () => {
 };
 
 const isInStandaloneMode = () => {
-  return (
-    window.matchMedia("(display-mode: standalone)").matches || // Android/otros
-    window.navigator.standalone === true // iOS
-  );
+  const isIosStandalone = window.navigator.standalone === true;
+  const isStandaloneDisplay = window.matchMedia("(display-mode: standalone)").matches;
+  return isIosStandalone || isStandaloneDisplay;
 };
 
 export const setupInstallPrompt = () => {
   let deferredPrompt;
 
-  const showBanner = () => {
-    document.body.classList.add("show-install-banner");
-    const installButton = document.getElementById("btn-install");
-    if (installButton) {
-      installButton.style.display = "block";
-    }
-  };
-
-  // Si ya está instalada, no mostramos nada
+  // Si ya está instalada, no hacemos nada
   if (isInStandaloneMode()) return;
 
   if (isIos()) {
-    // En iOS no hay beforeinstallprompt, mostramos banner directamente
-    showBanner();
-  } else {
-    window.addEventListener("beforeinstallprompt", (e) => {
-      e.preventDefault();
-      deferredPrompt = e;
-      showBanner();
-    });
-  }
-
-  const installButton = document.getElementById("btn-install");
-
-  installButton?.addEventListener("click", () => {
-    if (isIos()) {
-      if (document.querySelector(".modal-overlay")) return;
-
+    // En iOS, mostrar directamente el modal si no está instalada
+    if (!document.querySelector(".modal-overlay")) {
       const modal = Modal("iosInstall");
       document.body.appendChild(modal);
 
       modal.querySelector("#ios-install-close-btn").addEventListener("click", () => {
         modal.remove();
       });
-    } else {
+    }
+  } else {
+    // En navegadores que soportan beforeinstallprompt
+    window.addEventListener("beforeinstallprompt", (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      document.body.classList.add("show-install-banner");
+      const installButton = document.getElementById("btn-install");
+      if (installButton) {
+        installButton.style.display = "block";
+      }
+    });
+
+    const installButton = document.getElementById("btn-install");
+    installButton?.addEventListener("click", () => {
       if (!deferredPrompt) return;
 
       deferredPrompt.prompt();
@@ -63,11 +54,12 @@ export const setupInstallPrompt = () => {
         document.body.classList.remove("show-install-banner");
         installButton.style.display = "none";
       });
-    }
-  });
+    });
 
-  window.addEventListener("appinstalled", () => {
-    document.body.classList.remove("show-install-banner");
-    if (installButton) installButton.style.display = "none";
-  });
+    window.addEventListener("appinstalled", () => {
+      document.body.classList.remove("show-install-banner");
+      const installButton = document.getElementById("btn-install");
+      if (installButton) installButton.style.display = "none";
+    });
+  }
 };

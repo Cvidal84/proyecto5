@@ -150,30 +150,28 @@ export const TaskList = (listData, container) => {
     };
 
     // Añadir tareas ya guardadas
-    // Añadir tareas ya guardadas
-tasks.forEach(task => {
-    const li = document.createElement("li");
-    li.classList.add("task-item");
+    tasks.forEach(task => {
+        const li = document.createElement("li");
+        li.classList.add("task-item");
 
-    const span = document.createElement("span");
-    span.textContent = task;
+        const span = document.createElement("span");
+        span.textContent = task;
 
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "🗑️";
-    deleteBtn.classList.add("delete-task-btn");
+        const deleteBtn = document.createElement("button");
+        deleteBtn.textContent = "🗑️";
+        deleteBtn.classList.add("delete-task-btn");
 
-    deleteBtn.addEventListener("click", (e) => {
-        e.stopPropagation(); // Evita que se dispare el drag o cualquier otro evento
-        li.remove();
-        saveLists();
+        deleteBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            li.remove();
+            saveLists();
+        });
+
+        li.appendChild(span);
+        li.appendChild(deleteBtn);
+        makeTaskDraggable(li);
+        taskContainer.appendChild(li);
     });
-
-    li.appendChild(span);
-    li.appendChild(deleteBtn);
-    makeTaskDraggable(li);
-    taskContainer.appendChild(li);
-});
-
 
     // Para hacer el drag and drop fluido
     taskContainer.addEventListener("dragenter", (e) => {
