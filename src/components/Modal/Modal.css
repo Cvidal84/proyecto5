@@ -12,6 +12,7 @@
 }
 
 .modal-content {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -20,8 +21,30 @@
   padding: 20px;
   border-radius: 10px;
   width: 300px;
-  text-align: center;
   color: var(--text);
+}
+
+#close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 32px;
+  height: 32px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+#close-btn:hover {
+  background-color: white;
+  color: black;
 }
 
 .modal-content > #list-name, .modal-content > #event-title, .modal-content > #mail-to {
@@ -30,6 +53,30 @@
   padding: 8px;
   margin: 10px 0;
   font-size: 1rem;
+  display: block;
+  text-transform: capitalize;
+}
+
+.color-picker-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 10px 0;
+}
+
+.color-picker-row label {
+  font-weight: 500;
+  min-width: 100px;
+}
+
+.color-picker-row input[type="color"] {
+  width: 20px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  padding: 0;
 }
 
 .fc-event-title::first-letter {
@@ -40,12 +87,17 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  width: 100%;
+  text-align: left; 
 }
 
 .modal-content > div > input{
   padding: 0.3rem;
   border-radius: 5px;
+  flex-grow: 1;
+  text-align: center; 
 }
+
 
 .modal-content > div > #alert-minutes{
   text-align: center;
@@ -56,7 +108,9 @@
 .modal-btns {
   margin-top: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
 }
 
 .modal-btns button {
@@ -64,4 +118,10 @@
   border: none;
   border-radius: 6px;
   cursor: pointer;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.modal-btns button:hover {
+  background-color: white;
+  color: black;
 }

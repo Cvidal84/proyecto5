@@ -80,21 +80,17 @@ body.light .task-list > .list-header > button img {
 .task-list .list-items > li{
   width: 100%;
   color: var(--text);
-  text-align: left;
+  background-color: var(--task-bg);
   list-style: none;
   padding: 1rem;
   border-radius: 10px;
-  background-color: var(--task-bg);
-  color: var(--text);
+  display: flex;
+  justify-content: space-between;
+  text-transform: capitalize;
 }
 
 .task-list .list-items > li::first-letter{
   text-transform: uppercase;
-}
-.task-item {
-  display: flex;
-  justify-content: space-between;
-  text-transform: capitalize;
 }
 
 .delete-task-btn > img{

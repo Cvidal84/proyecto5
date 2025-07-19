@@ -5,11 +5,12 @@ header {
   z-index: 9999;
   height: 10vh;
   background-color: var(--background);
-  transition: height 0.3s ease;
+  transition: height 1 ease;
   padding: 0 1rem;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
+  transition: background-color 1s ease, color 1s ease, height 0.3s ease;
 }
 
 body.show-install-banner header {

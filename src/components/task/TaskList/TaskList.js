@@ -35,18 +35,14 @@ const addTask = (input, container, onSave) => {
 
     const li = document.createElement("li");
     li.classList.add("task-item");
-
-    const span = document.createElement("span");
-    span.textContent = text;
+    li.textContent = text;
 
     const deleteBtn = document.createElement("button");
     deleteBtn.classList.add("delete-task-btn");
     const img = document.createElement("img");
     img.src = "/icons/trash.png";
     img.alt = "Eliminar tarea";
-    img.width = 20;
-
-deleteBtn.appendChild(img);
+    deleteBtn.appendChild(img);
 
     deleteBtn.addEventListener("click", (e) => {
         e.stopPropagation();
@@ -54,7 +50,6 @@ deleteBtn.appendChild(img);
         onSave();
     });
 
-    li.appendChild(span);
     li.appendChild(deleteBtn);
     makeTaskDraggable(li);
     container.appendChild(li);
@@ -153,13 +148,14 @@ export const TaskList = (listData, container) => {
     tasks.forEach(task => {
         const li = document.createElement("li");
         li.classList.add("task-item");
-
-        const span = document.createElement("span");
-        span.textContent = task;
+        li.textContent = task;
 
         const deleteBtn = document.createElement("button");
-        deleteBtn.textContent = "🗑️";
         deleteBtn.classList.add("delete-task-btn");
+        const img = document.createElement("img");
+        img.src = "/icons/trash.png";
+        img.alt = "Eliminar tarea";
+        deleteBtn.appendChild(img);
 
         deleteBtn.addEventListener("click", (e) => {
             e.stopPropagation();
@@ -167,7 +163,6 @@ export const TaskList = (listData, container) => {
             saveLists();
         });
 
-        li.appendChild(span);
         li.appendChild(deleteBtn);
         makeTaskDraggable(li);
         taskContainer.appendChild(li);

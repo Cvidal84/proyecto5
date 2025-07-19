@@ -2,42 +2,46 @@ import { Modal } from "../components/Modal/Modal.js";
 
 const isIos = () => {
   const ua = window.navigator.userAgent.toLowerCase();
-  return /iphone|ipad|ipod/.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
+  return (
+    /iphone|ipad|ipod/.test(ua) ||
+    (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1)
+  );
 };
 
 const isInStandaloneMode = () => {
   const isIosStandalone = window.navigator.standalone === true;
-  const isStandaloneDisplay = window.matchMedia("(display-mode: standalone)").matches;
+  const isStandaloneDisplay = window.matchMedia(
+    "(display-mode: standalone)"
+  ).matches;
   return isIosStandalone || isStandaloneDisplay;
 };
 
-export const setupInstallPrompt = () => {
-  let deferredPrompt;
+let deferredPrompt = null;
 
-  // Si la app ya está instalada, no mostramos nada
+export const setupInstallPrompt = () => {
+  // No mostrar nada si ya está instalada
   if (isInStandaloneMode()) return;
 
   if (isIos() && !isInStandaloneMode()) {
-    // En iOS, mostrar el modal una vez si no está instalada
+    // iOS: muestra modal propio
     if (!document.querySelector(".modal-overlay")) {
       const modal = Modal("iosInstall");
       document.body.appendChild(modal);
 
-      modal.querySelector("#ios-install-close-btn").addEventListener("click", () => {
-        modal.remove();
-      });
+      modal
+        .querySelector("#ios-install-close-btn")
+        .addEventListener("click", () => {
+          modal.remove();
+        });
     }
   } else {
-    // En otros navegadores, mostrar banner al detectar beforeinstallprompt
+    // Otros navegadores
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      document.body.classList.add("show-install-banner");
 
-      const installButton = document.getElementById("btn-install");
-      if (installButton) {
-        installButton.style.display = "block";
-      }
+      // Mostrar banner automáticamente
+      showInstallBanner();
     });
 
     const installButton = document.getElementById("btn-install");
@@ -53,15 +57,30 @@ export const setupInstallPrompt = () => {
         }
 
         deferredPrompt = null;
-        document.body.classList.remove("show-install-banner");
-        installButton.style.display = "none";
+        hideInstallBanner();
       });
     });
 
     window.addEventListener("appinstalled", () => {
-      document.body.classList.remove("show-install-banner");
-      const installButton = document.getElementById("btn-install");
-      if (installButton) installButton.style.display = "none";
+      hideInstallBanner();
     });
+
+    // Opcional: si la página recarga y ya tienes deferredPrompt guardado
+    // (por ejemplo si es SPA, puedes mostrar el banner aquí)
+    if (deferredPrompt) {
+      showInstallBanner();
+    }
   }
+};
+
+const showInstallBanner = () => {
+  document.body.classList.add("show-install-banner");
+  const installButton = document.getElementById("btn-install");
+  if (installButton) installButton.style.display = "block";
+};
+
+const hideInstallBanner = () => {
+  document.body.classList.remove("show-install-banner");
+  const installButton = document.getElementById("btn-install");
+  if (installButton) installButton.style.display = "none";
 };

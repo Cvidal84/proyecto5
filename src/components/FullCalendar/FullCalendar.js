@@ -9,7 +9,7 @@ import { goToCalendarPage } from "../../utils/goToCalendarPage";
 
 let calendar;
 
-const saveEventsToLocalStorage = (events) => {
+export const saveEventsToLocalStorage = (events) => {
   const rawEvents = events.map((event) => ({
     id: event.id,
     title: event.title,
@@ -63,23 +63,8 @@ export const initCalendar = (selector) => {
       ).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" });
     },
     eventClick(info) {
-      if (clickTimeout) {
-        // Doble click detectado: borrar evento
-        clearTimeout(clickTimeout);
-        clickTimeout = null;
-
-        if (confirm(`¿Quieres eliminar el evento "${info.event.title}"?`)) {
-          info.event.remove();
-          saveEventsToLocalStorage(calendar.getEvents());
-        }
-      } else {
-        // Click simple: espera a ver si hay doble click
-        clickTimeout = setTimeout(() => {
-          clickTimeout = null;
-          const modal = Modal("calendar", info, calendar);
-          document.body.appendChild(modal);
-        }, 300);
-      }
+      const modal = Modal("calendar", info, calendar);
+      document.body.appendChild(modal);
     },
     eventDidMount(info) {
       info.el.setAttribute("data-event-id", info.event.id);
@@ -117,7 +102,7 @@ export const initCalendar = (selector) => {
         saveEventsToLocalStorage(calendar.getEvents());
       }
     }, 700);
-  });
+  }/* , { passive: true } */);
   calendarEl.addEventListener("touchend", () => {
     if (pressTimer) {
       clearTimeout(pressTimer);
