@@ -14,11 +14,11 @@ const isInStandaloneMode = () => {
 export const setupInstallPrompt = () => {
   let deferredPrompt;
 
-  // Si ya está instalada, no hacemos nada
+  // Si la app ya está instalada, no mostramos nada
   if (isInStandaloneMode()) return;
 
-  if (isIos()) {
-    // En iOS, mostrar directamente el modal si no está instalada
+  if (isIos() && !isInStandaloneMode()) {
+    // En iOS, mostrar el modal una vez si no está instalada
     if (!document.querySelector(".modal-overlay")) {
       const modal = Modal("iosInstall");
       document.body.appendChild(modal);
@@ -28,11 +28,12 @@ export const setupInstallPrompt = () => {
       });
     }
   } else {
-    // En navegadores que soportan beforeinstallprompt
+    // En otros navegadores, mostrar banner al detectar beforeinstallprompt
     window.addEventListener("beforeinstallprompt", (e) => {
       e.preventDefault();
       deferredPrompt = e;
       document.body.classList.add("show-install-banner");
+
       const installButton = document.getElementById("btn-install");
       if (installButton) {
         installButton.style.display = "block";
@@ -50,6 +51,7 @@ export const setupInstallPrompt = () => {
         } else {
           console.log("Instalación rechazada");
         }
+
         deferredPrompt = null;
         document.body.classList.remove("show-install-banner");
         installButton.style.display = "none";

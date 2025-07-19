@@ -38,7 +38,14 @@ const printData = (data) => {
 };
 
 export const Weather = () => {
-   if (!("geolocation" in navigator)) {
+  const isMobile = /iphone|ipad|ipod|android/i.test(navigator.userAgent);
+
+  if (isMobile) {
+    getWeather("Madrid");
+    return;
+  }
+
+  if (!("geolocation" in navigator)) {
     getWeather("Madrid");
     return;
   }
@@ -51,12 +58,11 @@ export const Weather = () => {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         const location = position.coords.latitude + "," + position.coords.longitude;
-        localStorage.setItem("userLocation", location); // Guardamos solo si acepta
+        localStorage.setItem("userLocation", location);
         getWeather(location);
       },
       (error) => {
         console.warn("No se pudo obtener ubicación, carga default:", error.message);
-        // No guardamos nada para que vuelva a preguntar la próxima vez
         getWeather("Madrid");
       }
     );
