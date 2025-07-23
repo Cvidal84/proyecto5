@@ -6,7 +6,6 @@ import esLocale from "@fullcalendar/core/locales/es";
 import { Modal } from "../Modal/Modal";
 import { goToCalendarPage } from "../../utils/goToCalendarPage";
 
-
 let calendar;
 
 export const saveEventsToLocalStorage = (events) => {
@@ -90,19 +89,22 @@ export const initCalendar = (selector) => {
   // Pulsación larga para borrar evento en móvil:
   let pressTimer = null;
 
-  calendarEl.addEventListener("touchstart", (e) => {
-    const targetEventEl = e.target.closest(".fc-event");
-    if (!targetEventEl) return;
+  calendarEl.addEventListener(
+    "touchstart",
+    (e) => {
+      const targetEventEl = e.target.closest(".fc-event");
+      if (!targetEventEl) return;
 
-    pressTimer = setTimeout(() => {
-      const eventId = targetEventEl.getAttribute("data-event-id");
-      const event = calendar.getEventById(eventId);
-      if (event && confirm(`¿Eliminar evento "${event.title}"?`)) {
-        event.remove();
-        saveEventsToLocalStorage(calendar.getEvents());
-      }
-    }, 700);
-  }/* , { passive: true } */);
+      pressTimer = setTimeout(() => {
+        const eventId = targetEventEl.getAttribute("data-event-id");
+        const event = calendar.getEventById(eventId);
+        if (event && confirm(`¿Eliminar evento "${event.title}"?`)) {
+          event.remove();
+          saveEventsToLocalStorage(calendar.getEvents());
+        }
+      }, 700);
+    } /* , { passive: true } */
+  );
   calendarEl.addEventListener("touchend", () => {
     if (pressTimer) {
       clearTimeout(pressTimer);

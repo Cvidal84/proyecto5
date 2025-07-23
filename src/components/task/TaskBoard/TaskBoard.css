@@ -1,4 +1,4 @@
-.new-list-btn{
+.new-list-btn {
   position: relative;
   bottom: 8px;
   padding: 5px;
@@ -7,31 +7,31 @@
   margin-bottom: 6px;
 }
 
-.new-list-btn:hover{
+.new-list-btn:hover {
   background-color: var(--backgroundtr);
 }
 
-.task-lists{
+.task-lists {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  justify-content: center; 
+  justify-content: center;
   gap: 1rem;
   max-width: 100%;
   padding-top: 0.3rem;
 }
 
-.shopping-list-container{
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    padding: 0;
+.shopping-list-container {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  padding: 0;
 }
 
-@media (max-width: 480px){
-  .task-lists{
+@media (max-width: 480px) {
+  .task-lists {
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   }
-  .new-list-btn{
+  .new-list-btn {
     bottom: 0;
   }
 }

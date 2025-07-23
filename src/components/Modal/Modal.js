@@ -99,10 +99,7 @@ export const Modal = (page, info, calendar) => {
             </div>
             <div class="modal-btns">
             <button id="add-event-btn">${isEdit ? "Editar" : "Crear"}</button>
-            ${isEdit
-                ? '<button id="delete-event-btn">Eliminar</button>'
-                : ""
-            }
+            ${isEdit ? '<button id="delete-event-btn">Eliminar</button>' : ""}
             </div>
         </div>
     `;

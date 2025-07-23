@@ -1,9 +1,9 @@
-#my-calendar{
+#my-calendar {
   height: fit-content;
   padding-top: 1rem;
 }
 
-#my-calendar .fc .fc-button{
+#my-calendar .fc .fc-button {
   background-color: #3a716a;
   border: none;
   padding: 0.4rem 0.8rem;
@@ -13,63 +13,66 @@
   color: white;
 }
 
-#my-calendar .fc .fc-button:hover, #my-calendar .fc .fc-button:focus{
+#my-calendar .fc .fc-button:hover,
+#my-calendar .fc .fc-button:focus {
   background-color: #2e5751;
   outline: none;
   box-shadow: 0 0 0 2px rgba(46, 87, 81, 0.3);
 }
 
-#my-calendar .fc .fc-button.fc-button-active, #my-calendar .fc .fc-button:active{
+#my-calendar .fc .fc-button.fc-button-active,
+#my-calendar .fc .fc-button:active {
   background-color: #1e4f44;
   box-shadow: 0 0 5px rgba(38, 96, 82, 0.7);
 }
 
-#my-calendar .fc-scrollgrid{
+#my-calendar .fc-scrollgrid {
   border-radius: 16px;
   overflow: hidden;
   border: 2px solid rgba(103, 198, 187, 0.3);
   box-shadow: 0 2px 8px rgba(103, 198, 187, 0.1);
 }
 
-#my-calendar .fc-theme-standard td, #my-calendar .fc-theme-standard th{
+#my-calendar .fc-theme-standard td,
+#my-calendar .fc-theme-standard th {
   border-color: rgba(103, 198, 187, 0.3);
 }
 
-#my-calendar .fc-event{
+#my-calendar .fc-event {
   background-color: #ff8a65;
-  border-color: #ff7043;  
+  border-color: #ff7043;
 }
 
-#my-calendar .fc-day-today{
+#my-calendar .fc-day-today {
   background-color: rgba(103, 198, 187, 0.253);
 }
 
-#my-calendar .fc-daygrid-day-number{
+#my-calendar .fc-daygrid-day-number {
   font-weight: bold;
   padding: 0.8rem 1rem;
 }
 
-#my-calendar .fc-timegrid-all-day{
+#my-calendar .fc-timegrid-all-day {
   display: none;
 }
 
-#my-calendar .fc-timegrid-event{
+#my-calendar .fc-timegrid-event {
   display: block;
   opacity: 1;
 }
 
-#my-calendar .fc-timegrid-col-events{
+#my-calendar .fc-timegrid-col-events {
   display: block;
 }
 
-@media(max-width: 680px){
-  #my-calendar .fc-event{
+@media (max-width: 680px) {
+  #my-calendar .fc-event {
     min-height: 30px !important;
     overflow: visible !important;
     white-space: normal !important;
   }
 
-  #my-calendar .fc .fc-button{
+  #my-calendar .fc .fc-button {
     width: 30px;
     height: 20px;
     padding: 0;
@@ -77,9 +80,8 @@
     font-size: 0.8rem;
     overflow: hidden;
     white-space: nowrap;
-    
   }
-  .fc-media-screen{
+  .fc-media-screen {
     font-size: 0.6rem;
   }
 }

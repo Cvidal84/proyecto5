@@ -29,7 +29,7 @@ export const Navbar = () => `
 export const toggleLogo = () => {
   const logo = document.querySelector("#logoContainer > img");
   if (!logo) return;
-  logo.src = document.body.classList.contains("light") 
+  logo.src = document.body.classList.contains("light")
     ? "/logos/logo-light.png"
     : "/logos/logo-dark.png";
 };
@@ -64,7 +64,7 @@ export const burgerMenu = () => {
     }
   });
 
-  menu.querySelectorAll("a").forEach(link => {
+  menu.querySelectorAll("a").forEach((link) => {
     link.addEventListener("click", () => {
       menu.classList.remove("active");
       burgerIcon.src = openIcon;

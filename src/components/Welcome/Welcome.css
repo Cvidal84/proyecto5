@@ -1,33 +1,32 @@
-#welcome-message{
-    width: 100%;
-    height: 90%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
-    font-size: 1.3rem;
+#welcome-message {
+  width: 100%;
+  height: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  font-size: 1.3rem;
 }
 
-#welcome-message > img{
-    height: 250px;
+#welcome-message > img {
+  height: 250px;
 }
 
-#welcome-message > p{
-    text-align: center;
+#welcome-message > p {
+  text-align: center;
 }
 
 /* Responsive */
-@media (max-width: 780px){
-    #welcome-message{
-        gap: 0.5rem;
-        justify-content: start;
-    }
-    #welcome-message > img{
-        height: 250px;
-
-    }
-    #welcome-message > p{
-        font-size: 1.1rem;
-    }
+@media (max-width: 780px) {
+  #welcome-message {
+    gap: 0.5rem;
+    justify-content: start;
+  }
+  #welcome-message > img {
+    height: 250px;
+  }
+  #welcome-message > p {
+    font-size: 1.1rem;
+  }
 }

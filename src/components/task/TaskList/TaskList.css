@@ -1,4 +1,4 @@
-.task-list{
+.task-list {
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -11,55 +11,62 @@
   height: fit-content;
 }
 
-.shopping-list{
+.shopping-list {
   margin-top: 2.7rem;
   width: 500px;
 }
 
-.task-list > .list-header{
+/* HEADER */
+.task-list > .list-header {
   display: flex;
-  flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  justify-content: center;
-  gap: 1rem;
   width: 100%;
-}
-
-.task-list > .list-header > h3{
-  font-size: 1.5rem;
-}
-
-.task-list > .list-header > h3::first-letter{
-  text-transform: uppercase;
+  gap: 0;
+  flex-direction: row;
 }
 
 .task-list > .list-header > .list-buttons {
-  display:flex;
-  width: 100%;
-  justify-content: flex-end;
+  display: flex;
   gap: 0.5rem;
+  justify-content: flex-start;
+  align-items: center;
 }
 
-.task-list > .list-header > .list-buttons > button{
+.task-list > .list-header > .list-buttons > button,
+.completed-btn {
   height: 20px;
   width: auto;
   cursor: pointer;
 }
 
-.task-list > .list-header > .list-buttons > button img{
+.task-list > .list-header > .list-buttons > button img,
+.completed-btn > img {
   height: 100%;
   filter: invert();
 }
 
-body.light .task-list > .list-header > button img {
+body.light .task-list > .list-header > .list-buttons > button img {
   filter: none;
 }
 
-.task-list > .list-controls{
+.task-list h3 {
+  flex-basis: 100%;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 1.5rem;
+}
+
+.task-list h3::first-letter {
+  text-transform: uppercase;
+}
+
+/* CONTROLS */
+.task-list > .list-controls {
   width: 100%;
 }
 
-.task-list input{
+.task-list .add-task-input {
   border: none;
   border-radius: 5px;
   height: 30px;
@@ -67,40 +74,74 @@ body.light .task-list > .list-header > button img {
   padding: 0.5rem;
 }
 
-.task-list > .list-items{
+.task-list > .list-items {
   width: 100%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 0.5rem;
   min-height: 40px;
   padding: 4px;
+  align-items: stretch;
 }
 
-.task-list .list-items > li{
-  width: 100%;
-  color: var(--text);
-  background-color: var(--task-bg);
-  list-style: none;
-  padding: 1rem;
-  border-radius: 10px;
+/* Cada tarea */
+.task-item {
   display: flex;
-  justify-content: space-between;
-  text-transform: capitalize;
+  align-items: center;
+  background-color: var(--task-bg);
+  color: var(--text);
+  padding: 0.8rem 1rem;
+  border-radius: 10px;
+  list-style: none;
+  user-select: none;
+  gap: 0.7rem;
 }
 
-.task-list .list-items > li::first-letter{
+/* Checkbox fijo tamaño */
+.task-complete-checkbox {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Texto ocupa todo el espacio entre checkbox y papelera */
+.task-item > span {
+  flex-grow: 1;
+  text-align: left;
+  font-size: 1rem;
+  word-break: break-word;
+}
+
+.task-item > span::first-letter {
   text-transform: uppercase;
 }
 
-.delete-task-btn > img{
-  filter: invert(100);
-  width: 15px;
-  
+/* Botón papelera a la derecha */
+.delete-task-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  margin-left: 1rem;
+  display: flex;
+  align-items: center;
 }
 
-@media (max-width: 380px){
-  .task-list{
+/* Icono papelera tamaño fijo y filtro */
+.delete-task-btn > img {
+  width: 18px;
+  height: 18px;
+  filter: invert(100%);
+}
+
+body.light .delete-task-btn > img {
+  filter: invert(0);
+}
+
+/* Responsive */
+@media (max-width: 380px) {
+  .task-list {
     padding: 1.5rem;
   }
 }

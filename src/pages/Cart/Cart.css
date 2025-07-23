@@ -1,4 +1,4 @@
-#cart-section{
+#cart-section {
   position: relative;
   background-color: transparent;
   display: flex;
@@ -7,7 +7,7 @@
   overflow: hidden;
 }
 
-#cart-section::before{
+#cart-section::before {
   content: "";
   position: absolute;
   top: 0;
@@ -22,7 +22,7 @@
   z-index: 0;
 }
 
-#cart-section > *{
+#cart-section > * {
   position: relative;
   z-index: 1;
 }

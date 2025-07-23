@@ -1,14 +1,14 @@
 .modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 10000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10000;
 }
 
 .modal-content {
@@ -47,7 +47,9 @@
   color: black;
 }
 
-.modal-content > #list-name, .modal-content > #event-title, .modal-content > #mail-to {
+.modal-content > #list-name,
+.modal-content > #event-title,
+.modal-content > #mail-to {
   border-radius: 10px;
   width: 90%;
   padding: 8px;
@@ -80,26 +82,25 @@
 }
 
 .fc-event-title::first-letter {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
-.modal-content > div{
+.modal-content > div {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   width: 100%;
-  text-align: left; 
+  text-align: left;
 }
 
-.modal-content > div > input{
+.modal-content > div > input {
   padding: 0.3rem;
   border-radius: 5px;
   flex-grow: 1;
-  text-align: center; 
+  text-align: center;
 }
 
-
-.modal-content > div > #alert-minutes{
+.modal-content > div > #alert-minutes {
   text-align: center;
   width: 3rem;
   height: fit-content;

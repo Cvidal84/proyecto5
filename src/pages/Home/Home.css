@@ -1,18 +1,18 @@
-#board-section{
+#board-section {
   position: relative;
   background-color: transparent;
   padding: 1.5rem;
   overflow: hidden;
 }
 
-#board-section::before{
+#board-section::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-image: url('/images/board-bg.png');
+  background-image: url("/images/board-bg.png");
   background-repeat: repeat;
   background-size: contain;
   opacity: 0.2;
@@ -20,7 +20,7 @@
   z-index: 0;
 }
 
-#board-section > *{
+#board-section > * {
   position: relative;
   z-index: 1;
 }

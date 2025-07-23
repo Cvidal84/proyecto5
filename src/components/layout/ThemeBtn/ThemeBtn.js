@@ -8,17 +8,17 @@ export const ThemeBtn = () => `
 `;
 
 export const toggleTheme = () => {
-    const themeBtn = document.querySelector("#theme-btn");
-    themeBtn.addEventListener("click", () => {
-        document.body.classList.toggle("light");
-        toggleIcon();
-        toggleLogo();
-    });
+  const themeBtn = document.querySelector("#theme-btn");
+  themeBtn.addEventListener("click", () => {
+    document.body.classList.toggle("light");
+    toggleIcon();
+    toggleLogo();
+  });
 };
 
 export const toggleIcon = () => {
-    const themeIcon = document.querySelector("#theme-btn > img");
-    themeIcon.src = themeIcon.src.includes("/icons/dark-mode.png")
+  const themeIcon = document.querySelector("#theme-btn > img");
+  themeIcon.src = themeIcon.src.includes("/icons/dark-mode.png")
     ? "/icons/light-mode.png"
     : "/icons/dark-mode.png";
 };

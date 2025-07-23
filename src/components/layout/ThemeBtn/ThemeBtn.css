@@ -1,9 +1,9 @@
-#theme-btn > img{
-    height: 22px;
-    width: auto;
-    transition: filter 0.3s ease;
+#theme-btn > img {
+  height: 22px;
+  width: auto;
+  transition: filter 0.3s ease;
 }
 
-#theme-btn > img:hover{
-    filter: drop-shadow(0 0 15px white) brightness(1.2);
+#theme-btn > img:hover {
+  filter: drop-shadow(0 0 15px white) brightness(1.2);
 }

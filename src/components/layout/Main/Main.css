@@ -1,41 +1,46 @@
-main{
-    min-height: 80vh;
+main {
+  min-height: 80vh;
 }
 
 body.show-install-banner main {
   min-height: calc(80vh - 30px); /* Resta banner */
 }
 
-section#home, section#cart{
-    display: flex;
-    width: 100%;
-    z-index: 1;
+section#home,
+section#cart {
+  display: flex;
+  width: 100%;
+  z-index: 1;
 }
 
-section#my-calendar{
-    align-self: center;
+section#my-calendar {
+  align-self: center;
 }
 
-#board-section, #cart-section{
-    margin-left: 350px;
-    width: 100%;
-    min-height: 80vh;
-    padding: 2rem;
+#board-section,
+#cart-section {
+  margin-left: 350px;
+  width: 100%;
+  min-height: 80vh;
+  padding: 2rem;
 }
 
-body.show-install-banner #board-section, body.show-install-banner #cart-section{
+body.show-install-banner #board-section,
+body.show-install-banner #cart-section {
   min-height: calc(80vh - 30px); /* Resta banner */
 }
 
 /* Responsive */
 @media (max-width: 899px), (max-height: 800px) {
-    #board-section, #cart-section{
-        margin-left: 0;
-    }
+  #board-section,
+  #cart-section {
+    margin-left: 0;
+  }
 }
 
-@media (max-width: 480px){
-    #board-section, #cart-section {
-        padding: 0.5rem;
-    }
+@media (max-width: 480px) {
+  #board-section,
+  #cart-section {
+    padding: 0.5rem;
+  }
 }

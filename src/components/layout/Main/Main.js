@@ -5,20 +5,20 @@ import { Cart } from "../../../pages/Cart/Cart.js";
 import { MyCalendar } from "../../../pages/Calendar/Calendar.js";
 
 export const Main = (page) => {
-    let main = document.querySelector("main");
+  let main = document.querySelector("main");
 
-    if(!main){
-        main = document.createElement("main");
-        document.body.appendChild(main);
-    }
+  if (!main) {
+    main = document.createElement("main");
+    document.body.appendChild(main);
+  }
 
-    cleanPage(main);
+  cleanPage(main);
 
-    if (page === "home") {
-        main.appendChild(Home());
-    }else if (page === "cart") {
-        main.appendChild(Cart());
-    }else if (page === "my-calendar") {
-        main.appendChild(MyCalendar());
-    }
+  if (page === "home") {
+    main.appendChild(Home());
+  } else if (page === "cart") {
+    main.appendChild(Cart());
+  } else if (page === "my-calendar") {
+    main.appendChild(MyCalendar());
+  }
 };

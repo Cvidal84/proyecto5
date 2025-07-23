@@ -1,4 +1,4 @@
-nav{
+nav {
   height: 10vh;
   width: 100%;
   padding: 0 1rem;
@@ -7,20 +7,20 @@ nav{
   align-items: center;
 }
 
-nav > #logoContainer{
+nav > #logoContainer {
   display: flex;
   align-items: center;
   height: 100%;
   width: 20%;
 }
 
-nav > #logoContainer > img{
+nav > #logoContainer > img {
   height: 60%;
   width: auto;
   cursor: pointer;
 }
 
-nav > ul{
+nav > ul {
   display: flex;
   align-items: center;
   justify-content: end;
@@ -28,12 +28,12 @@ nav > ul{
   width: 75%;
 }
 
-nav li{
+nav li {
   display: flex;
   justify-content: end;
 }
 
-nav a{
+nav a {
   color: var(--text);
   font-size: 1rem;
   font-weight: 500;
@@ -44,31 +44,31 @@ nav a.active {
   font-weight: 700;
 }
 
-nav a:hover{
+nav a:hover {
   color: var(--highlight);
 }
 
-nav > #burger-menu{
+nav > #burger-menu {
   filter: invert();
   width: 100%;
   display: none;
   padding-left: 2rem;
 }
 
-.light nav > #burger-menu{
+.light nav > #burger-menu {
   filter: invert(0);
 }
 
-nav #burger-menu-btn{
+nav #burger-menu-btn {
   display: flex;
   align-items: center;
 }
 
-nav #burger-menu-btn > img{
+nav #burger-menu-btn > img {
   height: 30px;
 }
 
-nav > #theme-btn{
+nav > #theme-btn {
   width: 5%;
   display: flex;
   align-items: center;
@@ -76,14 +76,14 @@ nav > #theme-btn{
 }
 
 /* Responsive */
-@media (max-width: 580px){
-  nav{
-    position:relative;
+@media (max-width: 580px) {
+  nav {
+    position: relative;
   }
-  nav > #burger-menu{
+  nav > #burger-menu {
     display: flex;
   }
-  nav > #menu{
+  nav > #menu {
     display: flex;
     flex-direction: column;
     position: fixed;
@@ -109,8 +109,8 @@ nav > #theme-btn{
   }
 }
 
-@media (max-width: 480px){
-  nav #burger-menu-btn > img{
+@media (max-width: 480px) {
+  nav #burger-menu-btn > img {
     height: 20px;
   }
 }

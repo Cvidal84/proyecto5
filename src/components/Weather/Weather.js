@@ -3,7 +3,9 @@ import "./Weather.css";
 const API_KEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 const getWeather = (cityName) => {
-  fetch(`https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}&aqi=no`)
+  fetch(
+    `https://api.weatherapi.com/v1/current.json?key=${API_KEY}&q=${cityName}&aqi=no`
+  )
     .then((res) => res.json())
     .then((res) => showWeather(res))
     .catch((err) => console.error("Error al obtener el clima:", err));
@@ -12,11 +14,11 @@ const getWeather = (cityName) => {
 const showWeather = (data) => {
   const weather = {
     city: data.location.name,
-    temp: data.current.temp_c+"°",
+    temp: data.current.temp_c + "°",
     text: data.current.condition.text,
     image: data.current.condition.icon,
-    hum: data.current.humidity +" %",
-    wind: data.current.wind_kph + " k/h"
+    hum: data.current.humidity + " %",
+    wind: data.current.wind_kph + " k/h",
   };
   printData(weather);
 };
@@ -57,12 +59,16 @@ export const Weather = () => {
   } else {
     navigator.geolocation.getCurrentPosition(
       (position) => {
-        const location = position.coords.latitude + "," + position.coords.longitude;
+        const location =
+          position.coords.latitude + "," + position.coords.longitude;
         localStorage.setItem("userLocation", location);
         getWeather(location);
       },
       (error) => {
-        console.warn("No se pudo obtener ubicación, carga default:", error.message);
+        console.warn(
+          "No se pudo obtener ubicación, carga default:",
+          error.message
+        );
         getWeather("Madrid");
       }
     );
