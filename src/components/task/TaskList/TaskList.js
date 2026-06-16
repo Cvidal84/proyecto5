@@ -7,10 +7,12 @@ import { Modal } from "../../Modal/Modal";
 const makeTaskDraggable = (li) => {
   li.draggable = true;
   li.addEventListener("dragstart", (e) => {
+    e.stopPropagation();
     e.dataTransfer.setData("text/plain", li.textContent);
     li.classList.add("dragging");
   });
-  li.addEventListener("dragend", () => {
+  li.addEventListener("dragend", (e) => {
+    e.stopPropagation();
     li.classList.remove("dragging");
   });
 };
@@ -31,6 +33,35 @@ const getDragAfterElement = (container, y) => {
     },
     { offset: Number.NEGATIVE_INFINITY }
   ).element;
+};
+
+// Guardar listas
+export const saveLists = () => {
+  const currentLists = Array.from(
+    document.querySelectorAll(".task-list")
+  ).map((el) => {
+    const id = el.dataset.id;
+    const name = el.querySelector("h3").textContent;
+    const color = el.style.backgroundColor;
+    const tasks = Array.from(el.querySelectorAll(".list-items li")).map(
+      (li) => {
+        const completed = li.classList.contains("completed");
+        const textSpan = li.querySelector("span");
+        const text = textSpan ? textSpan.textContent : li.textContent;
+        return { text, completed };
+      }
+    );
+    const isShoppingList = el.classList.contains("shopping-list");
+    return { id, name, color, tasks, isShoppingList };
+  });
+
+  const existing = JSON.parse(localStorage.getItem("taskLists")) || [];
+  const nonRendered = existing.filter(
+    (ex) => !currentLists.some((cur) => cur.id === ex.id)
+  );
+  const updated = [...currentLists, ...nonRendered];
+
+  localStorage.setItem("taskLists", JSON.stringify(updated));
 };
 
 // Crear tarea
@@ -63,6 +94,51 @@ const createTaskItem = (
 
   const spanText = document.createElement("span");
   spanText.textContent = text;
+
+  spanText.addEventListener("dblclick", () => {
+    if (li.querySelector(".edit-task-input")) return;
+
+    const inputEdit = document.createElement("input");
+    inputEdit.type = "text";
+    inputEdit.classList.add("edit-task-input");
+    inputEdit.value = spanText.textContent;
+    inputEdit.style.width = "100%";
+    inputEdit.style.fontSize = "1rem";
+    inputEdit.style.padding = "0.2rem";
+    inputEdit.style.borderRadius = "4px";
+    inputEdit.style.border = "1px solid var(--text)";
+
+    li.insertBefore(inputEdit, spanText);
+    spanText.style.display = "none";
+    inputEdit.focus();
+    inputEdit.select();
+
+    const finishEdit = (save) => {
+      if (inputEdit.parentElement) {
+        if (save) {
+          const newText = inputEdit.value.trim();
+          if (newText) {
+            spanText.textContent = newText;
+          }
+        }
+        spanText.style.display = "";
+        inputEdit.remove();
+        onSave();
+      }
+    };
+
+    inputEdit.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        finishEdit(true);
+      } else if (e.key === "Escape") {
+        finishEdit(false);
+      }
+    });
+
+    inputEdit.addEventListener("blur", () => {
+      finishEdit(true);
+    });
+  });
 
   li.appendChild(checkbox);
   li.appendChild(spanText);
@@ -153,8 +229,81 @@ export const TaskList = (listData, container) => {
   list.style.backgroundColor = color;
   const hexColor = color.startsWith("#") ? color : rgbToHex(color);
   const textColor = getTextColor(hexColor);
-  list.querySelector("h3").style.color = textColor;
+  const titleEl = list.querySelector("h3");
+  titleEl.style.color = textColor;
   list.querySelector(".add-task-btn").style.color = textColor;
+
+  // Editar nombre de la lista con doble click
+  titleEl.addEventListener("dblclick", () => {
+    if (list.querySelector(".edit-list-title-input")) return;
+
+    const inputEdit = document.createElement("input");
+    inputEdit.type = "text";
+    inputEdit.classList.add("edit-list-title-input");
+    inputEdit.value = titleEl.textContent;
+    inputEdit.style.width = "90%";
+    inputEdit.style.fontSize = "1.5rem";
+    inputEdit.style.fontWeight = "bold";
+    inputEdit.style.textAlign = "center";
+    inputEdit.style.padding = "0.2rem";
+    inputEdit.style.borderRadius = "4px";
+    inputEdit.style.border = "1px solid var(--text)";
+    inputEdit.style.margin = "10px auto";
+
+    list.insertBefore(inputEdit, titleEl);
+    titleEl.style.display = "none";
+    inputEdit.focus();
+    inputEdit.select();
+
+    const finishEdit = (save) => {
+      if (inputEdit.parentElement) {
+        if (save) {
+          const newName = inputEdit.value.trim();
+          if (newName) {
+            titleEl.textContent = newName;
+          }
+        }
+        titleEl.style.display = "";
+        inputEdit.remove();
+        saveLists();
+      }
+    };
+
+    inputEdit.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        finishEdit(true);
+      } else if (e.key === "Escape") {
+        finishEdit(false);
+      }
+    });
+
+    inputEdit.addEventListener("blur", () => {
+      finishEdit(true);
+    });
+  });
+
+  // Hacer la lista arrastrable (excepto la lista de la compra)
+  if (!isShoppingList) {
+    list.draggable = true;
+    list.addEventListener("dragstart", (e) => {
+      if (
+        e.target.closest(".task-item") ||
+        e.target.closest("button") ||
+        e.target.closest("input")
+      ) {
+        e.preventDefault();
+        return;
+      }
+      e.dataTransfer.setData("text/list-id", id);
+      setTimeout(() => {
+        list.classList.add("dragging-list");
+      }, 0);
+    });
+
+    list.addEventListener("dragend", () => {
+      list.classList.remove("dragging-list");
+    });
+  }
 
   const trashIcon = list.querySelector(".delete-list-btn img");
   if (trashIcon) {
@@ -199,40 +348,7 @@ export const TaskList = (listData, container) => {
     completedBtn.style.opacity = showCompleted ? "1" : "0.5";
   };
 
-  // Guardar listas
-  const saveLists = () => {
-    const currentLists = Array.from(
-      document.querySelectorAll(".task-list")
-    ).map((el) => {
-      const id = el.dataset.id;
-      const name = el.querySelector("h3").textContent;
-      const color = el.style.backgroundColor;
-      const tasks = Array.from(el.querySelectorAll(".list-items li")).map(
-        (li) => {
-          const completed = li.classList.contains("completed");
-          const textSpan = li.querySelector("span");
-          const text = textSpan ? textSpan.textContent : li.textContent;
-          return { text, completed };
-        }
-      );
-      const isShoppingList = el.classList.contains("shopping-list");
-      return { id, name, color, tasks, isShoppingList };
-    });
-
-    const existing = JSON.parse(localStorage.getItem("taskLists")) || [];
-    const updated = [...existing];
-
-    currentLists.forEach((newList) => {
-      const index = updated.findIndex((l) => l.id === newList.id);
-      if (index !== -1) {
-        updated[index] = newList;
-      } else {
-        updated.push(newList);
-      }
-    });
-
-    localStorage.setItem("taskLists", JSON.stringify(updated));
-  };
+  // Guardar listas is now exported globally from this module
 
   // Cargar tareas guardadas
   tasks.forEach((task) => {

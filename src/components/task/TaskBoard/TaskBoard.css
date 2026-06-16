@@ -35,3 +35,20 @@
     bottom: 0;
   }
 }
+
+/* Drag and Drop styles */
+.dragging-list {
+  background: transparent !important;
+  border: 2px dashed rgba(255, 255, 255, 0.15) !important;
+  box-shadow: none !important;
+  transform: scale(0.98);
+  transition: all 0.2s ease;
+}
+
+body.light .dragging-list {
+  border: 2px dashed rgba(0, 0, 0, 0.12) !important;
+}
+
+.dragging-list * {
+  visibility: hidden !important;
+}

@@ -9,6 +9,11 @@
   background-color: var(--card-bg);
   word-wrap: break-word;
   height: fit-content;
+  cursor: grab;
+}
+
+.task-list:active {
+  cursor: grabbing;
 }
 
 .shopping-list {
@@ -95,6 +100,22 @@ body.light .task-list > .list-header > .list-buttons > button img {
   list-style: none;
   user-select: none;
   gap: 0.7rem;
+  cursor: grab;
+}
+
+.task-item:active {
+  cursor: grabbing;
+}
+
+.task-list input,
+.task-list select,
+.task-list textarea {
+  cursor: text;
+}
+
+.task-list button,
+.task-list input[type="checkbox"] {
+  cursor: pointer;
 }
 
 /* Checkbox fijo tamaño */
