@@ -98,18 +98,31 @@ const createTaskItem = (
   spanText.addEventListener("dblclick", () => {
     if (li.querySelector(".edit-task-input")) return;
 
-    const inputEdit = document.createElement("input");
-    inputEdit.type = "text";
+    const inputEdit = document.createElement("textarea");
     inputEdit.classList.add("edit-task-input");
     inputEdit.value = spanText.textContent;
     inputEdit.style.width = "100%";
     inputEdit.style.fontSize = "1rem";
+    inputEdit.style.fontFamily = "inherit";
     inputEdit.style.padding = "0.2rem";
     inputEdit.style.borderRadius = "4px";
     inputEdit.style.border = "1px solid var(--text)";
+    inputEdit.style.background = "transparent";
+    inputEdit.style.color = "var(--text)";
+    inputEdit.style.resize = "none";
+    inputEdit.style.overflow = "hidden";
+    inputEdit.style.lineHeight = "inherit";
+    inputEdit.style.wordBreak = "break-word";
 
     li.insertBefore(inputEdit, spanText);
     spanText.style.display = "none";
+
+    const adjustHeight = () => {
+      inputEdit.style.height = "auto";
+      inputEdit.style.height = `${inputEdit.scrollHeight}px`;
+    };
+
+    adjustHeight();
     inputEdit.focus();
     inputEdit.select();
 
@@ -127,8 +140,11 @@ const createTaskItem = (
       }
     };
 
+    inputEdit.addEventListener("input", adjustHeight);
+
     inputEdit.addEventListener("keydown", (e) => {
-      if (e.key === "Enter") {
+      if (e.key === "Enter" && !e.shiftKey) {
+        e.preventDefault();
         finishEdit(true);
       } else if (e.key === "Escape") {
         finishEdit(false);
